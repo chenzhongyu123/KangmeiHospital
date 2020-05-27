@@ -1,0 +1,15 @@
+E:\我的各种文件\毕业项目\毕业项目vs内容存放文件夹\KangmeiHospital\BLL\bin\Debug\BLL.dll
+E:\我的各种文件\毕业项目\毕业项目vs内容存放文件夹\KangmeiHospital\BLL\bin\Debug\BLL.pdb
+E:\我的各种文件\毕业项目\毕业项目vs内容存放文件夹\KangmeiHospital\BLL\bin\Debug\DAL.dll
+E:\我的各种文件\毕业项目\毕业项目vs内容存放文件夹\KangmeiHospital\BLL\bin\Debug\Model.dll
+E:\我的各种文件\毕业项目\毕业项目vs内容存放文件夹\KangmeiHospital\BLL\bin\Debug\EntityFramework.dll
+E:\我的各种文件\毕业项目\毕业项目vs内容存放文件夹\KangmeiHospital\BLL\bin\Debug\DAL.pdb
+E:\我的各种文件\毕业项目\毕业项目vs内容存放文件夹\KangmeiHospital\BLL\bin\Debug\Model.pdb
+E:\我的各种文件\毕业项目\毕业项目vs内容存放文件夹\KangmeiHospital\BLL\bin\Debug\Model.dll.config
+E:\我的各种文件\毕业项目\毕业项目vs内容存放文件夹\KangmeiHospital\BLL\bin\Debug\EntityFramework.xml
+E:\我的各种文件\毕业项目\毕业项目vs内容存放文件夹\KangmeiHospital\BLL\bin\Debug\zh-Hans\EntityFramework.resources.dll
+E:\我的各种文件\毕业项目\毕业项目vs内容存放文件夹\KangmeiHospital\BLL\obj\Debug\BLL.csprojAssemblyReference.cache
+E:\我的各种文件\毕业项目\毕业项目vs内容存放文件夹\KangmeiHospital\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+E:\我的各种文件\毕业项目\毕业项目vs内容存放文件夹\KangmeiHospital\BLL\obj\Debug\BLL.csproj.CopyComplete
+E:\我的各种文件\毕业项目\毕业项目vs内容存放文件夹\KangmeiHospital\BLL\obj\Debug\BLL.dll
+E:\我的各种文件\毕业项目\毕业项目vs内容存放文件夹\KangmeiHospital\BLL\obj\Debug\BLL.pdb

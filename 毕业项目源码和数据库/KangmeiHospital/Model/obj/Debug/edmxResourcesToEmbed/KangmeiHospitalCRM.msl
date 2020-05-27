@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KangmeiHospitalCRMModelStoreContainer" CdmEntityContainer="KangmeiHospitalCRMEntities">
+    <EntitySetMapping Name="ClientMdicalIformation">
+      <EntityTypeMapping TypeName="KangmeiHospitalCRMModel.ClientMdicalIformation">
+        <MappingFragment StoreEntitySet="ClientMdicalIformation">
+          <ScalarProperty Name="ConclusionID" ColumnName="ConclusionID" />
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="CustomerAppointmentID" ColumnName="CustomerAppointmentID" />
+          <ScalarProperty Name="SurgicalExaminationID" ColumnName="SurgicalExaminationID" />
+          <ScalarProperty Name="MedicalExaminationID" ColumnName="MedicalExaminationID" />
+          <ScalarProperty Name="InspectionTime" ColumnName="InspectionTime" />
+          <ScalarProperty Name="InspectionResults" ColumnName="InspectionResults" />
+          <ScalarProperty Name="ConclusionOfPhysicalExamination" ColumnName="ConclusionOfPhysicalExamination" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerAppointment">
+      <EntityTypeMapping TypeName="KangmeiHospitalCRMModel.CustomerAppointment">
+        <MappingFragment StoreEntitySet="CustomerAppointment">
+          <ScalarProperty Name="CustomerAppointmentID" ColumnName="CustomerAppointmentID" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="startTime" ColumnName="startTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="PhysicalExaminationDescription" ColumnName="PhysicalExaminationDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerInformation">
+      <EntityTypeMapping TypeName="KangmeiHospitalCRMModel.CustomerInformation">
+        <MappingFragment StoreEntitySet="CustomerInformation">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="CustomerIDCard" ColumnName="CustomerIDCard" />
+          <ScalarProperty Name="CustomerGender" ColumnName="CustomerGender" />
+          <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
+          <ScalarProperty Name="CustomerNationality" ColumnName="CustomerNationality" />
+          <ScalarProperty Name="ClientsMaritalStatus" ColumnName="ClientsMaritalStatus" />
+          <ScalarProperty Name="CustomerBloodGroup" ColumnName="CustomerBloodGroup" />
+          <ScalarProperty Name="CustomerOccupation" ColumnName="CustomerOccupation" />
+          <ScalarProperty Name="CustomerEducation" ColumnName="CustomerEducation" />
+          <ScalarProperty Name="CustomerBelief" ColumnName="CustomerBelief" />
+          <ScalarProperty Name="CustomerContactNumber" ColumnName="CustomerContactNumber" />
+          <ScalarProperty Name="CustomerEmergencyContactNumber" ColumnName="CustomerEmergencyContactNumber" />
+          <ScalarProperty Name="CustomerHomeAddress" ColumnName="CustomerHomeAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerReturnVisit">
+      <EntityTypeMapping TypeName="KangmeiHospitalCRMModel.CustomerReturnVisit">
+        <MappingFragment StoreEntitySet="CustomerReturnVisit">
+          <ScalarProperty Name="ContentID" ColumnName="ContentID" />
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="ConclusionID" ColumnName="ConclusionID" />
+          <ScalarProperty Name="ContentOfReturnVisit" ColumnName="ContentOfReturnVisit" />
+          <ScalarProperty Name="ContentTime" ColumnName="ContentTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerService">
+      <EntityTypeMapping TypeName="KangmeiHospitalCRMModel.CustomerService">
+        <MappingFragment StoreEntitySet="CustomerService">
+          <ScalarProperty Name="CustomerServiceID" ColumnName="CustomerServiceID" />
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="ConclusionID" ColumnName="ConclusionID" />
+          <ScalarProperty Name="ConsultationContent" ColumnName="ConsultationContent" />
+          <ScalarProperty Name="ConsultationTime" ColumnName="ConsultationTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KnowledgeBaseContentManagement">
+      <EntityTypeMapping TypeName="KangmeiHospitalCRMModel.KnowledgeBaseContentManagement">
+        <MappingFragment StoreEntitySet="KnowledgeBaseContentManagement">
+          <ScalarProperty Name="KnowledgeBase" ColumnName="KnowledgeBase" />
+          <ScalarProperty Name="KnowledgeBaseTypeID" ColumnName="KnowledgeBaseTypeID" />
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="Problem" ColumnName="Problem" />
+          <ScalarProperty Name="OpenOrNot" ColumnName="OpenOrNot" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KnowledgeBaseTypeManagement">
+      <EntityTypeMapping TypeName="KangmeiHospitalCRMModel.KnowledgeBaseTypeManagement">
+        <MappingFragment StoreEntitySet="KnowledgeBaseTypeManagement">
+          <ScalarProperty Name="KnowledgeBaseTypeID" ColumnName="KnowledgeBaseTypeID" />
+          <ScalarProperty Name="KnowledgeBaseType" ColumnName="KnowledgeBaseType" />
+          <ScalarProperty Name="OpenOrNot" ColumnName="OpenOrNot" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MedicalExamination">
+      <EntityTypeMapping TypeName="KangmeiHospitalCRMModel.MedicalExamination">
+        <MappingFragment StoreEntitySet="MedicalExamination">
+          <ScalarProperty Name="MedicalExaminationID" ColumnName="MedicalExaminationID" />
+          <ScalarProperty Name="BloodPressure" ColumnName="BloodPressure" />
+          <ScalarProperty Name="Pulse" ColumnName="Pulse" />
+          <ScalarProperty Name="DevelopmentAndNutrition" ColumnName="DevelopmentAndNutrition" />
+          <ScalarProperty Name="HeartAndBloodVessels" ColumnName="HeartAndBloodVessels" />
+          <ScalarProperty Name="NervesAndSpirits" ColumnName="NervesAndSpirits" />
+          <ScalarProperty Name="LungAndRespiratoryTract" ColumnName="LungAndRespiratoryTract" />
+          <ScalarProperty Name="AbdominalOrgan" ColumnName="AbdominalOrgan" />
+          <ScalarProperty Name="Liver" ColumnName="Liver" />
+          <ScalarProperty Name="Spleen" ColumnName="Spleen" />
+          <ScalarProperty Name="Transaminase" ColumnName="Transaminase" />
+          <ScalarProperty Name="TransaminaseDescription" ColumnName="TransaminaseDescription" />
+          <ScalarProperty Name="HepatitisBSurfaceAntigen" ColumnName="HepatitisBSurfaceAntigen" />
+          <ScalarProperty Name="HepatitisBSurfaceAntigenDescription" ColumnName="HepatitisBSurfaceAntigenDescription" />
+          <ScalarProperty Name="ChestXRay" ColumnName="ChestXRay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MedicalHistory">
+      <EntityTypeMapping TypeName="KangmeiHospitalCRMModel.MedicalHistory">
+        <MappingFragment StoreEntitySet="MedicalHistory">
+          <ScalarProperty Name="MedicalHistory1" ColumnName="MedicalHistory" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="HistoryOfPresentLllness" ColumnName="HistoryOfPresentLllness" />
+          <ScalarProperty Name="HistoryOfPresentLllnessMedicalHistory" ColumnName="HistoryOfPresentLllnessMedicalHistory" />
+          <ScalarProperty Name="HistoryOfPresentLllnessLocationOfVisit" ColumnName="HistoryOfPresentLllnessLocationOfVisit" />
+          <ScalarProperty Name="HistoryOfPresentLllnessSituation" ColumnName="HistoryOfPresentLllnessSituation" />
+          <ScalarProperty Name="PastHistory" ColumnName="PastHistory" />
+          <ScalarProperty Name="PastHistoryMedicalHistory" ColumnName="PastHistoryMedicalHistory" />
+          <ScalarProperty Name="PastHistoryLocationOfVisit" ColumnName="PastHistoryLocationOfVisit" />
+          <ScalarProperty Name="PastHistorySituation" ColumnName="PastHistorySituation" />
+          <ScalarProperty Name="FamilyHistory" ColumnName="FamilyHistory" />
+          <ScalarProperty Name="FamilyHistoryMedicalHistory" ColumnName="FamilyHistoryMedicalHistory" />
+          <ScalarProperty Name="FamilyHistoryLocationOfVisit" ColumnName="FamilyHistoryLocationOfVisit" />
+          <ScalarProperty Name="FamilyHistorySituation" ColumnName="FamilyHistorySituation" />
+          <ScalarProperty Name="MenstrualHistory" ColumnName="MenstrualHistory" />
+          <ScalarProperty Name="MenstrualHistoryMedicalHistory" ColumnName="MenstrualHistoryMedicalHistory" />
+          <ScalarProperty Name="MenstrualHistoryLocationOfVisit" ColumnName="MenstrualHistoryLocationOfVisit" />
+          <ScalarProperty Name="MenstrualHistorySituation" ColumnName="MenstrualHistorySituation" />
+          <ScalarProperty Name="MarriageAndPregnancy" ColumnName="MarriageAndPregnancy" />
+          <ScalarProperty Name="MarriageAndPregnancyMedicalHistory" ColumnName="MarriageAndPregnancyMedicalHistory" />
+          <ScalarProperty Name="MarriageAndPregnancyLocationOfVisit" ColumnName="MarriageAndPregnancyLocationOfVisit" />
+          <ScalarProperty Name="MarriageAndPregnancySituation" ColumnName="MarriageAndPregnancySituation" />
+          <ScalarProperty Name="PhysicalExamination" ColumnName="PhysicalExamination" />
+          <ScalarProperty Name="PhysicalExaminationMedicalHistory" ColumnName="PhysicalExaminationMedicalHistory" />
+          <ScalarProperty Name="PhysicalExaminationLocationOfVisit" ColumnName="PhysicalExaminationLocationOfVisit" />
+          <ScalarProperty Name="PhysicalExaminationSituation" ColumnName="PhysicalExaminationSituation" />
+          <ScalarProperty Name="LaboratoryExamination" ColumnName="LaboratoryExamination" />
+          <ScalarProperty Name="LaboratoryExaminationMedicalHistory" ColumnName="LaboratoryExaminationMedicalHistory" />
+          <ScalarProperty Name="LaboratoryExaminationLocationOfVisit" ColumnName="LaboratoryExaminationLocationOfVisit" />
+          <ScalarProperty Name="LaboratoryExaminationSituation" ColumnName="LaboratoryExaminationSituation" />
+          <ScalarProperty Name="SpecialInspection" ColumnName="SpecialInspection" />
+          <ScalarProperty Name="SpecialInspectionMedicalHistory" ColumnName="SpecialInspectionMedicalHistory" />
+          <ScalarProperty Name="SpecialInspectionLocationOfVisit" ColumnName="SpecialInspectionLocationOfVisit" />
+          <ScalarProperty Name="SpecialInspectionSituation" ColumnName="SpecialInspectionSituation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurgicalExamination">
+      <EntityTypeMapping TypeName="KangmeiHospitalCRMModel.SurgicalExamination">
+        <MappingFragment StoreEntitySet="SurgicalExamination">
+          <ScalarProperty Name="SurgicalExaminationID" ColumnName="SurgicalExaminationID" />
+          <ScalarProperty Name="Height" ColumnName="Height" />
+          <ScalarProperty Name="Bust" ColumnName="Bust" />
+          <ScalarProperty Name="Skin" ColumnName="Skin" />
+          <ScalarProperty Name="Weights" ColumnName="Weights" />
+          <ScalarProperty Name="PoorBreath" ColumnName="PoorBreath" />
+          <ScalarProperty Name="Face" ColumnName="Face" />
+          <ScalarProperty Name="Neck" ColumnName="Neck" />
+          <ScalarProperty Name="Spine" ColumnName="Spine" />
+          <ScalarProperty Name="Limb" ColumnName="Limb" />
+          <ScalarProperty Name="Joint" ColumnName="Joint" />
+          <ScalarProperty Name="Other" ColumnName="Other" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserDoctorList">
+      <EntityTypeMapping TypeName="KangmeiHospitalCRMModel.UserDoctorList">
+        <MappingFragment StoreEntitySet="UserDoctorList">
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="DoctorOfName" ColumnName="DoctorOfName" />
+          <ScalarProperty Name="DoctorMajor" ColumnName="DoctorMajor" />
+          <ScalarProperty Name="DoctorGender" ColumnName="DoctorGender" />
+          <ScalarProperty Name="DoctorDateOfBirth" ColumnName="DoctorDateOfBirth" />
+          <ScalarProperty Name="DoctorIdentity" ColumnName="DoctorIdentity" />
+          <ScalarProperty Name="DoctorAge" ColumnName="DoctorAge" />
+          <ScalarProperty Name="DoctorSubject" ColumnName="DoctorSubject" />
+          <ScalarProperty Name="AdministratorOrNot" ColumnName="AdministratorOrNot" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

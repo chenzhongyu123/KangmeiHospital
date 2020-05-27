@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KangmeiHospitalCRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ClientMdicalIformation">
+    <Key>
+      <PropertyRef Name="ConclusionID" />
+    </Key>
+    <Property Name="ConclusionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DoctorID" Type="int" />
+    <Property Name="CustomerAppointmentID" Type="int" />
+    <Property Name="SurgicalExaminationID" Type="int" />
+    <Property Name="MedicalExaminationID" Type="int" />
+    <Property Name="InspectionTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="InspectionResults" Type="nvarchar" MaxLength="100" />
+    <Property Name="ConclusionOfPhysicalExamination" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="CustomerAppointment">
+    <Key>
+      <PropertyRef Name="CustomerAppointmentID" />
+    </Key>
+    <Property Name="CustomerAppointmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerID" Type="int" />
+    <Property Name="startTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="EndTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhysicalExaminationDescription" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="CustomerInformation">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CustomerIDCard" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CustomerGender" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="dateOfBirth" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CustomerNationality" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClientsMaritalStatus" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="CustomerBloodGroup" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="CustomerOccupation" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CustomerEducation" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CustomerBelief" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CustomerContactNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CustomerEmergencyContactNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CustomerHomeAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerReturnVisit">
+    <Key>
+      <PropertyRef Name="ContentID" />
+    </Key>
+    <Property Name="ContentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DoctorID" Type="int" />
+    <Property Name="ConclusionID" Type="int" />
+    <Property Name="ContentOfReturnVisit" Type="nvarchar" MaxLength="100" />
+    <Property Name="ContentTime" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="CustomerService">
+    <Key>
+      <PropertyRef Name="CustomerServiceID" />
+    </Key>
+    <Property Name="CustomerServiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DoctorID" Type="int" />
+    <Property Name="ConclusionID" Type="int" />
+    <Property Name="ConsultationContent" Type="nvarchar" MaxLength="100" />
+    <Property Name="ConsultationTime" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="KnowledgeBaseContentManagement">
+    <Key>
+      <PropertyRef Name="KnowledgeBase" />
+    </Key>
+    <Property Name="KnowledgeBase" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KnowledgeBaseTypeID" Type="int" />
+    <Property Name="DoctorID" Type="int" />
+    <Property Name="Problem" Type="nvarchar(max)" />
+    <Property Name="OpenOrNot" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="KnowledgeBaseTypeManagement">
+    <Key>
+      <PropertyRef Name="KnowledgeBaseTypeID" />
+    </Key>
+    <Property Name="KnowledgeBaseTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KnowledgeBaseType" Type="nvarchar" MaxLength="10" />
+    <Property Name="OpenOrNot" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="MedicalExamination">
+    <Key>
+      <PropertyRef Name="MedicalExaminationID" />
+    </Key>
+    <Property Name="MedicalExaminationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BloodPressure" Type="nvarchar" MaxLength="50" />
+    <Property Name="Pulse" Type="nvarchar" MaxLength="50" />
+    <Property Name="DevelopmentAndNutrition" Type="nvarchar" MaxLength="50" />
+    <Property Name="HeartAndBloodVessels" Type="nvarchar" MaxLength="50" />
+    <Property Name="NervesAndSpirits" Type="nvarchar" MaxLength="50" />
+    <Property Name="LungAndRespiratoryTract" Type="nvarchar" MaxLength="50" />
+    <Property Name="AbdominalOrgan" Type="nvarchar" MaxLength="50" />
+    <Property Name="Liver" Type="nvarchar" MaxLength="50" />
+    <Property Name="Spleen" Type="nvarchar" MaxLength="50" />
+    <Property Name="Transaminase" Type="nvarchar" MaxLength="50" />
+    <Property Name="TransaminaseDescription" Type="nvarchar" MaxLength="50" />
+    <Property Name="HepatitisBSurfaceAntigen" Type="nvarchar" MaxLength="50" />
+    <Property Name="HepatitisBSurfaceAntigenDescription" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChestXRay" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MedicalHistory">
+    <Key>
+      <PropertyRef Name="MedicalHistory" />
+    </Key>
+    <Property Name="MedicalHistory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerID" Type="int" />
+    <Property Name="HistoryOfPresentLllness" Type="nvarchar" MaxLength="50" />
+    <Property Name="HistoryOfPresentLllnessMedicalHistory" Type="nvarchar" MaxLength="50" />
+    <Property Name="HistoryOfPresentLllnessLocationOfVisit" Type="nvarchar" MaxLength="50" />
+    <Property Name="HistoryOfPresentLllnessSituation" Type="nvarchar" MaxLength="50" />
+    <Property Name="PastHistory" Type="nvarchar" MaxLength="50" />
+    <Property Name="PastHistoryMedicalHistory" Type="nvarchar" MaxLength="50" />
+    <Property Name="PastHistoryLocationOfVisit" Type="nvarchar" MaxLength="50" />
+    <Property Name="PastHistorySituation" Type="nvarchar" MaxLength="50" />
+    <Property Name="FamilyHistory" Type="nvarchar" MaxLength="50" />
+    <Property Name="FamilyHistoryMedicalHistory" Type="nvarchar" MaxLength="50" />
+    <Property Name="FamilyHistoryLocationOfVisit" Type="nvarchar" MaxLength="50" />
+    <Property Name="FamilyHistorySituation" Type="nvarchar" MaxLength="50" />
+    <Property Name="MenstrualHistory" Type="nvarchar" MaxLength="50" />
+    <Property Name="MenstrualHistoryMedicalHistory" Type="nvarchar" MaxLength="50" />
+    <Property Name="MenstrualHistoryLocationOfVisit" Type="nvarchar" MaxLength="50" />
+    <Property Name="MenstrualHistorySituation" Type="nvarchar" MaxLength="50" />
+    <Property Name="MarriageAndPregnancy" Type="nvarchar" MaxLength="50" />
+    <Property Name="MarriageAndPregnancyMedicalHistory" Type="nvarchar" MaxLength="50" />
+    <Property Name="MarriageAndPregnancyLocationOfVisit" Type="nvarchar" MaxLength="50" />
+    <Property Name="MarriageAndPregnancySituation" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhysicalExamination" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhysicalExaminationMedicalHistory" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhysicalExaminationLocationOfVisit" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhysicalExaminationSituation" Type="nvarchar" MaxLength="50" />
+    <Property Name="LaboratoryExamination" Type="nvarchar" MaxLength="50" />
+    <Property Name="LaboratoryExaminationMedicalHistory" Type="nvarchar" MaxLength="50" />
+    <Property Name="LaboratoryExaminationLocationOfVisit" Type="nvarchar" MaxLength="50" />
+    <Property Name="LaboratoryExaminationSituation" Type="nvarchar" MaxLength="50" />
+    <Property Name="SpecialInspection" Type="nvarchar" MaxLength="50" />
+    <Property Name="SpecialInspectionMedicalHistory" Type="nvarchar" MaxLength="50" />
+    <Property Name="SpecialInspectionLocationOfVisit" Type="nvarchar" MaxLength="50" />
+    <Property Name="SpecialInspectionSituation" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SurgicalExamination">
+    <Key>
+      <PropertyRef Name="SurgicalExaminationID" />
+    </Key>
+    <Property Name="SurgicalExaminationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Height" Type="nvarchar" MaxLength="50" />
+    <Property Name="Bust" Type="nvarchar" MaxLength="50" />
+    <Property Name="Skin" Type="nvarchar" MaxLength="50" />
+    <Property Name="Weights" Type="nvarchar" MaxLength="50" />
+    <Property Name="PoorBreath" Type="nvarchar" MaxLength="50" />
+    <Property Name="Face" Type="nvarchar" MaxLength="50" />
+    <Property Name="Neck" Type="nvarchar" MaxLength="50" />
+    <Property Name="Spine" Type="nvarchar" MaxLength="50" />
+    <Property Name="Limb" Type="nvarchar" MaxLength="50" />
+    <Property Name="Joint" Type="nvarchar" MaxLength="50" />
+    <Property Name="Other" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="UserDoctorList">
+    <Key>
+      <PropertyRef Name="DoctorID" />
+    </Key>
+    <Property Name="DoctorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DoctorOfName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DoctorMajor" Type="nvarchar" MaxLength="50" />
+    <Property Name="DoctorGender" Type="nvarchar" MaxLength="10" />
+    <Property Name="DoctorDateOfBirth" Type="nvarchar" MaxLength="50" />
+    <Property Name="DoctorIdentity" Type="nvarchar" MaxLength="100" />
+    <Property Name="DoctorAge" Type="int" />
+    <Property Name="DoctorSubject" Type="nvarchar" MaxLength="50" />
+    <Property Name="AdministratorOrNot" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <Association Name="FK__ClientMdi__Custo__3E52440B">
+    <End Role="CustomerAppointment" Type="Self.CustomerAppointment" Multiplicity="0..1" />
+    <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerAppointment">
+        <PropertyRef Name="CustomerAppointmentID" />
+      </Principal>
+      <Dependent Role="ClientMdicalIformation">
+        <PropertyRef Name="CustomerAppointmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ClientMdi__Docto__3D5E1FD2">
+    <End Role="UserDoctorList" Type="Self.UserDoctorList" Multiplicity="0..1" />
+    <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDoctorList">
+        <PropertyRef Name="DoctorID" />
+      </Principal>
+      <Dependent Role="ClientMdicalIformation">
+        <PropertyRef Name="DoctorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ClientMdi__Medic__403A8C7D">
+    <End Role="MedicalExamination" Type="Self.MedicalExamination" Multiplicity="0..1" />
+    <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MedicalExamination">
+        <PropertyRef Name="MedicalExaminationID" />
+      </Principal>
+      <Dependent Role="ClientMdicalIformation">
+        <PropertyRef Name="MedicalExaminationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ClientMdi__Surgi__3F466844">
+    <End Role="SurgicalExamination" Type="Self.SurgicalExamination" Multiplicity="0..1" />
+    <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SurgicalExamination">
+        <PropertyRef Name="SurgicalExaminationID" />
+      </Principal>
+      <Dependent Role="ClientMdicalIformation">
+        <PropertyRef Name="SurgicalExaminationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CustomerA__Custo__2C3393D0">
+    <End Role="CustomerInformation" Type="Self.CustomerInformation" Multiplicity="0..1" />
+    <End Role="CustomerAppointment" Type="Self.CustomerAppointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerInformation">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="CustomerAppointment">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CustomerR__Concl__49C3F6B7">
+    <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="0..1" />
+    <End Role="CustomerReturnVisit" Type="Self.CustomerReturnVisit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClientMdicalIformation">
+        <PropertyRef Name="ConclusionID" />
+      </Principal>
+      <Dependent Role="CustomerReturnVisit">
+        <PropertyRef Name="ConclusionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CustomerR__Docto__48CFD27E">
+    <End Role="UserDoctorList" Type="Self.UserDoctorList" Multiplicity="0..1" />
+    <End Role="CustomerReturnVisit" Type="Self.CustomerReturnVisit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDoctorList">
+        <PropertyRef Name="DoctorID" />
+      </Principal>
+      <Dependent Role="CustomerReturnVisit">
+        <PropertyRef Name="DoctorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CustomerS__Concl__45F365D3">
+    <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="0..1" />
+    <End Role="CustomerService" Type="Self.CustomerService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClientMdicalIformation">
+        <PropertyRef Name="ConclusionID" />
+      </Principal>
+      <Dependent Role="CustomerService">
+        <PropertyRef Name="ConclusionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CustomerS__Docto__44FF419A">
+    <End Role="UserDoctorList" Type="Self.UserDoctorList" Multiplicity="0..1" />
+    <End Role="CustomerService" Type="Self.CustomerService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDoctorList">
+        <PropertyRef Name="DoctorID" />
+      </Principal>
+      <Dependent Role="CustomerService">
+        <PropertyRef Name="DoctorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Knowledge__Docto__5165187F">
+    <End Role="UserDoctorList" Type="Self.UserDoctorList" Multiplicity="0..1" />
+    <End Role="KnowledgeBaseContentManagement" Type="Self.KnowledgeBaseContentManagement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDoctorList">
+        <PropertyRef Name="DoctorID" />
+      </Principal>
+      <Dependent Role="KnowledgeBaseContentManagement">
+        <PropertyRef Name="DoctorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Knowledge__Knowl__5070F446">
+    <End Role="KnowledgeBaseTypeManagement" Type="Self.KnowledgeBaseTypeManagement" Multiplicity="0..1" />
+    <End Role="KnowledgeBaseContentManagement" Type="Self.KnowledgeBaseContentManagement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KnowledgeBaseTypeManagement">
+        <PropertyRef Name="KnowledgeBaseTypeID" />
+      </Principal>
+      <Dependent Role="KnowledgeBaseContentManagement">
+        <PropertyRef Name="KnowledgeBaseTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MedicalHi__Custo__239E4DCF">
+    <End Role="CustomerInformation" Type="Self.CustomerInformation" Multiplicity="0..1" />
+    <End Role="MedicalHistory" Type="Self.MedicalHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerInformation">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="MedicalHistory">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KangmeiHospitalCRMModelStoreContainer">
+    <EntitySet Name="ClientMdicalIformation" EntityType="Self.ClientMdicalIformation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerAppointment" EntityType="Self.CustomerAppointment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerInformation" EntityType="Self.CustomerInformation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerReturnVisit" EntityType="Self.CustomerReturnVisit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerService" EntityType="Self.CustomerService" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KnowledgeBaseContentManagement" EntityType="Self.KnowledgeBaseContentManagement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KnowledgeBaseTypeManagement" EntityType="Self.KnowledgeBaseTypeManagement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MedicalExamination" EntityType="Self.MedicalExamination" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MedicalHistory" EntityType="Self.MedicalHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SurgicalExamination" EntityType="Self.SurgicalExamination" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserDoctorList" EntityType="Self.UserDoctorList" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__ClientMdi__Custo__3E52440B" Association="Self.FK__ClientMdi__Custo__3E52440B">
+      <End Role="CustomerAppointment" EntitySet="CustomerAppointment" />
+      <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ClientMdi__Docto__3D5E1FD2" Association="Self.FK__ClientMdi__Docto__3D5E1FD2">
+      <End Role="UserDoctorList" EntitySet="UserDoctorList" />
+      <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ClientMdi__Medic__403A8C7D" Association="Self.FK__ClientMdi__Medic__403A8C7D">
+      <End Role="MedicalExamination" EntitySet="MedicalExamination" />
+      <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ClientMdi__Surgi__3F466844" Association="Self.FK__ClientMdi__Surgi__3F466844">
+      <End Role="SurgicalExamination" EntitySet="SurgicalExamination" />
+      <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CustomerA__Custo__2C3393D0" Association="Self.FK__CustomerA__Custo__2C3393D0">
+      <End Role="CustomerInformation" EntitySet="CustomerInformation" />
+      <End Role="CustomerAppointment" EntitySet="CustomerAppointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CustomerR__Concl__49C3F6B7" Association="Self.FK__CustomerR__Concl__49C3F6B7">
+      <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
+      <End Role="CustomerReturnVisit" EntitySet="CustomerReturnVisit" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CustomerR__Docto__48CFD27E" Association="Self.FK__CustomerR__Docto__48CFD27E">
+      <End Role="UserDoctorList" EntitySet="UserDoctorList" />
+      <End Role="CustomerReturnVisit" EntitySet="CustomerReturnVisit" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CustomerS__Concl__45F365D3" Association="Self.FK__CustomerS__Concl__45F365D3">
+      <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
+      <End Role="CustomerService" EntitySet="CustomerService" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CustomerS__Docto__44FF419A" Association="Self.FK__CustomerS__Docto__44FF419A">
+      <End Role="UserDoctorList" EntitySet="UserDoctorList" />
+      <End Role="CustomerService" EntitySet="CustomerService" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Knowledge__Docto__5165187F" Association="Self.FK__Knowledge__Docto__5165187F">
+      <End Role="UserDoctorList" EntitySet="UserDoctorList" />
+      <End Role="KnowledgeBaseContentManagement" EntitySet="KnowledgeBaseContentManagement" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Knowledge__Knowl__5070F446" Association="Self.FK__Knowledge__Knowl__5070F446">
+      <End Role="KnowledgeBaseTypeManagement" EntitySet="KnowledgeBaseTypeManagement" />
+      <End Role="KnowledgeBaseContentManagement" EntitySet="KnowledgeBaseContentManagement" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MedicalHi__Custo__239E4DCF" Association="Self.FK__MedicalHi__Custo__239E4DCF">
+      <End Role="CustomerInformation" EntitySet="CustomerInformation" />
+      <End Role="MedicalHistory" EntitySet="MedicalHistory" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

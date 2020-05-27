@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f692e0907a0b4784bc82fed7e5c660f7" Name="Diagram1">
+        <EntityTypeShape EntityType="KangmeiHospitalCRMModel.ClientMdicalIformation" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KangmeiHospitalCRMModel.CustomerAppointment" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KangmeiHospitalCRMModel.CustomerInformation" Width="1.5" PointX="1.5" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KangmeiHospitalCRMModel.CustomerReturnVisit" Width="1.5" PointX="8.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KangmeiHospitalCRMModel.CustomerService" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KangmeiHospitalCRMModel.KnowledgeBaseContentManagement" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KangmeiHospitalCRMModel.KnowledgeBaseTypeManagement" Width="1.5" PointX="3.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="KangmeiHospitalCRMModel.MedicalExamination" Width="1.5" PointX="0.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KangmeiHospitalCRMModel.MedicalHistory" Width="1.5" PointX="3.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KangmeiHospitalCRMModel.SurgicalExamination" Width="1.5" PointX="0.75" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KangmeiHospitalCRMModel.UserDoctorList" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="KangmeiHospitalCRMModel.FK__ClientMdi__Custo__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="KangmeiHospitalCRMModel.FK__ClientMdi__Docto__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="KangmeiHospitalCRMModel.FK__ClientMdi__Medic__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="KangmeiHospitalCRMModel.FK__ClientMdi__Surgi__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="KangmeiHospitalCRMModel.FK__CustomerR__Concl__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="KangmeiHospitalCRMModel.FK__CustomerS__Concl__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="KangmeiHospitalCRMModel.FK__CustomerA__Custo__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="KangmeiHospitalCRMModel.FK__MedicalHi__Custo__239E4DCF" ManuallyRouted="false" />
+        <AssociationConnector Association="KangmeiHospitalCRMModel.FK__CustomerR__Docto__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="KangmeiHospitalCRMModel.FK__CustomerS__Docto__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="KangmeiHospitalCRMModel.FK__Knowledge__Docto__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="KangmeiHospitalCRMModel.FK__Knowledge__Knowl__5070F446" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

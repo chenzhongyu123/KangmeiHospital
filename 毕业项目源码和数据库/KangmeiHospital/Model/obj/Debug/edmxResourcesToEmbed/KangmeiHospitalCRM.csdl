@@ -1,0 +1,402 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KangmeiHospitalCRMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ClientMdicalIformation">
+    <Key>
+      <PropertyRef Name="ConclusionID" />
+    </Key>
+    <Property Name="ConclusionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DoctorID" Type="Int32" />
+    <Property Name="CustomerAppointmentID" Type="Int32" />
+    <Property Name="SurgicalExaminationID" Type="Int32" />
+    <Property Name="MedicalExaminationID" Type="Int32" />
+    <Property Name="InspectionTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InspectionResults" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ConclusionOfPhysicalExamination" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CustomerAppointment" Relationship="Self.FK__ClientMdi__Custo__3E52440B" FromRole="ClientMdicalIformation" ToRole="CustomerAppointment" />
+    <NavigationProperty Name="UserDoctorList" Relationship="Self.FK__ClientMdi__Docto__3D5E1FD2" FromRole="ClientMdicalIformation" ToRole="UserDoctorList" />
+    <NavigationProperty Name="MedicalExamination" Relationship="Self.FK__ClientMdi__Medic__403A8C7D" FromRole="ClientMdicalIformation" ToRole="MedicalExamination" />
+    <NavigationProperty Name="SurgicalExamination" Relationship="Self.FK__ClientMdi__Surgi__3F466844" FromRole="ClientMdicalIformation" ToRole="SurgicalExamination" />
+    <NavigationProperty Name="CustomerReturnVisit" Relationship="Self.FK__CustomerR__Concl__49C3F6B7" FromRole="ClientMdicalIformation" ToRole="CustomerReturnVisit" />
+    <NavigationProperty Name="CustomerService" Relationship="Self.FK__CustomerS__Concl__45F365D3" FromRole="ClientMdicalIformation" ToRole="CustomerService" />
+  </EntityType>
+  <EntityType Name="CustomerAppointment">
+    <Key>
+      <PropertyRef Name="CustomerAppointmentID" />
+    </Key>
+    <Property Name="CustomerAppointmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerID" Type="Int32" />
+    <Property Name="startTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EndTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhysicalExaminationDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ClientMdicalIformation" Relationship="Self.FK__ClientMdi__Custo__3E52440B" FromRole="CustomerAppointment" ToRole="ClientMdicalIformation" />
+    <NavigationProperty Name="CustomerInformation" Relationship="Self.FK__CustomerA__Custo__2C3393D0" FromRole="CustomerAppointment" ToRole="CustomerInformation" />
+  </EntityType>
+  <EntityType Name="CustomerInformation">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerIDCard" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerGender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="dateOfBirth" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerNationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClientsMaritalStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerBloodGroup" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerOccupation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerEducation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerBelief" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerEmergencyContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerHomeAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="CustomerAppointment" Relationship="Self.FK__CustomerA__Custo__2C3393D0" FromRole="CustomerInformation" ToRole="CustomerAppointment" />
+    <NavigationProperty Name="MedicalHistory" Relationship="Self.FK__MedicalHi__Custo__239E4DCF" FromRole="CustomerInformation" ToRole="MedicalHistory" />
+  </EntityType>
+  <EntityType Name="CustomerReturnVisit">
+    <Key>
+      <PropertyRef Name="ContentID" />
+    </Key>
+    <Property Name="ContentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DoctorID" Type="Int32" />
+    <Property Name="ConclusionID" Type="Int32" />
+    <Property Name="ContentOfReturnVisit" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ContentTime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ClientMdicalIformation" Relationship="Self.FK__CustomerR__Concl__49C3F6B7" FromRole="CustomerReturnVisit" ToRole="ClientMdicalIformation" />
+    <NavigationProperty Name="UserDoctorList" Relationship="Self.FK__CustomerR__Docto__48CFD27E" FromRole="CustomerReturnVisit" ToRole="UserDoctorList" />
+  </EntityType>
+  <EntityType Name="CustomerService">
+    <Key>
+      <PropertyRef Name="CustomerServiceID" />
+    </Key>
+    <Property Name="CustomerServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DoctorID" Type="Int32" />
+    <Property Name="ConclusionID" Type="Int32" />
+    <Property Name="ConsultationContent" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ConsultationTime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ClientMdicalIformation" Relationship="Self.FK__CustomerS__Concl__45F365D3" FromRole="CustomerService" ToRole="ClientMdicalIformation" />
+    <NavigationProperty Name="UserDoctorList" Relationship="Self.FK__CustomerS__Docto__44FF419A" FromRole="CustomerService" ToRole="UserDoctorList" />
+  </EntityType>
+  <EntityType Name="KnowledgeBaseContentManagement">
+    <Key>
+      <PropertyRef Name="KnowledgeBase" />
+    </Key>
+    <Property Name="KnowledgeBase" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KnowledgeBaseTypeID" Type="Int32" />
+    <Property Name="DoctorID" Type="Int32" />
+    <Property Name="Problem" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OpenOrNot" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserDoctorList" Relationship="Self.FK__Knowledge__Docto__5165187F" FromRole="KnowledgeBaseContentManagement" ToRole="UserDoctorList" />
+    <NavigationProperty Name="KnowledgeBaseTypeManagement" Relationship="Self.FK__Knowledge__Knowl__5070F446" FromRole="KnowledgeBaseContentManagement" ToRole="KnowledgeBaseTypeManagement" />
+  </EntityType>
+  <EntityType Name="KnowledgeBaseTypeManagement">
+    <Key>
+      <PropertyRef Name="KnowledgeBaseTypeID" />
+    </Key>
+    <Property Name="KnowledgeBaseTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KnowledgeBaseType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="OpenOrNot" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="KnowledgeBaseContentManagement" Relationship="Self.FK__Knowledge__Knowl__5070F446" FromRole="KnowledgeBaseTypeManagement" ToRole="KnowledgeBaseContentManagement" />
+  </EntityType>
+  <EntityType Name="MedicalExamination">
+    <Key>
+      <PropertyRef Name="MedicalExaminationID" />
+    </Key>
+    <Property Name="MedicalExaminationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BloodPressure" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pulse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DevelopmentAndNutrition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HeartAndBloodVessels" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NervesAndSpirits" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LungAndRespiratoryTract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AbdominalOrgan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Liver" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Spleen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Transaminase" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TransaminaseDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HepatitisBSurfaceAntigen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HepatitisBSurfaceAntigenDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ChestXRay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ClientMdicalIformation" Relationship="Self.FK__ClientMdi__Medic__403A8C7D" FromRole="MedicalExamination" ToRole="ClientMdicalIformation" />
+  </EntityType>
+  <EntityType Name="MedicalHistory">
+    <Key>
+      <PropertyRef Name="MedicalHistory1" />
+    </Key>
+    <Property Name="MedicalHistory1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerID" Type="Int32" />
+    <Property Name="HistoryOfPresentLllness" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HistoryOfPresentLllnessMedicalHistory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HistoryOfPresentLllnessLocationOfVisit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HistoryOfPresentLllnessSituation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PastHistory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PastHistoryMedicalHistory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PastHistoryLocationOfVisit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PastHistorySituation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FamilyHistory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FamilyHistoryMedicalHistory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FamilyHistoryLocationOfVisit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FamilyHistorySituation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MenstrualHistory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MenstrualHistoryMedicalHistory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MenstrualHistoryLocationOfVisit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MenstrualHistorySituation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MarriageAndPregnancy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MarriageAndPregnancyMedicalHistory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MarriageAndPregnancyLocationOfVisit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MarriageAndPregnancySituation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhysicalExamination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhysicalExaminationMedicalHistory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhysicalExaminationLocationOfVisit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhysicalExaminationSituation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LaboratoryExamination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LaboratoryExaminationMedicalHistory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LaboratoryExaminationLocationOfVisit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LaboratoryExaminationSituation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SpecialInspection" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SpecialInspectionMedicalHistory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SpecialInspectionLocationOfVisit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SpecialInspectionSituation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CustomerInformation" Relationship="Self.FK__MedicalHi__Custo__239E4DCF" FromRole="MedicalHistory" ToRole="CustomerInformation" />
+  </EntityType>
+  <EntityType Name="SurgicalExamination">
+    <Key>
+      <PropertyRef Name="SurgicalExaminationID" />
+    </Key>
+    <Property Name="SurgicalExaminationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Height" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Bust" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Skin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Weights" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PoorBreath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Face" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Neck" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Spine" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Limb" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Joint" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Other" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ClientMdicalIformation" Relationship="Self.FK__ClientMdi__Surgi__3F466844" FromRole="SurgicalExamination" ToRole="ClientMdicalIformation" />
+  </EntityType>
+  <EntityType Name="UserDoctorList">
+    <Key>
+      <PropertyRef Name="DoctorID" />
+    </Key>
+    <Property Name="DoctorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DoctorOfName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DoctorMajor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DoctorGender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="DoctorDateOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DoctorIdentity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DoctorAge" Type="Int32" />
+    <Property Name="DoctorSubject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AdministratorOrNot" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ClientMdicalIformation" Relationship="Self.FK__ClientMdi__Docto__3D5E1FD2" FromRole="UserDoctorList" ToRole="ClientMdicalIformation" />
+    <NavigationProperty Name="CustomerReturnVisit" Relationship="Self.FK__CustomerR__Docto__48CFD27E" FromRole="UserDoctorList" ToRole="CustomerReturnVisit" />
+    <NavigationProperty Name="CustomerService" Relationship="Self.FK__CustomerS__Docto__44FF419A" FromRole="UserDoctorList" ToRole="CustomerService" />
+    <NavigationProperty Name="KnowledgeBaseContentManagement" Relationship="Self.FK__Knowledge__Docto__5165187F" FromRole="UserDoctorList" ToRole="KnowledgeBaseContentManagement" />
+  </EntityType>
+  <Association Name="FK__ClientMdi__Custo__3E52440B">
+    <End Role="CustomerAppointment" Type="Self.CustomerAppointment" Multiplicity="0..1" />
+    <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerAppointment">
+        <PropertyRef Name="CustomerAppointmentID" />
+      </Principal>
+      <Dependent Role="ClientMdicalIformation">
+        <PropertyRef Name="CustomerAppointmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ClientMdi__Docto__3D5E1FD2">
+    <End Role="UserDoctorList" Type="Self.UserDoctorList" Multiplicity="0..1" />
+    <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDoctorList">
+        <PropertyRef Name="DoctorID" />
+      </Principal>
+      <Dependent Role="ClientMdicalIformation">
+        <PropertyRef Name="DoctorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ClientMdi__Medic__403A8C7D">
+    <End Role="MedicalExamination" Type="Self.MedicalExamination" Multiplicity="0..1" />
+    <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MedicalExamination">
+        <PropertyRef Name="MedicalExaminationID" />
+      </Principal>
+      <Dependent Role="ClientMdicalIformation">
+        <PropertyRef Name="MedicalExaminationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ClientMdi__Surgi__3F466844">
+    <End Role="SurgicalExamination" Type="Self.SurgicalExamination" Multiplicity="0..1" />
+    <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SurgicalExamination">
+        <PropertyRef Name="SurgicalExaminationID" />
+      </Principal>
+      <Dependent Role="ClientMdicalIformation">
+        <PropertyRef Name="SurgicalExaminationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CustomerR__Concl__49C3F6B7">
+    <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="0..1" />
+    <End Role="CustomerReturnVisit" Type="Self.CustomerReturnVisit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClientMdicalIformation">
+        <PropertyRef Name="ConclusionID" />
+      </Principal>
+      <Dependent Role="CustomerReturnVisit">
+        <PropertyRef Name="ConclusionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CustomerS__Concl__45F365D3">
+    <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="0..1" />
+    <End Role="CustomerService" Type="Self.CustomerService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClientMdicalIformation">
+        <PropertyRef Name="ConclusionID" />
+      </Principal>
+      <Dependent Role="CustomerService">
+        <PropertyRef Name="ConclusionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CustomerA__Custo__2C3393D0">
+    <End Role="CustomerInformation" Type="Self.CustomerInformation" Multiplicity="0..1" />
+    <End Role="CustomerAppointment" Type="Self.CustomerAppointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerInformation">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="CustomerAppointment">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MedicalHi__Custo__239E4DCF">
+    <End Role="CustomerInformation" Type="Self.CustomerInformation" Multiplicity="0..1" />
+    <End Role="MedicalHistory" Type="Self.MedicalHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerInformation">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="MedicalHistory">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CustomerR__Docto__48CFD27E">
+    <End Role="UserDoctorList" Type="Self.UserDoctorList" Multiplicity="0..1" />
+    <End Role="CustomerReturnVisit" Type="Self.CustomerReturnVisit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDoctorList">
+        <PropertyRef Name="DoctorID" />
+      </Principal>
+      <Dependent Role="CustomerReturnVisit">
+        <PropertyRef Name="DoctorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CustomerS__Docto__44FF419A">
+    <End Role="UserDoctorList" Type="Self.UserDoctorList" Multiplicity="0..1" />
+    <End Role="CustomerService" Type="Self.CustomerService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDoctorList">
+        <PropertyRef Name="DoctorID" />
+      </Principal>
+      <Dependent Role="CustomerService">
+        <PropertyRef Name="DoctorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Knowledge__Docto__5165187F">
+    <End Role="UserDoctorList" Type="Self.UserDoctorList" Multiplicity="0..1" />
+    <End Role="KnowledgeBaseContentManagement" Type="Self.KnowledgeBaseContentManagement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDoctorList">
+        <PropertyRef Name="DoctorID" />
+      </Principal>
+      <Dependent Role="KnowledgeBaseContentManagement">
+        <PropertyRef Name="DoctorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Knowledge__Knowl__5070F446">
+    <End Role="KnowledgeBaseTypeManagement" Type="Self.KnowledgeBaseTypeManagement" Multiplicity="0..1" />
+    <End Role="KnowledgeBaseContentManagement" Type="Self.KnowledgeBaseContentManagement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KnowledgeBaseTypeManagement">
+        <PropertyRef Name="KnowledgeBaseTypeID" />
+      </Principal>
+      <Dependent Role="KnowledgeBaseContentManagement">
+        <PropertyRef Name="KnowledgeBaseTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KangmeiHospitalCRMEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ClientMdicalIformation" EntityType="Self.ClientMdicalIformation" />
+    <EntitySet Name="CustomerAppointment" EntityType="Self.CustomerAppointment" />
+    <EntitySet Name="CustomerInformation" EntityType="Self.CustomerInformation" />
+    <EntitySet Name="CustomerReturnVisit" EntityType="Self.CustomerReturnVisit" />
+    <EntitySet Name="CustomerService" EntityType="Self.CustomerService" />
+    <EntitySet Name="KnowledgeBaseContentManagement" EntityType="Self.KnowledgeBaseContentManagement" />
+    <EntitySet Name="KnowledgeBaseTypeManagement" EntityType="Self.KnowledgeBaseTypeManagement" />
+    <EntitySet Name="MedicalExamination" EntityType="Self.MedicalExamination" />
+    <EntitySet Name="MedicalHistory" EntityType="Self.MedicalHistory" />
+    <EntitySet Name="SurgicalExamination" EntityType="Self.SurgicalExamination" />
+    <EntitySet Name="UserDoctorList" EntityType="Self.UserDoctorList" />
+    <AssociationSet Name="FK__ClientMdi__Custo__3E52440B" Association="Self.FK__ClientMdi__Custo__3E52440B">
+      <End Role="CustomerAppointment" EntitySet="CustomerAppointment" />
+      <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ClientMdi__Docto__3D5E1FD2" Association="Self.FK__ClientMdi__Docto__3D5E1FD2">
+      <End Role="UserDoctorList" EntitySet="UserDoctorList" />
+      <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ClientMdi__Medic__403A8C7D" Association="Self.FK__ClientMdi__Medic__403A8C7D">
+      <End Role="MedicalExamination" EntitySet="MedicalExamination" />
+      <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ClientMdi__Surgi__3F466844" Association="Self.FK__ClientMdi__Surgi__3F466844">
+      <End Role="SurgicalExamination" EntitySet="SurgicalExamination" />
+      <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CustomerR__Concl__49C3F6B7" Association="Self.FK__CustomerR__Concl__49C3F6B7">
+      <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
+      <End Role="CustomerReturnVisit" EntitySet="CustomerReturnVisit" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CustomerS__Concl__45F365D3" Association="Self.FK__CustomerS__Concl__45F365D3">
+      <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
+      <End Role="CustomerService" EntitySet="CustomerService" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CustomerA__Custo__2C3393D0" Association="Self.FK__CustomerA__Custo__2C3393D0">
+      <End Role="CustomerInformation" EntitySet="CustomerInformation" />
+      <End Role="CustomerAppointment" EntitySet="CustomerAppointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MedicalHi__Custo__239E4DCF" Association="Self.FK__MedicalHi__Custo__239E4DCF">
+      <End Role="CustomerInformation" EntitySet="CustomerInformation" />
+      <End Role="MedicalHistory" EntitySet="MedicalHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CustomerR__Docto__48CFD27E" Association="Self.FK__CustomerR__Docto__48CFD27E">
+      <End Role="UserDoctorList" EntitySet="UserDoctorList" />
+      <End Role="CustomerReturnVisit" EntitySet="CustomerReturnVisit" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CustomerS__Docto__44FF419A" Association="Self.FK__CustomerS__Docto__44FF419A">
+      <End Role="UserDoctorList" EntitySet="UserDoctorList" />
+      <End Role="CustomerService" EntitySet="CustomerService" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Knowledge__Docto__5165187F" Association="Self.FK__Knowledge__Docto__5165187F">
+      <End Role="UserDoctorList" EntitySet="UserDoctorList" />
+      <End Role="KnowledgeBaseContentManagement" EntitySet="KnowledgeBaseContentManagement" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Knowledge__Knowl__5070F446" Association="Self.FK__Knowledge__Knowl__5070F446">
+      <End Role="KnowledgeBaseTypeManagement" EntitySet="KnowledgeBaseTypeManagement" />
+      <End Role="KnowledgeBaseContentManagement" EntitySet="KnowledgeBaseContentManagement" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
