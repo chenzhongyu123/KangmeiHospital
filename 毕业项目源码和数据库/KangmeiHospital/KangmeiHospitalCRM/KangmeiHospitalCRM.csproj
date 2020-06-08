@@ -124,30 +124,36 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CustomerInFormationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ServiceManagementController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\base.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="imgs\bigGogin.jpg" />
-    <Content Include="imgs\default_avatar.jpg" />
-    <Content Include="imgs\Gogin.jpg" />
-    <Content Include="imgs\Knagmeibig.jpg" />
-    <Content Include="imgs\logo.png" />
-    <Content Include="imgs\康美logo.jpg" />
+    <Content Include="imges\bigGogin.jpg" />
+    <Content Include="imges\default_avatar.jpg" />
+    <Content Include="imges\Gogin.jpg" />
+    <Content Include="imges\img-1.jpg" />
+    <Content Include="imges\img-2.jpg" />
+    <Content Include="imges\img-3.jpg" />
+    <Content Include="imges\Knagmeibig.jpg" />
+    <Content Include="imges\logoKangmei.png" />
+    <Content Include="imges\医院.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
@@ -169,11 +175,14 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.11.0.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.slim.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -183,6 +192,7 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\public.js" />
     <Content Include="Scripts\src\index.js" />
     <Content Include="Scripts\src\methods\defaults.js" />
     <Content Include="Scripts\src\methods\destroy.js" />
@@ -278,10 +288,14 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\CustomerInFormation\Login.cshtml" />
     <Content Include="Views\CustomerInFormation\Customer.cshtml" />
+    <Content Include="Views\CustomerInFormation\CustomerAppointment.cshtml" />
+    <Content Include="Views\CustomerInFormation\ClientMdicalIformation.cshtml" />
+    <Content Include="Views\CustomerInFormation\CustomerDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\ServiceManagement\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
