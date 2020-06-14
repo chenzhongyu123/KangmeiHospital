@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "DetailedCustomerInformation";
+    Layout = "~/Views/Shared/KangMeiLayout.cshtml";
+}
+@using Model;
+@model CustomerInformation
+
+
+
+<style type="text/css">
+    #div_max div {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+        #div_max div {
+            margin-left: 20px;
+        }
+
+    #bottom {
+        width: 160px;
+        margin: 0px auto;
+    }
+
+    #div_max {
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+    }
+    #bottom div {
+        display:flex;
+    }
+</style>
+
+<h2><span style="color:red;"> @Model.CustomerName </span> 的客户信息详细页 </h2>
+
+<form action="/CustomerInFormation/EditCustomerInformation" method="post">
+    <div id="div_max">
+
+        <span style="        color: red;
+        font-size: 19px;"> 基本信息</span> <br />
+        <div>
+            <input type="hidden" class="form-control" id="" aria-describedby="emailHelp" name="CustomerID" value="@Model.CustomerID">
+
+            <div class="form-group">
+                <label for="exampleInputEmail1" name="CustomerName" value="CustomerName"> 姓名</label>
+                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerName" value="@Model.CustomerName">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1" name="CustomerGender"> 性别</label>
+                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerGender" value="@Model.CustomerGender">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1" name="CustomerContactNumber"> 联系电话</label>
+                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerContactNumber" value="@Model.CustomerContactNumber">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1" name="CustomerNationality"> 民族</label>
+                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerNationality" value="@Model.CustomerNationality">
+            </div>
+        </div>
+
+        <span style="color: red;font-size: 19px;"> 隐私信息</span> <br />
+        <div>
+            <div class="form-group">
+                <label for="exampleInputEmail1" name="CustomerIDCard"> 身份证</label>
+                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerIDCard" value="@Model.CustomerIDCard">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1" name="dateOfBirth"> 出生年月</label>
+                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="dateOfBirth" value="@Model.dateOfBirth">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1" name="ClientsMaritalStatus"> 婚姻状况</label>
+                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="ClientsMaritalStatus" value="@Model.ClientsMaritalStatus">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1" name="CustomerBloodGroup"> 血型</label>
+                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerBloodGroup" value="@Model.CustomerBloodGroup">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1" name="CustomerOccupation"> 职业</label>
+                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerOccupation" value="@Model.CustomerOccupation">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1" name="CustomerEducation"> 文化程度</label>
+                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerEducation" value="@Model.CustomerEducation">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1" name="CustomerBelief"> 信仰</label>
+                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerBelief" value="@Model.CustomerBelief">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1" name="CustomerEmergencyContactNumber"> 紧急联系电话</label>
+                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerEmergencyContactNumber" value="@Model.CustomerEmergencyContactNumber">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1" name="CustomerHomeAddress"> 家庭住址</label>
+                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerHomeAddress" value="@Model.CustomerHomeAddress">
+            </div>
+
+        </div>
+    </div>
+    <div id="bottom">
+        <div>
+            <button type="submit" class="btn btn-outline-primary"> 修改保存</button>
+            <a href="/CustomerInFormation/Customer" class="btn btn-outline-primary">取消返回</a>
+        </div>
+    </div>
+</form>
+
+
+

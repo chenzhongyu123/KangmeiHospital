@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "CustomerCare";
+    Layout = "~/Views/Shared/KangMeiLayout.cshtml";
+}
+
+<style type="text/css">
+    #top {
+        width: 95%;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 2px 2px rgba(10, 16, 20, .24), 0 0 2px rgba(10, 16, 20, .12);
+        box-sizing: border-box;
+        transition: box-shadow .5s;
+        margin: 0px auto;
+    }
+
+    table {
+        text-align: center;
+    }
+</style>
+<div id="top">
+    <div>
+        <h2 style="text-align:center">客户关怀管理</h2>
+    </div>
+    <div>
+        <table class="table table-hover table-primary" width="100%">
+            <tr>
+                <td>序号</td>
+                <td>客户姓名</td>
+                <td>出生年月</td>
+                <td>年龄</td>
+                <td>主治医生</td>
+                <td>最近回访内容</td>
+                <td>最近回访时间</td>
+                <td>最近体检内容</td>
+                <td>最近体检时间</td>
+                <td>
+                    操作
+                </td>
+            </tr>
+
+            @*此处增加循环出客户信息*@
+            <tr>
+                <td>1</td>
+                <td>陈仲宇</td>
+                <td>2000/10/13</td>
+                <td>19</td>
+                <td>czy</td>
+                <td>术后恢复怎么样</td>
+                <td>2020/6/11</td>
+                <td>肾结石需要手术取出</td>
+                <td>2020/5/16</td>
+                <td>
+                    <a href="#">新增关怀</a>/<a href="#">删除关怀</a>/<a href="#">修改记录</a>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>陈仲宇</td>
+                <td>2000/10/13</td>
+                <td>19</td>
+                <td>czy</td>
+                <td>术后恢复怎么样</td>
+                <td>2020/6/11</td>
+                <td>肾结石需要手术取出</td>
+                <td>2020/5/16</td>
+                <td>
+                    <a href="#">新增关怀</a>/<a href="#">删除关怀</a>/<a href="#">修改记录</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+

@@ -22,9 +22,9 @@ E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospita
 E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\BLL\bin\Debug\Model.pdb
 E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\BLL\bin\Debug\Model.dll.config
 E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\BLL\bin\Debug\EntityFramework.xml
-E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\BLL\bin\Debug\zh-Hans\EntityFramework.resources.dll
 E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\BLL\obj\Debug\BLL.csprojAssemblyReference.cache
 E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
 E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\BLL\obj\Debug\BLL.csproj.CopyComplete
 E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\BLL\obj\Debug\BLL.dll
 E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\BLL\obj\Debug\BLL.pdb
+E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\BLL\bin\Debug\DAL.dll.config

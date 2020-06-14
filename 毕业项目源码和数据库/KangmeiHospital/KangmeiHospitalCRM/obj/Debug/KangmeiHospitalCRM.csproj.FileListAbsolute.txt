@@ -274,9 +274,13 @@ E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospita
 E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\KangmeiHospitalCRM\bin\zh-Hans\System.Web.WebPages.resources.dll
 E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\KangmeiHospitalCRM\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
 E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\KangmeiHospitalCRM\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
-E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\KangmeiHospitalCRM\bin\zh-Hans\EntityFramework.resources.dll
 E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\KangmeiHospitalCRM\obj\Debug\KangmeiHospitalCRM.csprojAssemblyReference.cache
 E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\KangmeiHospitalCRM\obj\Debug\KangmeiHospitalCRM.csproj.CoreCompileInputs.cache
 E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\KangmeiHospitalCRM\obj\Debug\KangmeiHospitalCRM.csproj.CopyComplete
 E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\KangmeiHospitalCRM\obj\Debug\KangmeiHospitalCRM.dll
 E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\KangmeiHospitalCRM\obj\Debug\KangmeiHospitalCRM.pdb
+E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\KangmeiHospitalCRM\bin\EntityFramework.SqlServer.dll
+E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\KangmeiHospitalCRM\bin\DAL.dll
+E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\KangmeiHospitalCRM\bin\EntityFramework.SqlServer.xml
+E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\KangmeiHospitalCRM\bin\DAL.pdb
+E:\我的各种文件\毕业项目\毕业项目源码和数据库\KangmeiHospital\KangmeiHospitalCRM\bin\DAL.dll.config

@@ -9,18 +9,25 @@
         justify-content: center;
         flex-wrap: wrap;
     }
-     #div_max div div {
-         margin-left:20px;
-     }
+
+        #div_max div div {
+            margin-left: 20px;
+        }
+
     #bottom {
-        width:160px;
-        margin:0px auto;
+        width: 160px;
+        margin: 0px auto;
+    }
+    #div_max {
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
     }
 </style>
+
 <h2> 客户详情</h2>
+
+<div style="width: 280px;margin: 0px auto"><h3>姓名： <span style="color:red;">陈仲宇</span>&nbsp; 性别：<span style="color:red;">男 </span> </h3></div>
 <form action="" method="post">
     <div id="div_max">
-
         <div id="">
             <span style="color: red;font-size: 24px;"> 现病史</span> <br />
             <div class="form-group">
@@ -149,9 +156,7 @@
             </div>
         </div>
     </div>
-
-
-    <div id="bottom" >
+    <div id="bottom">
         <button type="submit" class="btn btn-outline-primary"> 新增信息</button>
         <button type="button" class="btn btn-outline-primary"> 取消</button>
     </div>

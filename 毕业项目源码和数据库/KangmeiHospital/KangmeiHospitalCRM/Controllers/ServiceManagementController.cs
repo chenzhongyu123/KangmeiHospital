@@ -9,7 +9,15 @@ namespace KangmeiHospitalCRM.Controllers
     public class ServiceManagementController : Controller
     {
         // GET: ServiceManagement
-        public ActionResult Index()
+        public ActionResult CustomerService()
+        {
+            return View();
+        }
+        public ActionResult CustomerReturnVisit()
+        {
+            return View();
+        }
+        public ActionResult CustomerCare()
         {
             return View();
         }

@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "KnowledgeBaseTypeManagement";
+    Layout = "~/Views/Shared/KangMeiLayout.cshtml";
+}
+
+<style type="text/css">
+    #top {
+        width: 80%;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 2px 2px rgba(10, 16, 20, .24), 0 0 2px rgba(10, 16, 20, .12);
+        box-sizing: border-box;
+        transition: box-shadow .5s;
+        margin: 0px auto;
+    }
+
+    table {
+        text-align: center;
+    }
+</style>
+<div id="top">
+    <div>
+        <h2 style="text-align:center">知识库类型管理</h2>
+    </div>
+    <div>
+        <table class="table table-hover table-primary" width="100%">
+            <tr>
+                <td>序号</td>
+                <td>知识库类型</td>
+                <td>是否开放</td>
+                <td>操作</td>
+            </tr>
+
+            @*此处增加循环出客户信息*@
+        <tr>
+            <td>1</td>
+            <td>内科</td>
+            <td>开放</td>
+            <td>
+                <a href="#">新增</a>/<a href="#">删除</a>/<a href="#">修改</a>
+            </td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>外科</td>
+            <td>开放</td>
+            <td>
+                <a href="#">新增</a>/<a href="#">删除</a>/<a href="#">修改</a>
+            </td>
+        </tr>
+        </table>
+    </div>
+</div>
+
+

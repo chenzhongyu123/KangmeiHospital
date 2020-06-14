@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "CustomerService";
+    Layout = "~/Views/Shared/KangMeiLayout.cshtml";
+}
+
+<style type="text/css">
+    #top {
+        width: 80%;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 2px 2px rgba(10, 16, 20, .24), 0 0 2px rgba(10, 16, 20, .12);
+        box-sizing: border-box;
+        transition: box-shadow .5s;
+        margin: 0px auto;
+    }
+
+    table {
+        text-align: center;
+    }
+</style>
+<div id="top">
+    <div>
+        <h2 style="text-align:center">客户咨询管理</h2>
+    </div>
+    <div>
+        <table class="table table-hover table-primary" width="100%">
+            <tr>
+                <td>序号</td>
+                <td>客户姓名</td>
+                <td>咨询内容</td>
+                <td>咨询时间</td>
+                <td>接待医生</td>
+                <td>基本操作</td>
+            </tr>
+
+            @*此处增加循环出客户咨询信息*@
+
+            <tr>
+                <td>1</td>
+                <td>陈仲宇</td>
+                <td>体检能不排队嘛？</td>
+                <td>2020/6/11</td>
+                <td>chen</td>
+                <td>
+                    <a href="#">新增咨询</a>/<a href="#">删除咨询</a>/
+                    <a href="#">详细信息</a>/<a href="#">修改信息</a>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>陈仲宇</td>
+                <td>体检能不排队嘛？</td>
+                <td>2020/6/11</td>
+                <td>chen</td>
+                <td>
+                    <a href="#">新增咨询</a>/<a href="#">删除咨询</a>/
+                    <a href="#">详细信息</a>/<a href="#">修改信息</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+

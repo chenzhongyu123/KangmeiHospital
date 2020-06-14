@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "KnowledgeBaseContentManagement";
+    Layout = "~/Views/Shared/KangMeiLayout.cshtml";
+}
+
+<style type="text/css">
+    #top {
+        width: 80%;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 2px 2px rgba(10, 16, 20, .24), 0 0 2px rgba(10, 16, 20, .12);
+        box-sizing: border-box;
+        transition: box-shadow .5s;
+        margin: 0px auto;
+    }
+
+    table {
+        text-align: center;
+    }
+</style>
+<div id="top">
+    <div>
+        <h2 style="text-align:center">知识库类型管理</h2>
+    </div>
+    <div>
+        <table class="table table-hover table-primary" width="100%">
+            <tr>
+                <td>序号</td>
+                <td>类别</td>
+                <td>问题</td>
+                <td>解答</td>
+                <td>解答人</td>
+                <td>操作</td>
+            </tr>
+
+            @*此处增加循环出知识库内容*@
+            <tr>
+                <td>1</td>
+                <td>内科</td>
+                <td>内分泌失调症状</td>
+                <td>面色发黄，精神恍惚</td>
+                <td>czy</td>
+                <td><a href="#">新增</a>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>外科</td>
+                <td>内分泌失调症状</td>
+                <td>面色发黄，精神恍惚</td>
+                <td>czy</td>
+                <td><a href="#">新增</a>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+
+
