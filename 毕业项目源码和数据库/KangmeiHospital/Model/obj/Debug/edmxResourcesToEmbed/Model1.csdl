@@ -24,7 +24,7 @@
       <PropertyRef Name="CustomerAppointmentID" />
     </Key>
     <Property Name="CustomerAppointmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="CustomerID" Type="Int32" />
     <Property Name="startTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="EndTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="PhysicalExaminationDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -176,16 +176,6 @@
     <Property Name="Other" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="ClientMdicalIformation" Relationship="Self.FK__ClientMdi__Surgi__3F466844" FromRole="SurgicalExamination" ToRole="ClientMdicalIformation" />
   </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
   <EntityType Name="UserDoctorList">
     <Key>
       <PropertyRef Name="DoctorID" />
@@ -279,7 +269,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__CustomerA__Custo__2C3393D0">
-    <End Role="CustomerInformation" Type="Self.CustomerInformation" Multiplicity="1" />
+    <End Role="CustomerInformation" Type="Self.CustomerInformation" Multiplicity="0..1" />
     <End Role="CustomerAppointment" Type="Self.CustomerAppointment" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CustomerInformation">
@@ -350,7 +340,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="KangmeiHospitalCRMEntities3" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="KangmeiHospitalCRMEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="ClientMdicalIformation" EntityType="Self.ClientMdicalIformation" />
     <EntitySet Name="CustomerAppointment" EntityType="Self.CustomerAppointment" />
     <EntitySet Name="CustomerInformation" EntityType="Self.CustomerInformation" />
@@ -361,7 +351,6 @@
     <EntitySet Name="MedicalExamination" EntityType="Self.MedicalExamination" />
     <EntitySet Name="MedicalHistory" EntityType="Self.MedicalHistory" />
     <EntitySet Name="SurgicalExamination" EntityType="Self.SurgicalExamination" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="UserDoctorList" EntityType="Self.UserDoctorList" />
     <AssociationSet Name="FK__ClientMdi__Custo__3E52440B" Association="Self.FK__ClientMdi__Custo__3E52440B">
       <End Role="CustomerAppointment" EntitySet="CustomerAppointment" />

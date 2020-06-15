@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DalService.cs" />
     <Compile Include="DALkangMei.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

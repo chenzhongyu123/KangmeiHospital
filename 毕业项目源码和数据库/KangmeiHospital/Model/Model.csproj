@@ -97,37 +97,38 @@
     <Compile Include="SurgicalExamination.cs">
       <DependentUpon>KangmeiHospitalCRM.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>KangmeiHospitalCRM.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserDoctorList.cs">
       <DependentUpon>KangmeiHospitalCRM.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="KangmeiHospitalCRM.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>KangmeiHospitalCRM.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="KangmeiHospitalCRM.edmx.diagram">
       <DependentUpon>KangmeiHospitalCRM.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="KangmeiHospitalCRM.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>KangmeiHospitalCRM.Context.cs</LastGenOutput>
       <DependentUpon>KangmeiHospitalCRM.edmx</DependentUpon>
+      <LastGenOutput>KangmeiHospitalCRM.Context.cs</LastGenOutput>
     </Content>
     <Content Include="KangmeiHospitalCRM.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>KangmeiHospitalCRM.edmx</DependentUpon>
       <LastGenOutput>KangmeiHospitalCRM.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

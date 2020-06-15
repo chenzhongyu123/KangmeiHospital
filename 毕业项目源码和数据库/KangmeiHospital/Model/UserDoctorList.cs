@@ -29,7 +29,9 @@ namespace Model
         public string DoctorGender { get; set; }
         public string DoctorDateOfBirth { get; set; }
         public string DoctorIdentity { get; set; }
-        public Nullable<int> DoctorAge { get; set; }
+        public int DoctorAge { get; set; }
+        public string DoctorAccount { get; set; }
+        public string DoctorPassword { get; set; }
         public string DoctorSubject { get; set; }
         public string AdministratorOrNot { get; set; }
     

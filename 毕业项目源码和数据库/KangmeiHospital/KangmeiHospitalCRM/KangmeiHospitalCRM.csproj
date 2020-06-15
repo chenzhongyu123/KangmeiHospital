@@ -306,6 +306,9 @@
     <Content Include="Views\KnowledgeBase\KnowledgeBaseTypeManagement.cshtml" />
     <Content Include="Views\KnowledgeBase\KnowledgeBaseContentManagement.cshtml" />
     <Content Include="Views\CustomerInFormation\DetailedCustomerInformation.cshtml" />
+    <Content Include="Views\CustomerInFormation\EditCustomerAppointment.cshtml" />
+    <Content Include="Views\CustomerInFormation\ClientMdical.cshtml" />
+    <Content Include="Views\CustomerInFormation\AddClientMdicalIfor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

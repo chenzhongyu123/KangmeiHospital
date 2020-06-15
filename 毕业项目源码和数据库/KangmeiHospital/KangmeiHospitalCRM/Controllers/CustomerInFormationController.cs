@@ -10,7 +10,7 @@ namespace KangmeiHospitalCRM.Controllers
     public class CustomerInFormationController : Controller
     {
 
-        KangmeiHospitalCRMEntities db = new KangmeiHospitalCRMEntities();
+        KangmeiHospitalCRMEntities3 db = new KangmeiHospitalCRMEntities3();
 
         BLLkangMei Bll = new BLLkangMei();
         // GET: CustomerInFormation
@@ -24,6 +24,20 @@ namespace KangmeiHospitalCRM.Controllers
         {
             return View();
         }
+        //登录验证
+        [HttpPost]
+        public ActionResult Login(string DoctorAccount,string DoctorPassword)
+        {
+          UserDoctorList userDoctorList=  Bll.SelectDoctorList(DoctorAccount, DoctorPassword);
+            if (userDoctorList==null)
+            {
+                return Content("<script>alert('账号或密码错误！');history.go(-1);</script>");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
         //客户信息页
         public ActionResult Customer() {
             List<CustomerInformation> list = Bll.SelectInformation();
@@ -35,15 +49,86 @@ namespace KangmeiHospitalCRM.Controllers
             List<CustomerAppointment> customerAppointments = Bll.SelectAppointments();
             return View(customerAppointments);
         }
-        //客户体检信息管理
-        public ActionResult ClientMdicalIformation()
+        //客户体检信息查询显示，按照记录倒序排列
+        public ActionResult ClientMdical()
         {
-            return View();
+
+            List<ClientMdicalIformation> list = Bll.SelectClientMdical();
+            return View(list);
+        }
+        //客户体检详细+修改信息
+        public ActionResult ClientMdicalIformation(int id)
+        {
+            List<UserDoctorList> list = Bll.SelectDoctorList();
+
+            ViewBag.ClientMdicalIformation = Bll.SelectClientMdicalIformation(id);
+            //外
+            ViewBag.SurgicalExamination = Bll.SelectSurgical(id); 
+            //内
+            ViewBag.MedicalExamination = Bll.SelectExamination(id);
+            return View(list);
+        }
+        //客户体检详细+修改信息提交
+        [HttpPost]
+        public ActionResult ClientMdicalIformation(ClientMdicalIformation clientMdicalIformation, SurgicalExamination surgicalExamination, MedicalExamination medicalExamination)
+        {
+            Bll.Monitor(clientMdicalIformation,surgicalExamination, medicalExamination);
+            return RedirectToAction("ClientMdical");
+        }
+        //新增客户体检信息
+        public ActionResult AddClientMdicalIfor()
+        {
+            List<UserDoctorList> list = Bll.SelectDoctorList();
+            return View(list);
+        }
+        [HttpPost]
+        public ActionResult AddClientMdicalIfor(ClientMdicalIformation  clientMdicalIformation, SurgicalExamination surgicalExamination, MedicalExamination  medicalExamination,string CustomerName)
+        {
+            //利用客户名字查询到客户的id
+            int rez=  Bll.SelectInform(CustomerName);
+            if (rez!=1)
+            {
+
+                //利用客户id查到最近一条预约体检
+                int CustomerAppointmentID =  Bll.selectAppointment(rez);
+                //新建外科，拿到新建信息的id
+                int SurgicalExaminationID=   Bll.AddSurgicalExamination(surgicalExamination);
+                //新建内科，拿到新建信息的id
+                int MedicalExaminationID = Bll.AddMedicalExamination(medicalExamination);
+                //以上拿到的三个id都是体检信息表的外键字段，将他们放入体检信息
+                clientMdicalIformation.CustomerAppointmentID = CustomerAppointmentID;
+                clientMdicalIformation.SurgicalExaminationID = SurgicalExaminationID;
+                clientMdicalIformation.MedicalExaminationID = MedicalExaminationID;
+                //新建体检信息
+                Bll.AddMdicalIformation(clientMdicalIformation);
+
+                return RedirectToAction("ClientMdical");
+            }
+            else
+            {
+                return Content("<script>alert('注册客户无此人，请检查名字是否正确！');history.go(-1);</script>");
+            }
+        }
+
+
+        //删除客户体检信息，内外科也一并删除 EditMdicalIformation
+        public ActionResult DeleteMdicalIformation(int id)
+        {
+              Bll.DeleteMdicalIformation(id);
+            return RedirectToAction("ClientMdical");
         }
         //客户信息的更详细内容，包括病史
-        public ActionResult CustomerDetails()
+        public ActionResult CustomerDetails(int id)
         {
-            return View();
+            MedicalHistory medicalHistory = Bll.SelectCustomerDetails(id);
+            return View(medicalHistory);
+        }
+        //病史表的修改提交
+        [HttpPost]
+        public ActionResult CustomerDetails(MedicalHistory medicalHistory)
+        {
+             Bll.EditCustomerDetails(medicalHistory);
+            return RedirectToAction("Customer");
         }
 
 
@@ -52,7 +137,7 @@ namespace KangmeiHospitalCRM.Controllers
 
         //以上为静态初始界面 以下为提交和转跳界面
 
-            [HttpPost]
+        [HttpPost]
             //新增客户
         public ActionResult AddCustomerInformation(CustomerInformation customerInformation)
         {
@@ -85,7 +170,7 @@ namespace KangmeiHospitalCRM.Controllers
         }
 
                 [HttpPost]
-        //新增客户
+        //修改客户
         public ActionResult AddCustomerAppointment(CustomerAppointment  customerAppointment,string CustomerName)
         {
 
@@ -109,6 +194,19 @@ namespace KangmeiHospitalCRM.Controllers
             Bll.DeleteCustomerAppointment(id);
             return RedirectToAction("CustomerAppointment");
         }
+        
+        //修改客户预约
 
+        public ActionResult EditCustomerAppointment(int id)
+        {
+            return View(Bll.EditCustomerAppointment(id));
+        }
+        //保存修改
+        [HttpPost]
+        public ActionResult EditCustomerAppointment(CustomerAppointment customerAppointment)
+        {
+            Bll.EditSaChangsCustomerAppointment(customerAppointment);
+            return RedirectToAction("CustomerAppointment");
+        }
     }
 }

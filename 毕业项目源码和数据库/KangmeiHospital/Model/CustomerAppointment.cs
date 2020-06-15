@@ -21,7 +21,7 @@ namespace Model
         }
     
         public int CustomerAppointmentID { get; set; }
-        public Nullable<int> CustomerID { get; set; }
+        public int CustomerID { get; set; }
         public string startTime { get; set; }
         public string EndTime { get; set; }
         public string PhysicalExaminationDescription { get; set; }

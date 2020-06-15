@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "EditCustomerAppointment";
+    Layout = "~/Views/Shared/KangMeiLayout.cshtml";
+}
+@using Model;
+@model CustomerAppointment
+<style>
+    #max {
+        width:40%;
+        margin:0px auto;
+    }
+    #min {
+        width: 250px;
+        margin: 0px auto;
+    }
+    #bottom {
+        width: 180px;
+        margin: 0px auto;
+    }
+</style>
+
+    <div id="max">
+        <div id="min"><h2> <span style="color:red;">@Model.CustomerInformation.CustomerName</span>  预约详细</h2></div>
+        <form action="/CustomerInFormation/EditCustomerAppointment" method="post" id="AddFrom">
+            <div class="form-group">
+
+                <input type="hidden" class="form-control" name="CustomerAppointmentID" value="@Model.CustomerAppointmentID">
+                <input type="hidden" class="form-control" name="CustomerID" value="@Model.CustomerInformation.CustomerID">
+                <label for="exampleInputPassword1">预约客户姓名</label>
+                <input type="text" class="form-control" aria-describedby="emailHelp" name="CustomerName" value="@Model.CustomerInformation.CustomerName">
+                <small id="emailHelp" class="form-text text-muted">注意本人实名注册并且名字无错误</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">开始时间</label>
+                <input type="text" class="form-control" name="startTime" value="@Model.startTime">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">结束时间</label>
+                <input type="text" class="form-control" name="EndTime" value="@Model.EndTime">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">体检内容描述</label>
+                <input type="text" class="form-control" name="PhysicalExaminationDescription" value="@Model.PhysicalExaminationDescription">
+            </div>
+            <div id="bottom">
+                <div>
+                    <button type="submit" class="btn btn-outline-primary"> 修改保存</button>
+                    <a href="/CustomerInFormation/CustomerAppointment" class="btn btn-outline-primary">取消返回</a>
+                </div>
+            </div>
+        </form>
+
+    </div>

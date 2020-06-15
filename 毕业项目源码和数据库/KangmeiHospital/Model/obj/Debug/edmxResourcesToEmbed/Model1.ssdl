@@ -18,7 +18,7 @@
       <PropertyRef Name="CustomerAppointmentID" />
     </Key>
     <Property Name="CustomerAppointmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CustomerID" Type="int" Nullable="false" />
+    <Property Name="CustomerID" Type="int" />
     <Property Name="startTime" Type="nvarchar" MaxLength="50" />
     <Property Name="EndTime" Type="nvarchar" MaxLength="50" />
     <Property Name="PhysicalExaminationDescription" Type="nvarchar" MaxLength="100" />
@@ -156,16 +156,6 @@
     <Property Name="Joint" Type="nvarchar" MaxLength="50" />
     <Property Name="Other" Type="nvarchar" MaxLength="100" />
   </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
   <EntityType Name="UserDoctorList">
     <Key>
       <PropertyRef Name="DoctorID" />
@@ -231,7 +221,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__CustomerA__Custo__2C3393D0">
-    <End Role="CustomerInformation" Type="Self.CustomerInformation" Multiplicity="1" />
+    <End Role="CustomerInformation" Type="Self.CustomerInformation" Multiplicity="0..1" />
     <End Role="CustomerAppointment" Type="Self.CustomerAppointment" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CustomerInformation">
@@ -337,7 +327,6 @@
     <EntitySet Name="MedicalExamination" EntityType="Self.MedicalExamination" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MedicalHistory" EntityType="Self.MedicalHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SurgicalExamination" EntityType="Self.SurgicalExamination" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserDoctorList" EntityType="Self.UserDoctorList" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__ClientMdi__Custo__3E52440B" Association="Self.FK__ClientMdi__Custo__3E52440B">
       <End Role="CustomerAppointment" EntitySet="CustomerAppointment" />

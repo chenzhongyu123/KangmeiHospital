@@ -50,7 +50,8 @@
                             新增客户
                         </a>/
                         <a href="/CustomerInFormation/DeleteCustomerInformation?id=@item.CustomerID" onclick="return confirm('你确定要删除吗？客户以下的资料都会删除！')">删除客户</a>/
-                        <a href="/CustomerInFormation/DetailedCustomerInformation?id=@item.CustomerID">详细信息</a>
+                        <a href="/CustomerInFormation/DetailedCustomerInformation?id=@item.CustomerID">个人信息</a>/
+                        <a href="/CustomerInFormation/CustomerDetails?id=@item.CustomerID">病史信息</a>
                     </td>
                 </tr>
             }

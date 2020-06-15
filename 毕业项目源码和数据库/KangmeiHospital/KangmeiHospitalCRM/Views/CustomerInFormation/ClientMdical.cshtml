@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "ClientMdical";
+    Layout = "~/Views/Shared/KangMeiLayout.cshtml";
+}
+
+
+@using Model;
+@model List<ClientMdicalIformation>
+<style type="text/css">
+    #top {
+        width: 80%;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 2px 2px rgba(10, 16, 20, .24), 0 0 2px rgba(10, 16, 20, .12);
+        box-sizing: border-box;
+        transition: box-shadow .5s;
+        margin: 0px auto;
+    }
+
+    table {
+        text-align: center;
+    }
+</style>
+<div id="top">
+    <div>
+        <h2 style="text-align:center"> 客户体检记录总页</h2>
+    </div>
+    <div>
+        <table class="table table-hover table-dark" width="100%">
+            <tr>
+                <td>序号</td>
+                <td>体检人</td>
+                <td>检查时间</td>
+                <td>检查结果</td>
+                <td>体检结论</td>
+                <td>详细操作</td>
+            </tr>
+
+            @*此处增加循环出体检信息*@
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ConclusionID</td>
+                    <td>@item.CustomerAppointment.CustomerInformation.CustomerName</td>
+                    <td>@item.InspectionTime</td>
+                    <td>@item.InspectionResults</td>
+                    <td>@item.ConclusionOfPhysicalExamination</td>
+                    <td>
+                        <a href="/CustomerInFormation/AddClientMdicalIfor">
+                            新增记录
+                        </a>/
+                        <a href="/CustomerInFormation/DeleteMdicalIformation?id=@item.ConclusionID" onclick="return confirm('你确定要删除吗？客户的体检资料将全部删除！')">删除记录</a>/
+                        <a href="/CustomerInFormation/ClientMdicalIformation?id=@item.ConclusionID">详细界面</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

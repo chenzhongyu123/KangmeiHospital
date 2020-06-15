@@ -3,6 +3,8 @@
     ViewBag.Title = "CustomerDetails";
     Layout = "~/Views/Shared/KangMeiLayout.cshtml";
 }
+@using Model;
+@model MedicalHistory
 <style type="text/css">
     #div_max {
         display: flex;
@@ -15,7 +17,7 @@
         }
 
     #bottom {
-        width: 160px;
+        width: 180px;
         margin: 0px auto;
     }
     #div_max {
@@ -25,139 +27,174 @@
 
 <h2> 客户详情</h2>
 
-<div style="width: 280px;margin: 0px auto"><h3>姓名： <span style="color:red;">陈仲宇</span>&nbsp; 性别：<span style="color:red;">男 </span> </h3></div>
-<form action="" method="post">
+<div style="width: 280px;margin: 0px auto"><h3>姓名：@Model.CustomerInformation.CustomerName <span style="color:red;"> </span>&nbsp; 性别：<span style="color:red;">  @Model.CustomerInformation.CustomerGender </span> </h3></div>
+<form action="/CustomerInFormation/CustomerDetails" method="post">
     <div id="div_max">
         <div id="">
+
+            <input type="hidden" class="form-control" id="MedicalHistory" aria-describedby="emailHelp" name="MedicalHistoryID" value="@Model.MedicalHistoryID">
+            <input type="hidden" class="form-control" id="CustomerID" aria-describedby="emailHelp" name="CustomerID" value="@Model.CustomerInformation.CustomerID">
             <span style="color: red;font-size: 24px;"> 现病史</span> <br />
             <div class="form-group">
+                <label for="exampleInputEmail1"> 现病史描述</label>
+                <input type="text" class="form-control" id="HistoryOfPresentLllness" aria-describedby="emailHelp" name="HistoryOfPresentLllness" value="@Model.HistoryOfPresentLllness">
+            </div>
+            <div class="form-group">
                 <label for="exampleInputEmail1"> 发生时间</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="HistoryOfPresentLllnessMedicalHistory" aria-describedby="emailHelp"  name="HistoryOfPresentLllnessMedicalHistory" value="@Model.HistoryOfPresentLllnessMedicalHistory">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1"> 就诊地点</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="HistoryOfPresentLllnessLocationOfVisit" aria-describedby="emailHelp" name="HistoryOfPresentLllnessLocationOfVisit" value="@Model.HistoryOfPresentLllnessLocationOfVisit">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1"> 病史情况</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="HistoryOfPresentLllnessSituation" aria-describedby="emailHelp" name="HistoryOfPresentLllnessSituation" value="@Model.HistoryOfPresentLllnessSituation">
             </div>
         </div>
 
         <div id="">
             <span style="color:red; font-size:24px;"> 既往史</span> <br />
             <div class="form-group">
+                <label for="exampleInputEmail1"> 既往史描述</label>
+                <input type="text" class="form-control" id="PastHistory" aria-describedby="emailHelp" name="PastHistory" value="@Model.PastHistory">
+            </div>
+            <div class="form-group">
                 <label for="exampleInputEmail1"> 发生时间</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="PastHistoryMedicalHistory" aria-describedby="emailHelp" name="PastHistoryMedicalHistory" value="@Model.PastHistoryMedicalHistory">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1"> 就诊地点</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="PastHistoryLocationOfVisit" aria-describedby="emailHelp" name="PastHistoryLocationOfVisit" value="@Model.PastHistoryLocationOfVisit">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1"> 病史情况</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="PastHistorySituation" aria-describedby="emailHelp" name="PastHistorySituation" value="@Model.PastHistorySituation">
             </div>
         </div>
 
         <div id="">
             <span style="color:red; font-size:24px;"> 家族史</span> <br />
             <div class="form-group">
+                <label for="exampleInputEmail1"> 家族史描述</label>
+                <input type="text" class="form-control" id="FamilyHistory" aria-describedby="emailHelp" name="FamilyHistory" value="@Model.FamilyHistory">
+            </div>
+            <div class="form-group">
                 <label for="exampleInputEmail1"> 发生时间</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="FamilyHistoryMedicalHistory" aria-describedby="emailHelp" name="FamilyHistoryMedicalHistory" value="@Model.FamilyHistoryMedicalHistory">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1"> 就诊地点</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="FamilyHistoryLocationOfVisit" aria-describedby="emailHelp" name="FamilyHistoryLocationOfVisit" value="@Model.FamilyHistoryLocationOfVisit">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1"> 病史情况</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="FamilyHistorySituation" aria-describedby="emailHelp" name="FamilyHistorySituation" value="@Model.FamilyHistorySituation">
             </div>
         </div>
 
         <div id="">
             <span style="color:red; font-size:24px;"> 月经史</span> <br />
             <div class="form-group">
+                <label for="exampleInputEmail1"> 月经史描述</label>
+                <input type="text" class="form-control" id="MenstrualHistory" aria-describedby="emailHelp" name="MenstrualHistory" value="@Model.MenstrualHistory">
+            </div>
+            <div class="form-group">
                 <label for="exampleInputEmail1"> 发生时间</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="MenstrualHistoryMedicalHistory" aria-describedby="emailHelp" name="MenstrualHistoryMedicalHistory" value="@Model.MenstrualHistoryMedicalHistory">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1"> 就诊地点</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="MenstrualHistoryLocationOfVisit" aria-describedby="emailHelp" name="MenstrualHistoryLocationOfVisit" value="@Model.MenstrualHistoryLocationOfVisit">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1"> 病史情况</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="MenstrualHistorySituation" aria-describedby="emailHelp" name="MenstrualHistorySituation" value="@Model.MenstrualHistorySituation">
             </div>
         </div>
 
         <div id="">
             <span style="color:red; font-size:24px;"> 婚孕史</span> <br />
             <div class="form-group">
+                <label for="exampleInputEmail1"> 婚孕史描述</label>
+                <input type="text" class="form-control" id="MarriageAndPregnancy" aria-describedby="emailHelp" name="MarriageAndPregnancy" value="@Model.MarriageAndPregnancy">
+            </div>
+            <div class="form-group">
                 <label for="exampleInputEmail1"> 发生时间</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="MarriageAndPregnancyMedicalHistory" aria-describedby="emailHelp" name="MarriageAndPregnancyMedicalHistory" value="@Model.MarriageAndPregnancyMedicalHistory">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1"> 就诊地点</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="MarriageAndPregnancyLocationOfVisit" aria-describedby="emailHelp" name="MarriageAndPregnancyLocationOfVisit" value="@Model.MarriageAndPregnancyLocationOfVisit">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1"> 病史情况</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="MarriageAndPregnancySituation" aria-describedby="emailHelp" name="MarriageAndPregnancySituation" value="@Model.MarriageAndPregnancySituation">
             </div>
         </div>
 
         <div id="">
             <span style="color:red; font-size:24px;"> 体格检查</span> <br />
             <div class="form-group">
+                <label for="exampleInputEmail1"> 体格检查描述</label>
+                <input type="text" class="form-control" id="PhysicalExamination" aria-describedby="emailHelp" name="PhysicalExamination" value="@Model.PhysicalExamination">
+            </div>
+            <div class="form-group">
                 <label for="exampleInputEmail1"> 发生时间</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="PhysicalExaminationMedicalHistory" aria-describedby="emailHelp" name="PhysicalExaminationMedicalHistory" value="@Model.PhysicalExaminationMedicalHistory">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1"> 就诊地点</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="PhysicalExaminationLocationOfVisit" aria-describedby="emailHelp" name="PhysicalExaminationLocationOfVisit" value="@Model.PhysicalExaminationLocationOfVisit">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1"> 病史情况</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="PhysicalExaminationSituation" aria-describedby="emailHelp" name="PhysicalExaminationSituation" value="@Model.PhysicalExaminationSituation">
             </div>
         </div>
 
         <div id="">
             <span style="color:red; font-size:24px;"> 化验检查</span> <br />
             <div class="form-group">
+                <label for="exampleInputEmail1"> 化验检查描述</label>
+                <input type="text" class="form-control" id="LaboratoryExamination" aria-describedby="emailHelp" name="LaboratoryExamination" value="@Model.LaboratoryExamination">
+            </div>
+            <div class="form-group">
                 <label for="exampleInputEmail1"> 发生时间</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="LaboratoryExaminationMedicalHistory" aria-describedby="emailHelp" name="LaboratoryExaminationMedicalHistory" value="@Model.LaboratoryExaminationMedicalHistory">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1"> 就诊地点</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="LaboratoryExaminationLocationOfVisit" aria-describedby="emailHelp" name="LaboratoryExaminationLocationOfVisit" value="@Model.LaboratoryExaminationLocationOfVisit">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1"> 病史情况</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="LaboratoryExaminationSituation" aria-describedby="emailHelp" name="LaboratoryExaminationSituation" value="@Model.LaboratoryExaminationSituation">
             </div>
         </div>
 
         <div id="">
             <span style="color:red; font-size:24px;"> 特殊检查</span> <br />
             <div class="form-group">
+                <label for="exampleInputEmail1"> 特殊检查描述</label>
+                <input type="text" class="form-control" id="SpecialInspection" aria-describedby="emailHelp" name="SpecialInspection" value="@Model.SpecialInspection">
+            </div>
+            <div class="form-group">
                 <label for="exampleInputEmail1"> 发生时间</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="SpecialInspectionMedicalHistory" aria-describedby="emailHelp" name="SpecialInspectionMedicalHistory" value="@Model.SpecialInspectionMedicalHistory">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1"> 就诊地点</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="SpecialInspectionLocationOfVisit" aria-describedby="emailHelp" name="SpecialInspectionLocationOfVisit" value="@Model.SpecialInspectionLocationOfVisit">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1"> 病史情况</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="SpecialInspectionSituation" aria-describedby="emailHelp" name="SpecialInspectionSituation" value="@Model.SpecialInspectionSituation">
             </div>
         </div>
     </div>
     <div id="bottom">
-        <button type="submit" class="btn btn-outline-primary"> 新增信息</button>
-        <button type="button" class="btn btn-outline-primary"> 取消</button>
+        <button type="submit" class="btn btn-outline-primary"> 修改病史</button>
+        <a href="/CustomerInFormation/Customer" class="btn btn-outline-primary">取消返回</a>
     </div>
 </form>

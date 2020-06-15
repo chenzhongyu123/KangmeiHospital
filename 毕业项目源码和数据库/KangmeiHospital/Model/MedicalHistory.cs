@@ -14,7 +14,7 @@ namespace Model
     
     public partial class MedicalHistory
     {
-        public int MedicalHistory1 { get; set; }
+        public int MedicalHistoryID { get; set; }
         public Nullable<int> CustomerID { get; set; }
         public string HistoryOfPresentLllness { get; set; }
         public string HistoryOfPresentLllnessMedicalHistory { get; set; }

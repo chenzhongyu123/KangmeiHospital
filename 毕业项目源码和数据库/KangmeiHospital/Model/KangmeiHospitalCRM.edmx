@@ -23,7 +23,7 @@
             <PropertyRef Name="CustomerAppointmentID" />
           </Key>
           <Property Name="CustomerAppointmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CustomerID" Type="int" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
           <Property Name="startTime" Type="nvarchar" MaxLength="50" />
           <Property Name="EndTime" Type="nvarchar" MaxLength="50" />
           <Property Name="PhysicalExaminationDescription" Type="nvarchar" MaxLength="100" />
@@ -107,9 +107,9 @@
         </EntityType>
         <EntityType Name="MedicalHistory">
           <Key>
-            <PropertyRef Name="MedicalHistory" />
+            <PropertyRef Name="MedicalHistoryID" />
           </Key>
-          <Property Name="MedicalHistory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MedicalHistoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CustomerID" Type="int" />
           <Property Name="HistoryOfPresentLllness" Type="nvarchar" MaxLength="50" />
           <Property Name="HistoryOfPresentLllnessMedicalHistory" Type="nvarchar" MaxLength="50" />
@@ -161,18 +161,30 @@
           <Property Name="Joint" Type="nvarchar" MaxLength="50" />
           <Property Name="Other" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="UserDoctorList">
           <Key>
             <PropertyRef Name="DoctorID" />
           </Key>
           <Property Name="DoctorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DoctorOfName" Type="nvarchar" MaxLength="50" />
-          <Property Name="DoctorMajor" Type="nvarchar" MaxLength="50" />
-          <Property Name="DoctorGender" Type="nvarchar" MaxLength="10" />
-          <Property Name="DoctorDateOfBirth" Type="nvarchar" MaxLength="50" />
-          <Property Name="DoctorIdentity" Type="nvarchar" MaxLength="100" />
-          <Property Name="DoctorAge" Type="int" />
-          <Property Name="DoctorSubject" Type="nvarchar" MaxLength="50" />
+          <Property Name="DoctorOfName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DoctorMajor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DoctorGender" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="DoctorDateOfBirth" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DoctorIdentity" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DoctorAge" Type="int" Nullable="false" />
+          <Property Name="DoctorAccount" Type="nvarchar" MaxLength="50" />
+          <Property Name="DoctorPassword" Type="nvarchar" MaxLength="50" />
+          <Property Name="DoctorSubject" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="AdministratorOrNot" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <Association Name="FK__ClientMdi__Custo__3E52440B">
@@ -224,7 +236,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__CustomerA__Custo__2C3393D0">
-          <End Role="CustomerInformation" Type="Self.CustomerInformation" Multiplicity="0..1" />
+          <End Role="CustomerInformation" Type="Self.CustomerInformation" Multiplicity="1" />
           <End Role="CustomerAppointment" Type="Self.CustomerAppointment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CustomerInformation">
@@ -330,6 +342,7 @@
           <EntitySet Name="MedicalExamination" EntityType="Self.MedicalExamination" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MedicalHistory" EntityType="Self.MedicalHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SurgicalExamination" EntityType="Self.SurgicalExamination" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDoctorList" EntityType="Self.UserDoctorList" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__ClientMdi__Custo__3E52440B" Association="Self.FK__ClientMdi__Custo__3E52440B">
             <End Role="CustomerAppointment" EntitySet="CustomerAppointment" />
@@ -409,7 +422,7 @@
             <PropertyRef Name="CustomerAppointmentID" />
           </Key>
           <Property Name="CustomerAppointmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
           <Property Name="startTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EndTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PhysicalExaminationDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -505,9 +518,9 @@
         </EntityType>
         <EntityType Name="MedicalHistory">
           <Key>
-            <PropertyRef Name="MedicalHistory1" />
+            <PropertyRef Name="MedicalHistoryID" />
           </Key>
-          <Property Name="MedicalHistory1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MedicalHistoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CustomerID" Type="Int32" />
           <Property Name="HistoryOfPresentLllness" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HistoryOfPresentLllnessMedicalHistory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -561,18 +574,30 @@
           <Property Name="Other" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ClientMdicalIformation" Relationship="Self.FK__ClientMdi__Surgi__3F466844" FromRole="SurgicalExamination" ToRole="ClientMdicalIformation" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="UserDoctorList">
           <Key>
             <PropertyRef Name="DoctorID" />
           </Key>
           <Property Name="DoctorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DoctorOfName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DoctorMajor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DoctorGender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="DoctorDateOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DoctorIdentity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="DoctorAge" Type="Int32" />
-          <Property Name="DoctorSubject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorOfName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DoctorMajor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DoctorGender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DoctorDateOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DoctorIdentity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DoctorAge" Type="Int32" Nullable="false" />
+          <Property Name="DoctorAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorSubject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="AdministratorOrNot" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ClientMdicalIformation" Relationship="Self.FK__ClientMdi__Docto__3D5E1FD2" FromRole="UserDoctorList" ToRole="ClientMdicalIformation" />
           <NavigationProperty Name="CustomerReturnVisit" Relationship="Self.FK__CustomerR__Docto__48CFD27E" FromRole="UserDoctorList" ToRole="CustomerReturnVisit" />
@@ -652,7 +677,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__CustomerA__Custo__2C3393D0">
-          <End Role="CustomerInformation" Type="Self.CustomerInformation" Multiplicity="0..1" />
+          <End Role="CustomerInformation" Type="Self.CustomerInformation" Multiplicity="1" />
           <End Role="CustomerAppointment" Type="Self.CustomerAppointment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CustomerInformation">
@@ -723,7 +748,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="KangmeiHospitalCRMEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="KangmeiHospitalCRMEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ClientMdicalIformation" EntityType="Self.ClientMdicalIformation" />
           <EntitySet Name="CustomerAppointment" EntityType="Self.CustomerAppointment" />
           <EntitySet Name="CustomerInformation" EntityType="Self.CustomerInformation" />
@@ -734,6 +759,7 @@
           <EntitySet Name="MedicalExamination" EntityType="Self.MedicalExamination" />
           <EntitySet Name="MedicalHistory" EntityType="Self.MedicalHistory" />
           <EntitySet Name="SurgicalExamination" EntityType="Self.SurgicalExamination" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="UserDoctorList" EntityType="Self.UserDoctorList" />
           <AssociationSet Name="FK__ClientMdi__Custo__3E52440B" Association="Self.FK__ClientMdi__Custo__3E52440B">
             <End Role="CustomerAppointment" EntitySet="CustomerAppointment" />
@@ -789,7 +815,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="KangmeiHospitalCRMModelStoreContainer" CdmEntityContainer="KangmeiHospitalCRMEntities">
+        <EntityContainerMapping StorageEntityContainer="KangmeiHospitalCRMModelStoreContainer" CdmEntityContainer="KangmeiHospitalCRMEntities3">
           <EntitySetMapping Name="ClientMdicalIformation">
             <EntityTypeMapping TypeName="KangmeiHospitalCRMModel.ClientMdicalIformation">
               <MappingFragment StoreEntitySet="ClientMdicalIformation">
@@ -901,7 +927,7 @@
           <EntitySetMapping Name="MedicalHistory">
             <EntityTypeMapping TypeName="KangmeiHospitalCRMModel.MedicalHistory">
               <MappingFragment StoreEntitySet="MedicalHistory">
-                <ScalarProperty Name="MedicalHistory1" ColumnName="MedicalHistory" />
+                <ScalarProperty Name="MedicalHistoryID" ColumnName="MedicalHistoryID" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="HistoryOfPresentLllness" ColumnName="HistoryOfPresentLllness" />
                 <ScalarProperty Name="HistoryOfPresentLllnessMedicalHistory" ColumnName="HistoryOfPresentLllnessMedicalHistory" />
@@ -956,6 +982,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="KangmeiHospitalCRMModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="UserDoctorList">
             <EntityTypeMapping TypeName="KangmeiHospitalCRMModel.UserDoctorList">
               <MappingFragment StoreEntitySet="UserDoctorList">
@@ -966,6 +1003,8 @@
                 <ScalarProperty Name="DoctorDateOfBirth" ColumnName="DoctorDateOfBirth" />
                 <ScalarProperty Name="DoctorIdentity" ColumnName="DoctorIdentity" />
                 <ScalarProperty Name="DoctorAge" ColumnName="DoctorAge" />
+                <ScalarProperty Name="DoctorAccount" ColumnName="DoctorAccount" />
+                <ScalarProperty Name="DoctorPassword" ColumnName="DoctorPassword" />
                 <ScalarProperty Name="DoctorSubject" ColumnName="DoctorSubject" />
                 <ScalarProperty Name="AdministratorOrNot" ColumnName="AdministratorOrNot" />
               </MappingFragment>

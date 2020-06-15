@@ -70,8 +70,13 @@ create table UserDoctorList(--医生表
   DoctorIdentity nvarchar(100),
   DoctorAge int,
   DoctorSubject nvarchar(50),
+  DoctorAccount   nvarchar(50),
+  DoctorPassword  nvarchar(50),
   AdministratorOrNot nvarchar(10),
 )
+ ALTER TABLE UserDoctorList ADD unique(DoctorAccount)
+ select * from UserDoctorList
+
 
 insert into UserDoctorList values('丁磊','眼科','男','1897/10/20','43032118973312',50,'视神经学科','0')
 

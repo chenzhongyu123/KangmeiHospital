@@ -48,7 +48,7 @@
     </style>
 </head>
 <body>
-    <form action="" method="post">
+    <form action="/CustomerInFormation/Login" method="post">
         <div id="GoginTop">
             <div class="drop-shadow lifted"><img src="~/imges/Gogin.jpg" style="width:200px; border-radius:20px;" /></div>
             <div id="logingo">
@@ -59,13 +59,13 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">账号</span>
                     </div>
-                    <input type="text" class="form-control" placeholder="AccountNumber" aria-label="AccountNumber" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" placeholder="DoctorAccount" aria-label="AccountNumber" aria-describedby="basic-addon1" name="DoctorAccount">
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">密码</span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+                    <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" name="DoctorPassword">
                 </div>
 
                 <button type="submit" class="btn btn-outline-primary submit">登录</button><button type="button" class="btn btn-outline-primary submit">取消</button>
