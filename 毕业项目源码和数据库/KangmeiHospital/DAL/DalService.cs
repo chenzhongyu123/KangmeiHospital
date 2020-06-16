@@ -8,7 +8,7 @@ namespace DAL
 {
   public  class DalService
     {
-        KangmeiHospitalCRMEntities3 db = new KangmeiHospitalCRMEntities3();
+        KangmeiHospitalCRMEntities4 db = new KangmeiHospitalCRMEntities4();
         //拿到所有的客户服务记录
         public List<CustomerService> selectCustomerService()
         {

@@ -13,10 +13,10 @@ namespace Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class KangmeiHospitalCRMEntities3 : DbContext
+    public partial class KangmeiHospitalCRMEntities4 : DbContext
     {
-        public KangmeiHospitalCRMEntities3()
-            : base("name=KangmeiHospitalCRMEntities3")
+        public KangmeiHospitalCRMEntities4()
+            : base("name=KangmeiHospitalCRMEntities4")
         {
         }
     
@@ -35,7 +35,6 @@ namespace Model
         public virtual DbSet<MedicalExamination> MedicalExamination { get; set; }
         public virtual DbSet<MedicalHistory> MedicalHistory { get; set; }
         public virtual DbSet<SurgicalExamination> SurgicalExamination { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<UserDoctorList> UserDoctorList { get; set; }
     }
 }

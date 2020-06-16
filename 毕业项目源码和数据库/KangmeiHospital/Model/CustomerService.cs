@@ -15,12 +15,10 @@ namespace Model
     public partial class CustomerService
     {
         public int CustomerServiceID { get; set; }
-        public Nullable<int> DoctorID { get; set; }
-        public Nullable<int> ConclusionID { get; set; }
+        public int DoctorID { get; set; }
         public string ConsultationContent { get; set; }
-        public string ConsultationTime { get; set; }
+        public System.DateTime ConsultationTime { get; set; }
     
-        public virtual ClientMdicalIformation ClientMdicalIformation { get; set; }
         public virtual UserDoctorList UserDoctorList { get; set; }
     }
 }

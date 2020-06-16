@@ -5,12 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using Model;
 using BLL;
+using System.Web.WebPages;
+
 namespace KangmeiHospitalCRM.Controllers
 {
     public class CustomerInFormationController : Controller
     {
 
-        KangmeiHospitalCRMEntities3 db = new KangmeiHospitalCRMEntities3();
+        KangmeiHospitalCRMEntities4 db = new KangmeiHospitalCRMEntities4();
 
         BLLkangMei Bll = new BLLkangMei();
         // GET: CustomerInFormation
@@ -111,7 +113,7 @@ namespace KangmeiHospitalCRM.Controllers
         }
 
 
-        //删除客户体检信息，内外科也一并删除 EditMdicalIformation
+        //删除客户体检信息，内外科也一并删除 
         public ActionResult DeleteMdicalIformation(int id)
         {
               Bll.DeleteMdicalIformation(id);
@@ -141,6 +143,27 @@ namespace KangmeiHospitalCRM.Controllers
             //新增客户
         public ActionResult AddCustomerInformation(CustomerInformation customerInformation)
         {
+            string IDCard = customerInformation.CustomerIDCard;
+            string BirthDay = "";
+            string strYear;
+            string strMonth;
+            string strDay;
+            if (IDCard.Length == 15)
+            {
+                strYear = IDCard.Substring(6, 4);
+                strMonth = IDCard.Substring(10, 2);
+                strDay = IDCard.Substring(12, 2);
+                BirthDay = strYear + "-" + strMonth + "-" + strDay;
+                customerInformation.dateOfBirth = BirthDay.AsDateTime();
+            }
+            if (IDCard.Length == 18)
+            {
+                strYear = IDCard.Substring(6, 4);
+                strMonth = IDCard.Substring(10, 2);
+                strDay = IDCard.Substring(12, 2);
+                BirthDay = strYear + "-" + strMonth + "-" + strDay;
+                customerInformation.dateOfBirth = BirthDay.AsDateTime();
+            }
             Bll.AddCustomerInformation(customerInformation);
             return RedirectToAction("Customer");
         }
@@ -149,6 +172,7 @@ namespace KangmeiHospitalCRM.Controllers
 
         public ActionResult DeleteCustomerInformation(int id)
         {
+            //未完待续
             Bll.DeleteCustomerInformation(id);
             return RedirectToAction("Customer");
         }

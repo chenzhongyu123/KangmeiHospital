@@ -22,12 +22,11 @@ namespace Model
     
         public int CustomerAppointmentID { get; set; }
         public int CustomerID { get; set; }
-        public string startTime { get; set; }
-        public string EndTime { get; set; }
+        public System.DateTime startTime { get; set; }
+        public System.DateTime EndTime { get; set; }
         public string PhysicalExaminationDescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClientMdicalIformation> ClientMdicalIformation { get; set; }
-        public virtual CustomerInformation CustomerInformation { get; set; }
     }
 }

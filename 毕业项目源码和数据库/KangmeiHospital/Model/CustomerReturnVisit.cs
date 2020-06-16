@@ -15,10 +15,10 @@ namespace Model
     public partial class CustomerReturnVisit
     {
         public int ContentID { get; set; }
-        public Nullable<int> DoctorID { get; set; }
-        public Nullable<int> ConclusionID { get; set; }
+        public int DoctorID { get; set; }
+        public int ConclusionID { get; set; }
         public string ContentOfReturnVisit { get; set; }
-        public string ContentTime { get; set; }
+        public Nullable<System.DateTime> ContentTime { get; set; }
     
         public virtual ClientMdicalIformation ClientMdicalIformation { get; set; }
         public virtual UserDoctorList UserDoctorList { get; set; }

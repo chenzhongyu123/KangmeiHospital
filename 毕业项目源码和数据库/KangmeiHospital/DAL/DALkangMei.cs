@@ -9,7 +9,7 @@ namespace DAL
 {
     public class DALkangMei
     {
-        KangmeiHospitalCRMEntities3 db = new KangmeiHospitalCRMEntities3();
+        KangmeiHospitalCRMEntities4 db = new KangmeiHospitalCRMEntities4();
         //查询所有的客户
         public List<CustomerInformation> SelectInformation()
         {
@@ -20,7 +20,7 @@ namespace DAL
         {
             db.CustomerInformation.Add(customerInformation);
             db.SaveChanges();
-            CustomerInformation Customer=  db.CustomerInformation.LastOrDefault();
+            CustomerInformation Customer=  db.CustomerInformation.ToList().LastOrDefault();
              int CustomerID= Customer.CustomerID;
             return CustomerID;
         }
@@ -40,10 +40,64 @@ namespace DAL
             db.Entry(medicalHistory).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
         }
-
+        //删除一个客户的病史表
+        public void DeleteMedicalHistory(int id)
+        {
+            MedicalHistory medicalHistory = db.MedicalHistory.Where(p => p.CustomerID == id).ToList().First(); ;
+            db.MedicalHistory.Remove(medicalHistory);
+            db.SaveChanges();
+        }
         //删除一个用户的方法
         public void DeleteCustomerInformation(int id)
         {
+            //病历表删除
+            MedicalHistory medicalHistory = db.MedicalHistory.Where(p => p.CustomerID == id).ToList().FirstOrDefault();
+            db.MedicalHistory.Remove(medicalHistory);
+            db.SaveChanges();
+            //删除预约表
+            List<CustomerAppointment> customerAppointment = db.CustomerAppointment.Where(p => p.CustomerID == id).ToList();
+            if (customerAppointment.Count>0)
+            {
+                foreach (var item in customerAppointment)
+                {
+                    //利用所有的预约id去查有没有体检信息，有则删除体检信息
+                    ClientMdicalIformation clientMdicalIformation = db.ClientMdicalIformation.Where(p => p.CustomerAppointmentID == item.CustomerAppointmentID).ToList().FirstOrDefault();
+                    if (clientMdicalIformation!=null)
+                    {
+
+
+                        //删除体检信息之后才能删除内外科
+                        db.ClientMdicalIformation.Remove(clientMdicalIformation);
+                        db.SaveChanges();
+                        //删除外科体检信息
+                        int SurgicalExaminationID = clientMdicalIformation.SurgicalExaminationID;
+                        SurgicalExamination surgicalExamination= db.SurgicalExamination.Find(SurgicalExaminationID);
+                        db.SurgicalExamination.Remove(surgicalExamination);
+                        db.SaveChanges();
+                        //删除内科体检信息
+                        int MedicalExaminationID = clientMdicalIformation.MedicalExaminationID;
+                        MedicalExamination medicalExamination = db.MedicalExamination.Find(MedicalExaminationID);
+                        db.MedicalExamination.Remove(medicalExamination);
+                        db.SaveChanges();
+
+
+                        //删除客户回访信息
+                     List<CustomerReturnVisit> customerReturnVisit =  db.CustomerReturnVisit.Where(p=>p.ConclusionID== clientMdicalIformation.ConclusionID).ToList();
+                        if (customerReturnVisit.Count>0)
+                        {
+                            foreach (var item2 in customerReturnVisit)
+                            {
+                                CustomerReturnVisit customerReturnVisit1= db.CustomerReturnVisit.Find(item2.ConclusionID);
+                                db.CustomerReturnVisit.Remove(customerReturnVisit1);
+                                db.SaveChanges();
+                            }
+                        }
+                    }
+                }
+            }
+            
+
+
             CustomerInformation customerInformation = db.CustomerInformation.Find(id);
             db.CustomerInformation.Remove(customerInformation);
             db.SaveChanges();
@@ -170,9 +224,15 @@ namespace DAL
         //根据查询到的客户id在客户预约表中查询记录返回预约id
         public int selectAppointment(int id)
         {
-            var customerAppointment = db.CustomerAppointment.Where(p=>p.CustomerID== id).FirstOrDefault();
+            var customerAppointment = db.CustomerAppointment.Where(p => p.CustomerID == id).ToList().FirstOrDefault();
             int CustomerAppointmentID = customerAppointment.CustomerAppointmentID;
             return CustomerAppointmentID;
+        }
+        //根据查询到的客户id在客户预约表中查询记录返回所有预约记录
+        public List<CustomerAppointment> selectAppointments(int id)
+        {
+            return  db.CustomerAppointment.Where(p => p.CustomerID == id).ToList();
+            
         }
         //保存体检信息的表
         public void AddMdicalIformation(ClientMdicalIformation clientMdicalIformation)

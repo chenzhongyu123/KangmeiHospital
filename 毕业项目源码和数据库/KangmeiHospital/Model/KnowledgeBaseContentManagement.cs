@@ -15,8 +15,8 @@ namespace Model
     public partial class KnowledgeBaseContentManagement
     {
         public int KnowledgeBase { get; set; }
-        public Nullable<int> KnowledgeBaseTypeID { get; set; }
-        public Nullable<int> DoctorID { get; set; }
+        public int KnowledgeBaseTypeID { get; set; }
+        public int DoctorID { get; set; }
         public string Problem { get; set; }
         public string OpenOrNot { get; set; }
     

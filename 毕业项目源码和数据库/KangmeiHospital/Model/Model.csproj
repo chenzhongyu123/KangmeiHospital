@@ -97,9 +97,6 @@
     <Compile Include="SurgicalExamination.cs">
       <DependentUpon>KangmeiHospitalCRM.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>KangmeiHospitalCRM.tt</DependentUpon>
-    </Compile>
     <Compile Include="UserDoctorList.cs">
       <DependentUpon>KangmeiHospitalCRM.tt</DependentUpon>
     </Compile>

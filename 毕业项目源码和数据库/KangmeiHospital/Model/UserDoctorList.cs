@@ -27,7 +27,7 @@ namespace Model
         public string DoctorOfName { get; set; }
         public string DoctorMajor { get; set; }
         public string DoctorGender { get; set; }
-        public string DoctorDateOfBirth { get; set; }
+        public System.DateTime DoctorDateOfBirth { get; set; }
         public string DoctorIdentity { get; set; }
         public int DoctorAge { get; set; }
         public string DoctorAccount { get; set; }

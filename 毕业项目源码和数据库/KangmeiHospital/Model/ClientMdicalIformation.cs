@@ -18,15 +18,14 @@ namespace Model
         public ClientMdicalIformation()
         {
             this.CustomerReturnVisit = new HashSet<CustomerReturnVisit>();
-            this.CustomerService = new HashSet<CustomerService>();
         }
     
         public int ConclusionID { get; set; }
-        public Nullable<int> DoctorID { get; set; }
-        public Nullable<int> CustomerAppointmentID { get; set; }
-        public Nullable<int> SurgicalExaminationID { get; set; }
-        public Nullable<int> MedicalExaminationID { get; set; }
-        public string InspectionTime { get; set; }
+        public int DoctorID { get; set; }
+        public int CustomerAppointmentID { get; set; }
+        public int SurgicalExaminationID { get; set; }
+        public int MedicalExaminationID { get; set; }
+        public Nullable<System.DateTime> InspectionTime { get; set; }
         public string InspectionResults { get; set; }
         public string ConclusionOfPhysicalExamination { get; set; }
     
@@ -36,7 +35,5 @@ namespace Model
         public virtual SurgicalExamination SurgicalExamination { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CustomerReturnVisit> CustomerReturnVisit { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CustomerService> CustomerService { get; set; }
     }
 }

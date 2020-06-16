@@ -9,7 +9,7 @@ namespace KangmeiHospitalCRM.Controllers
 {
     public class ServiceManagementController : Controller
     {
-        KangmeiHospitalCRMEntities3 db = new KangmeiHospitalCRMEntities3();
+        KangmeiHospitalCRMEntities4 db = new KangmeiHospitalCRMEntities4();
 
         BllService Bll = new BllService();
         // GET: ServiceManagement

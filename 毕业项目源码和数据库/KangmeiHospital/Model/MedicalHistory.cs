@@ -17,38 +17,36 @@ namespace Model
         public int MedicalHistoryID { get; set; }
         public Nullable<int> CustomerID { get; set; }
         public string HistoryOfPresentLllness { get; set; }
-        public string HistoryOfPresentLllnessMedicalHistory { get; set; }
+        public Nullable<System.DateTime> HistoryOfPresentLllnessMedicalHistory { get; set; }
         public string HistoryOfPresentLllnessLocationOfVisit { get; set; }
         public string HistoryOfPresentLllnessSituation { get; set; }
         public string PastHistory { get; set; }
-        public string PastHistoryMedicalHistory { get; set; }
+        public Nullable<System.DateTime> PastHistoryMedicalHistory { get; set; }
         public string PastHistoryLocationOfVisit { get; set; }
         public string PastHistorySituation { get; set; }
         public string FamilyHistory { get; set; }
-        public string FamilyHistoryMedicalHistory { get; set; }
+        public Nullable<System.DateTime> FamilyHistoryMedicalHistory { get; set; }
         public string FamilyHistoryLocationOfVisit { get; set; }
         public string FamilyHistorySituation { get; set; }
         public string MenstrualHistory { get; set; }
-        public string MenstrualHistoryMedicalHistory { get; set; }
+        public Nullable<System.DateTime> MenstrualHistoryMedicalHistory { get; set; }
         public string MenstrualHistoryLocationOfVisit { get; set; }
         public string MenstrualHistorySituation { get; set; }
         public string MarriageAndPregnancy { get; set; }
-        public string MarriageAndPregnancyMedicalHistory { get; set; }
+        public Nullable<System.DateTime> MarriageAndPregnancyMedicalHistory { get; set; }
         public string MarriageAndPregnancyLocationOfVisit { get; set; }
         public string MarriageAndPregnancySituation { get; set; }
         public string PhysicalExamination { get; set; }
-        public string PhysicalExaminationMedicalHistory { get; set; }
+        public Nullable<System.DateTime> PhysicalExaminationMedicalHistory { get; set; }
         public string PhysicalExaminationLocationOfVisit { get; set; }
         public string PhysicalExaminationSituation { get; set; }
         public string LaboratoryExamination { get; set; }
-        public string LaboratoryExaminationMedicalHistory { get; set; }
+        public Nullable<System.DateTime> LaboratoryExaminationMedicalHistory { get; set; }
         public string LaboratoryExaminationLocationOfVisit { get; set; }
         public string LaboratoryExaminationSituation { get; set; }
         public string SpecialInspection { get; set; }
-        public string SpecialInspectionMedicalHistory { get; set; }
+        public Nullable<System.DateTime> SpecialInspectionMedicalHistory { get; set; }
         public string SpecialInspectionLocationOfVisit { get; set; }
         public string SpecialInspectionSituation { get; set; }
-    
-        public virtual CustomerInformation CustomerInformation { get; set; }
     }
 }
