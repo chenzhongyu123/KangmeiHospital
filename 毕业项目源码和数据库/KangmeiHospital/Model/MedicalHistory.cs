@@ -48,5 +48,7 @@ namespace Model
         public Nullable<System.DateTime> SpecialInspectionMedicalHistory { get; set; }
         public string SpecialInspectionLocationOfVisit { get; set; }
         public string SpecialInspectionSituation { get; set; }
+    
+        public virtual CustomerInformation CustomerInformation { get; set; }
     }
 }

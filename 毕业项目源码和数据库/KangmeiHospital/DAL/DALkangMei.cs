@@ -189,7 +189,7 @@ namespace DAL
         //查看一个人的详细病史信息
         public MedicalHistory SelectCustomerDetails(int id)
         {
-            return db.MedicalHistory.FirstOrDefault(p=>p.CustomerID== id);
+            return db.MedicalHistory.ToList().FirstOrDefault(p=>p.CustomerID== id);
         }
         //查看所有医生信息
         public List<UserDoctorList> SelectDoctorList()

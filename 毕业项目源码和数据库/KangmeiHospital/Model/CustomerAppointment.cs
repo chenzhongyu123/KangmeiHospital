@@ -28,5 +28,6 @@ namespace Model
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClientMdicalIformation> ClientMdicalIformation { get; set; }
+        public virtual CustomerInformation CustomerInformation { get; set; }
     }
 }

@@ -14,6 +14,13 @@ namespace Model
     
     public partial class CustomerInformation
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CustomerInformation()
+        {
+            this.CustomerAppointment = new HashSet<CustomerAppointment>();
+            this.MedicalHistory = new HashSet<MedicalHistory>();
+        }
+    
         public int CustomerID { get; set; }
         public string CustomerName { get; set; }
         public string CustomerIDCard { get; set; }
@@ -28,5 +35,10 @@ namespace Model
         public string CustomerContactNumber { get; set; }
         public string CustomerEmergencyContactNumber { get; set; }
         public string CustomerHomeAddress { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CustomerAppointment> CustomerAppointment { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MedicalHistory> MedicalHistory { get; set; }
     }
 }

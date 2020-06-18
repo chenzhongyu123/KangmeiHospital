@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="KangmeiHospitalCRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="KangmeiHospitalCRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ClientMdicalIformation">
           <Key>
             <PropertyRef Name="ConclusionID" />
@@ -176,6 +176,30 @@
           <Property Name="DoctorSubject" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="AdministratorOrNot" Type="nvarchar" MaxLength="10" />
         </EntityType>
+        <Association Name="CK_CustomerIDandAppointment">
+          <End Role="CustomerInformation" Type="Self.CustomerInformation" Multiplicity="1" />
+          <End Role="CustomerAppointment" Type="Self.CustomerAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerInformation">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="CustomerAppointment">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CK_CustomerIDandCustomerAppointment">
+          <End Role="CustomerInformation" Type="Self.CustomerInformation" Multiplicity="0..1" />
+          <End Role="MedicalHistory" Type="Self.MedicalHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerInformation">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="MedicalHistory">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__ClientMdi__Custo__3E52440B">
           <End Role="CustomerAppointment" Type="Self.CustomerAppointment" Multiplicity="1" />
           <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="*" />
@@ -212,6 +236,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__ClientMdi__Medic__30F848ED">
+          <End Role="MedicalExamination" Type="Self.MedicalExamination" Multiplicity="1" />
+          <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalExamination">
+              <PropertyRef Name="MedicalExaminationID" />
+            </Principal>
+            <Dependent Role="ClientMdicalIformation">
+              <PropertyRef Name="MedicalExaminationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__ClientMdi__Surgi__286302EC">
           <End Role="SurgicalExamination" Type="Self.SurgicalExamination" Multiplicity="1" />
           <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="*" />
@@ -224,7 +260,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__ClientMdi__Surgi__31EC6D26">
+          <End Role="SurgicalExamination" Type="Self.SurgicalExamination" Multiplicity="1" />
+          <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SurgicalExamination">
+              <PropertyRef Name="SurgicalExaminationID" />
+            </Principal>
+            <Dependent Role="ClientMdicalIformation">
+              <PropertyRef Name="SurgicalExaminationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__CustomerR__Concl__29572725">
+          <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="1" />
+          <End Role="CustomerReturnVisit" Type="Self.CustomerReturnVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientMdicalIformation">
+              <PropertyRef Name="ConclusionID" />
+            </Principal>
+            <Dependent Role="CustomerReturnVisit">
+              <PropertyRef Name="ConclusionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerR__Concl__32E0915F">
           <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="1" />
           <End Role="CustomerReturnVisit" Type="Self.CustomerReturnVisit" Multiplicity="*" />
           <ReferentialConstraint>
@@ -284,6 +344,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Knowledge__Knowl__33D4B598">
+          <End Role="KnowledgeBaseTypeManagement" Type="Self.KnowledgeBaseTypeManagement" Multiplicity="1" />
+          <End Role="KnowledgeBaseContentManagement" Type="Self.KnowledgeBaseContentManagement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KnowledgeBaseTypeManagement">
+              <PropertyRef Name="KnowledgeBaseTypeID" />
+            </Principal>
+            <Dependent Role="KnowledgeBaseContentManagement">
+              <PropertyRef Name="KnowledgeBaseTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="KangmeiHospitalCRMModelStoreContainer">
           <EntitySet Name="ClientMdicalIformation" EntityType="Self.ClientMdicalIformation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerAppointment" EntityType="Self.CustomerAppointment" Schema="dbo" store:Type="Tables" />
@@ -296,6 +368,14 @@
           <EntitySet Name="MedicalHistory" EntityType="Self.MedicalHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SurgicalExamination" EntityType="Self.SurgicalExamination" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDoctorList" EntityType="Self.UserDoctorList" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="CK_CustomerIDandAppointment" Association="Self.CK_CustomerIDandAppointment">
+            <End Role="CustomerInformation" EntitySet="CustomerInformation" />
+            <End Role="CustomerAppointment" EntitySet="CustomerAppointment" />
+          </AssociationSet>
+          <AssociationSet Name="CK_CustomerIDandCustomerAppointment" Association="Self.CK_CustomerIDandCustomerAppointment">
+            <End Role="CustomerInformation" EntitySet="CustomerInformation" />
+            <End Role="MedicalHistory" EntitySet="MedicalHistory" />
+          </AssociationSet>
           <AssociationSet Name="FK__ClientMdi__Custo__3E52440B" Association="Self.FK__ClientMdi__Custo__3E52440B">
             <End Role="CustomerAppointment" EntitySet="CustomerAppointment" />
             <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
@@ -308,11 +388,23 @@
             <End Role="MedicalExamination" EntitySet="MedicalExamination" />
             <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
           </AssociationSet>
+          <AssociationSet Name="FK__ClientMdi__Medic__30F848ED" Association="Self.FK__ClientMdi__Medic__30F848ED">
+            <End Role="MedicalExamination" EntitySet="MedicalExamination" />
+            <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
+          </AssociationSet>
           <AssociationSet Name="FK__ClientMdi__Surgi__286302EC" Association="Self.FK__ClientMdi__Surgi__286302EC">
             <End Role="SurgicalExamination" EntitySet="SurgicalExamination" />
             <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
           </AssociationSet>
+          <AssociationSet Name="FK__ClientMdi__Surgi__31EC6D26" Association="Self.FK__ClientMdi__Surgi__31EC6D26">
+            <End Role="SurgicalExamination" EntitySet="SurgicalExamination" />
+            <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
+          </AssociationSet>
           <AssociationSet Name="FK__CustomerR__Concl__29572725" Association="Self.FK__CustomerR__Concl__29572725">
+            <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
+            <End Role="CustomerReturnVisit" EntitySet="CustomerReturnVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerR__Concl__32E0915F" Association="Self.FK__CustomerR__Concl__32E0915F">
             <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
             <End Role="CustomerReturnVisit" EntitySet="CustomerReturnVisit" />
           </AssociationSet>
@@ -332,9 +424,12 @@
             <End Role="KnowledgeBaseTypeManagement" EntitySet="KnowledgeBaseTypeManagement" />
             <End Role="KnowledgeBaseContentManagement" EntitySet="KnowledgeBaseContentManagement" />
           </AssociationSet>
+          <AssociationSet Name="FK__Knowledge__Knowl__33D4B598" Association="Self.FK__Knowledge__Knowl__33D4B598">
+            <End Role="KnowledgeBaseTypeManagement" EntitySet="KnowledgeBaseTypeManagement" />
+            <End Role="KnowledgeBaseContentManagement" EntitySet="KnowledgeBaseContentManagement" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="KangmeiHospitalCRMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -366,6 +461,7 @@
           <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="PhysicalExaminationDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ClientMdicalIformation" Relationship="Self.FK__ClientMdi__Custo__3E52440B" FromRole="CustomerAppointment" ToRole="ClientMdicalIformation" />
+          <NavigationProperty Name="CustomerInformation" Relationship="KangmeiHospitalCRMModel.CK_CustomerIDandAppointment" FromRole="CustomerAppointment" ToRole="CustomerInformation" />
         </EntityType>
         <EntityType Name="CustomerInformation">
           <Key>
@@ -385,6 +481,8 @@
           <Property Name="CustomerContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CustomerEmergencyContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CustomerHomeAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CustomerAppointment" Relationship="KangmeiHospitalCRMModel.CK_CustomerIDandAppointment" FromRole="CustomerInformation" ToRole="CustomerAppointment" />
+          <NavigationProperty Name="MedicalHistory" Relationship="KangmeiHospitalCRMModel.CK_CustomerIDandCustomerAppointment" FromRole="CustomerInformation" ToRole="MedicalHistory" />
         </EntityType>
         <EntityType Name="CustomerReturnVisit">
           <Key>
@@ -488,6 +586,7 @@
           <Property Name="SpecialInspectionMedicalHistory" Type="DateTime" Precision="0" />
           <Property Name="SpecialInspectionLocationOfVisit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SpecialInspectionSituation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CustomerInformation" Relationship="KangmeiHospitalCRMModel.CK_CustomerIDandCustomerAppointment" FromRole="MedicalHistory" ToRole="CustomerInformation" />
         </EntityType>
         <EntityType Name="SurgicalExamination">
           <Key>
@@ -683,7 +782,39 @@
             <End Role="KnowledgeBaseTypeManagement" EntitySet="KnowledgeBaseTypeManagement" />
             <End Role="KnowledgeBaseContentManagement" EntitySet="KnowledgeBaseContentManagement" />
           </AssociationSet>
+          <AssociationSet Name="CK_CustomerIDandAppointment" Association="KangmeiHospitalCRMModel.CK_CustomerIDandAppointment">
+            <End Role="CustomerInformation" EntitySet="CustomerInformation" />
+            <End Role="CustomerAppointment" EntitySet="CustomerAppointment" />
+          </AssociationSet>
+          <AssociationSet Name="CK_CustomerIDandCustomerAppointment" Association="KangmeiHospitalCRMModel.CK_CustomerIDandCustomerAppointment">
+            <End Role="CustomerInformation" EntitySet="CustomerInformation" />
+            <End Role="MedicalHistory" EntitySet="MedicalHistory" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="CK_CustomerIDandAppointment">
+          <End Type="KangmeiHospitalCRMModel.CustomerInformation" Role="CustomerInformation" Multiplicity="1" />
+          <End Type="KangmeiHospitalCRMModel.CustomerAppointment" Role="CustomerAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerInformation">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="CustomerAppointment">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CK_CustomerIDandCustomerAppointment">
+          <End Type="KangmeiHospitalCRMModel.CustomerInformation" Role="CustomerInformation" Multiplicity="0..1" />
+          <End Type="KangmeiHospitalCRMModel.MedicalHistory" Role="MedicalHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerInformation">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="MedicalHistory">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

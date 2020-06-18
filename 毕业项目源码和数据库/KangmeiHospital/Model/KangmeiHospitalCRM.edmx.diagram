@@ -25,6 +25,8 @@
         <AssociationConnector Association="KangmeiHospitalCRMModel.FK__CustomerS__Docto__44FF419A" ManuallyRouted="false" />
         <AssociationConnector Association="KangmeiHospitalCRMModel.FK__Knowledge__Docto__5165187F" ManuallyRouted="false" />
         <AssociationConnector Association="KangmeiHospitalCRMModel.FK__Knowledge__Knowl__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="KangmeiHospitalCRMModel.CK_CustomerIDandAppointment" />
+        <AssociationConnector Association="KangmeiHospitalCRMModel.CK_CustomerIDandCustomerAppointment" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

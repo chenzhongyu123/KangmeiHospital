@@ -44,19 +44,40 @@
 
             <div class="form-group">
                 <label for="exampleInputEmail1" name="CustomerName" value="CustomerName"> 姓名</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerName" value="@Model.CustomerName">
+                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerName" value="@Model.CustomerName" required>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1" name="CustomerGender"> 性别</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerGender" value="@Model.CustomerGender">
+                <select class="form-control" aria-describedby="emailHelp" name="CustomerGender">
+                    @if (Model.CustomerGender == "男")
+                    {
+                        <option value="男" selected="selected">男</option>
+                        <option value="女">女</option>
+                        <option value="其他">其他</option>
+                    }
+                    else if (Model.CustomerGender == "女")
+                    {
+                        <option value="男">男</option>
+                        <option value="女" selected="selected">女</option>
+                        <option value="其他">其他</option>
+
+                    }
+                    else
+                    {
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                        <option value="其他" selected="selected">其他</option>
+                    }
+
+                </select>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1" name="CustomerContactNumber"> 联系电话</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerContactNumber" value="@Model.CustomerContactNumber">
+                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerContactNumber" value="@Model.CustomerContactNumber" required>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1" name="CustomerNationality"> 民族</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerNationality" value="@Model.CustomerNationality">
+                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerNationality" value="@Model.CustomerNationality" required>
             </div>
         </div>
 
@@ -64,39 +85,114 @@
         <div>
             <div class="form-group">
                 <label for="exampleInputEmail1" name="CustomerIDCard"> 身份证</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerIDCard" value="@Model.CustomerIDCard">
+                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerIDCard" value="@Model.CustomerIDCard" required>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1" name="dateOfBirth"> 出生年月</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="dateOfBirth" value="@Model.dateOfBirth">
+                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="dateOfBirth" value="@Model.dateOfBirth.ToShortDateString()" required>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1" name="ClientsMaritalStatus"> 婚姻状况</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="ClientsMaritalStatus" value="@Model.ClientsMaritalStatus">
+                <select class="form-control" aria-describedby="emailHelp" name="ClientsMaritalStatus">
+                    @if (Model.ClientsMaritalStatus == "未婚")
+                    {
+                        <option value="未婚" selected="selected">未婚</option>
+                        <option value="已婚">已婚</option>
+                        <option value="离异">离异</option>
+                    }
+                    else if (Model.ClientsMaritalStatus == "已婚")
+                    {
+                        <option value="未婚">未婚</option>
+                        <option value="已婚" selected="selected">已婚</option>
+                        <option value="离异">离异</option>
+                    }
+                    else
+                    {
+                        <option value="未婚">未婚</option>
+                        <option value="已婚">已婚</option>
+                        <option value="离异" selected="selected">离异</option>
+                    }
+                </select>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1" name="CustomerBloodGroup"> 血型</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerBloodGroup" value="@Model.CustomerBloodGroup">
+                <select class="form-control" aria-describedby="emailHelp" name="CustomerBloodGroup">
+                    @if (Model.CustomerBloodGroup == "O")
+                    {
+                        <option value="O" selected="selected">O</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="AB">AB</option>
+                        <option value="RH阴">RH阴</option>
+                        <option value="RH阳">RH阳</option>
+                    }
+                    else if (Model.CustomerBloodGroup == "A")
+                    {
+                        <option value="O">O</option>
+                        <option value="A" selected="selected">A</option>
+                        <option value="B">B</option>
+                        <option value="AB">AB</option>
+                        <option value="RH阴">RH阴</option>
+                        <option value="RH阳">RH阳</option>
+                    }
+                    else if (Model.CustomerBloodGroup == "B")
+                    {
+                        <option value="O">O</option>
+                        <option value="A">A</option>
+                        <option value="B" selected="selected">B</option>
+                        <option value="AB">AB</option>
+                        <option value="RH阴">RH阴</option>
+                        <option value="RH阳">RH阳</option>
+                    }
+                    else if (Model.CustomerBloodGroup == "AB")
+                    {
+                        <option value="O">O</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="AB" selected="selected">AB</option>
+                        <option value="RH阴">RH阴</option>
+                        <option value="RH阳">RH阳</option>
+                    }
+                    else if (Model.CustomerBloodGroup == "RH阴")
+                    {
+                        <option value="O">O</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="AB">AB</option>
+                        <option value="RH阴" selected="selected">RH阴</option>
+                        <option value="RH阳">RH阳</option>
+                    }
+                    else
+                    {
+                        <option value="O">O</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="AB">AB</option>
+                        <option value="RH阴">RH阴</option>
+                        <option value="RH阳" selected="selected">RH阳</option>
+                    }
+
+                </select>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1" name="CustomerOccupation"> 职业</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerOccupation" value="@Model.CustomerOccupation">
+                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerOccupation" value="@Model.CustomerOccupation" required>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1" name="CustomerEducation"> 文化程度</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerEducation" value="@Model.CustomerEducation">
+                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerEducation" value="@Model.CustomerEducation" required>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1" name="CustomerBelief"> 信仰</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerBelief" value="@Model.CustomerBelief">
+                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerBelief" value="@Model.CustomerBelief" required>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1" name="CustomerEmergencyContactNumber"> 紧急联系电话</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerEmergencyContactNumber" value="@Model.CustomerEmergencyContactNumber">
+                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerEmergencyContactNumber" value="@Model.CustomerEmergencyContactNumber" required>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1" name="CustomerHomeAddress"> 家庭住址</label>
-                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerHomeAddress" value="@Model.CustomerHomeAddress">
+                <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="CustomerHomeAddress" value="@Model.CustomerHomeAddress" required>
             </div>
 
         </div>

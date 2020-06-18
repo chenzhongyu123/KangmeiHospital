@@ -171,6 +171,30 @@
     <Property Name="DoctorSubject" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="AdministratorOrNot" Type="nvarchar" MaxLength="10" />
   </EntityType>
+  <Association Name="CK_CustomerIDandAppointment">
+    <End Role="CustomerInformation" Type="Self.CustomerInformation" Multiplicity="1" />
+    <End Role="CustomerAppointment" Type="Self.CustomerAppointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerInformation">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="CustomerAppointment">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CK_CustomerIDandCustomerAppointment">
+    <End Role="CustomerInformation" Type="Self.CustomerInformation" Multiplicity="0..1" />
+    <End Role="MedicalHistory" Type="Self.MedicalHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerInformation">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="MedicalHistory">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__ClientMdi__Custo__3E52440B">
     <End Role="CustomerAppointment" Type="Self.CustomerAppointment" Multiplicity="1" />
     <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="*" />
@@ -207,6 +231,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__ClientMdi__Medic__30F848ED">
+    <End Role="MedicalExamination" Type="Self.MedicalExamination" Multiplicity="1" />
+    <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MedicalExamination">
+        <PropertyRef Name="MedicalExaminationID" />
+      </Principal>
+      <Dependent Role="ClientMdicalIformation">
+        <PropertyRef Name="MedicalExaminationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__ClientMdi__Surgi__286302EC">
     <End Role="SurgicalExamination" Type="Self.SurgicalExamination" Multiplicity="1" />
     <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="*" />
@@ -219,7 +255,31 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__ClientMdi__Surgi__31EC6D26">
+    <End Role="SurgicalExamination" Type="Self.SurgicalExamination" Multiplicity="1" />
+    <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SurgicalExamination">
+        <PropertyRef Name="SurgicalExaminationID" />
+      </Principal>
+      <Dependent Role="ClientMdicalIformation">
+        <PropertyRef Name="SurgicalExaminationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__CustomerR__Concl__29572725">
+    <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="1" />
+    <End Role="CustomerReturnVisit" Type="Self.CustomerReturnVisit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClientMdicalIformation">
+        <PropertyRef Name="ConclusionID" />
+      </Principal>
+      <Dependent Role="CustomerReturnVisit">
+        <PropertyRef Name="ConclusionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CustomerR__Concl__32E0915F">
     <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="1" />
     <End Role="CustomerReturnVisit" Type="Self.CustomerReturnVisit" Multiplicity="*" />
     <ReferentialConstraint>
@@ -279,6 +339,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Knowledge__Knowl__33D4B598">
+    <End Role="KnowledgeBaseTypeManagement" Type="Self.KnowledgeBaseTypeManagement" Multiplicity="1" />
+    <End Role="KnowledgeBaseContentManagement" Type="Self.KnowledgeBaseContentManagement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KnowledgeBaseTypeManagement">
+        <PropertyRef Name="KnowledgeBaseTypeID" />
+      </Principal>
+      <Dependent Role="KnowledgeBaseContentManagement">
+        <PropertyRef Name="KnowledgeBaseTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="KangmeiHospitalCRMModelStoreContainer">
     <EntitySet Name="ClientMdicalIformation" EntityType="Self.ClientMdicalIformation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CustomerAppointment" EntityType="Self.CustomerAppointment" Schema="dbo" store:Type="Tables" />
@@ -291,6 +363,14 @@
     <EntitySet Name="MedicalHistory" EntityType="Self.MedicalHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SurgicalExamination" EntityType="Self.SurgicalExamination" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserDoctorList" EntityType="Self.UserDoctorList" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="CK_CustomerIDandAppointment" Association="Self.CK_CustomerIDandAppointment">
+      <End Role="CustomerInformation" EntitySet="CustomerInformation" />
+      <End Role="CustomerAppointment" EntitySet="CustomerAppointment" />
+    </AssociationSet>
+    <AssociationSet Name="CK_CustomerIDandCustomerAppointment" Association="Self.CK_CustomerIDandCustomerAppointment">
+      <End Role="CustomerInformation" EntitySet="CustomerInformation" />
+      <End Role="MedicalHistory" EntitySet="MedicalHistory" />
+    </AssociationSet>
     <AssociationSet Name="FK__ClientMdi__Custo__3E52440B" Association="Self.FK__ClientMdi__Custo__3E52440B">
       <End Role="CustomerAppointment" EntitySet="CustomerAppointment" />
       <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
@@ -303,11 +383,23 @@
       <End Role="MedicalExamination" EntitySet="MedicalExamination" />
       <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
     </AssociationSet>
+    <AssociationSet Name="FK__ClientMdi__Medic__30F848ED" Association="Self.FK__ClientMdi__Medic__30F848ED">
+      <End Role="MedicalExamination" EntitySet="MedicalExamination" />
+      <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
+    </AssociationSet>
     <AssociationSet Name="FK__ClientMdi__Surgi__286302EC" Association="Self.FK__ClientMdi__Surgi__286302EC">
       <End Role="SurgicalExamination" EntitySet="SurgicalExamination" />
       <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
     </AssociationSet>
+    <AssociationSet Name="FK__ClientMdi__Surgi__31EC6D26" Association="Self.FK__ClientMdi__Surgi__31EC6D26">
+      <End Role="SurgicalExamination" EntitySet="SurgicalExamination" />
+      <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
+    </AssociationSet>
     <AssociationSet Name="FK__CustomerR__Concl__29572725" Association="Self.FK__CustomerR__Concl__29572725">
+      <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
+      <End Role="CustomerReturnVisit" EntitySet="CustomerReturnVisit" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CustomerR__Concl__32E0915F" Association="Self.FK__CustomerR__Concl__32E0915F">
       <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
       <End Role="CustomerReturnVisit" EntitySet="CustomerReturnVisit" />
     </AssociationSet>
@@ -324,6 +416,10 @@
       <End Role="KnowledgeBaseContentManagement" EntitySet="KnowledgeBaseContentManagement" />
     </AssociationSet>
     <AssociationSet Name="FK__Knowledge__Knowl__2D27B809" Association="Self.FK__Knowledge__Knowl__2D27B809">
+      <End Role="KnowledgeBaseTypeManagement" EntitySet="KnowledgeBaseTypeManagement" />
+      <End Role="KnowledgeBaseContentManagement" EntitySet="KnowledgeBaseContentManagement" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Knowledge__Knowl__33D4B598" Association="Self.FK__Knowledge__Knowl__33D4B598">
       <End Role="KnowledgeBaseTypeManagement" EntitySet="KnowledgeBaseTypeManagement" />
       <End Role="KnowledgeBaseContentManagement" EntitySet="KnowledgeBaseContentManagement" />
     </AssociationSet>
