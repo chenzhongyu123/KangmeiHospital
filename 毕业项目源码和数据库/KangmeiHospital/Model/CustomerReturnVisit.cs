@@ -18,7 +18,7 @@ namespace Model
         public int DoctorID { get; set; }
         public int ConclusionID { get; set; }
         public string ContentOfReturnVisit { get; set; }
-        public Nullable<System.DateTime> ContentTime { get; set; }
+        public System.DateTime ContentTime { get; set; }
     
         public virtual ClientMdicalIformation ClientMdicalIformation { get; set; }
         public virtual UserDoctorList UserDoctorList { get; set; }

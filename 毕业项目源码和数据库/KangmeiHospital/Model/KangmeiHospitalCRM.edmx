@@ -14,7 +14,7 @@
           <Property Name="CustomerAppointmentID" Type="int" Nullable="false" />
           <Property Name="SurgicalExaminationID" Type="int" Nullable="false" />
           <Property Name="MedicalExaminationID" Type="int" Nullable="false" />
-          <Property Name="InspectionTime" Type="date" />
+          <Property Name="InspectionTime" Type="date" Nullable="false" />
           <Property Name="InspectionResults" Type="nvarchar" MaxLength="100" />
           <Property Name="ConclusionOfPhysicalExamination" Type="nvarchar" MaxLength="100" />
         </EntityType>
@@ -54,8 +54,8 @@
           <Property Name="ContentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DoctorID" Type="int" Nullable="false" />
           <Property Name="ConclusionID" Type="int" Nullable="false" />
-          <Property Name="ContentOfReturnVisit" Type="nvarchar" MaxLength="100" />
-          <Property Name="ContentTime" Type="date" />
+          <Property Name="ContentOfReturnVisit" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ContentTime" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="CustomerService">
           <Key>
@@ -74,7 +74,7 @@
           <Property Name="KnowledgeBaseTypeID" Type="int" Nullable="false" />
           <Property Name="DoctorID" Type="int" Nullable="false" />
           <Property Name="Problem" Type="nvarchar(max)" />
-          <Property Name="OpenOrNot" Type="nvarchar(max)" />
+          <Property Name="Reply" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="KnowledgeBaseTypeManagement">
           <Key>
@@ -175,6 +175,22 @@
           <Property Name="DoctorPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DoctorSubject" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="AdministratorOrNot" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“KangmeiHospitalCRM.dbo.View_KnowledgeBase”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="View_KnowledgeBase">
+          <Key>
+            <PropertyRef Name="KnowledgeBase" />
+            <PropertyRef Name="KnowledgeBaseTypeID" />
+            <PropertyRef Name="DoctorID" />
+          </Key>
+          <Property Name="KnowledgeBase" Type="int" Nullable="false" />
+          <Property Name="KnowledgeBaseTypeID" Type="int" Nullable="false" />
+          <Property Name="DoctorID" Type="int" Nullable="false" />
+          <Property Name="Problem" Type="nvarchar(max)" />
+          <Property Name="Reply" Type="nvarchar(max)" />
+          <Property Name="OpenOrNot" Type="nvarchar" MaxLength="10" />
+          <Property Name="KnowledgeBaseType" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="CK_CustomerIDandAppointment">
           <End Role="CustomerInformation" Type="Self.CustomerInformation" Multiplicity="1" />
@@ -368,6 +384,17 @@
           <EntitySet Name="MedicalHistory" EntityType="Self.MedicalHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SurgicalExamination" EntityType="Self.SurgicalExamination" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDoctorList" EntityType="Self.UserDoctorList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_KnowledgeBase" EntityType="Self.View_KnowledgeBase" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_KnowledgeBase].[KnowledgeBase] AS [KnowledgeBase], 
+    [View_KnowledgeBase].[KnowledgeBaseTypeID] AS [KnowledgeBaseTypeID], 
+    [View_KnowledgeBase].[DoctorID] AS [DoctorID], 
+    [View_KnowledgeBase].[Problem] AS [Problem], 
+    [View_KnowledgeBase].[Reply] AS [Reply], 
+    [View_KnowledgeBase].[OpenOrNot] AS [OpenOrNot], 
+    [View_KnowledgeBase].[KnowledgeBaseType] AS [KnowledgeBaseType]
+    FROM [dbo].[View_KnowledgeBase] AS [View_KnowledgeBase]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="CK_CustomerIDandAppointment" Association="Self.CK_CustomerIDandAppointment">
             <End Role="CustomerInformation" EntitySet="CustomerInformation" />
             <End Role="CustomerAppointment" EntitySet="CustomerAppointment" />
@@ -442,7 +469,7 @@
           <Property Name="CustomerAppointmentID" Type="Int32" Nullable="false" />
           <Property Name="SurgicalExaminationID" Type="Int32" Nullable="false" />
           <Property Name="MedicalExaminationID" Type="Int32" Nullable="false" />
-          <Property Name="InspectionTime" Type="DateTime" Precision="0" />
+          <Property Name="InspectionTime" Type="DateTime" Precision="0" Nullable="false" />
           <Property Name="InspectionResults" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ConclusionOfPhysicalExamination" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CustomerAppointment" Relationship="Self.FK__ClientMdi__Custo__3E52440B" FromRole="ClientMdicalIformation" ToRole="CustomerAppointment" />
@@ -491,8 +518,8 @@
           <Property Name="ContentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DoctorID" Type="Int32" Nullable="false" />
           <Property Name="ConclusionID" Type="Int32" Nullable="false" />
-          <Property Name="ContentOfReturnVisit" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ContentTime" Type="DateTime" Precision="0" />
+          <Property Name="ContentOfReturnVisit" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContentTime" Type="DateTime" Precision="0" Nullable="false" />
           <NavigationProperty Name="ClientMdicalIformation" Relationship="Self.FK__CustomerR__Concl__29572725" FromRole="CustomerReturnVisit" ToRole="ClientMdicalIformation" />
           <NavigationProperty Name="UserDoctorList" Relationship="Self.FK__CustomerR__Docto__48CFD27E" FromRole="CustomerReturnVisit" ToRole="UserDoctorList" />
         </EntityType>
@@ -514,9 +541,9 @@
           <Property Name="KnowledgeBaseTypeID" Type="Int32" Nullable="false" />
           <Property Name="DoctorID" Type="Int32" Nullable="false" />
           <Property Name="Problem" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OpenOrNot" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="UserDoctorList" Relationship="Self.FK__Knowledge__Docto__5165187F" FromRole="KnowledgeBaseContentManagement" ToRole="UserDoctorList" />
           <NavigationProperty Name="KnowledgeBaseTypeManagement" Relationship="Self.FK__Knowledge__Knowl__2D27B809" FromRole="KnowledgeBaseContentManagement" ToRole="KnowledgeBaseTypeManagement" />
+          <Property Name="Reply" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="KnowledgeBaseTypeManagement">
           <Key>
@@ -790,6 +817,7 @@
             <End Role="CustomerInformation" EntitySet="CustomerInformation" />
             <End Role="MedicalHistory" EntitySet="MedicalHistory" />
           </AssociationSet>
+          <EntitySet Name="View_KnowledgeBase" EntityType="KangmeiHospitalCRMModel.View_KnowledgeBase" />
         </EntityContainer>
         <Association Name="CK_CustomerIDandAppointment">
           <End Type="KangmeiHospitalCRMModel.CustomerInformation" Role="CustomerInformation" Multiplicity="1" />
@@ -815,6 +843,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="View_KnowledgeBase">
+          <Key>
+            <PropertyRef Name="KnowledgeBase" />
+            <PropertyRef Name="KnowledgeBaseTypeID" />
+            <PropertyRef Name="DoctorID" />
+          </Key>
+          <Property Name="KnowledgeBase" Type="Int32" Nullable="false" />
+          <Property Name="KnowledgeBaseTypeID" Type="Int32" Nullable="false" />
+          <Property Name="DoctorID" Type="Int32" Nullable="false" />
+          <Property Name="Problem" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Reply" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OpenOrNot" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="KnowledgeBaseType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -890,11 +932,11 @@
           <EntitySetMapping Name="KnowledgeBaseContentManagement">
             <EntityTypeMapping TypeName="KangmeiHospitalCRMModel.KnowledgeBaseContentManagement">
               <MappingFragment StoreEntitySet="KnowledgeBaseContentManagement">
+                <ScalarProperty Name="Reply" ColumnName="Reply" />
                 <ScalarProperty Name="KnowledgeBase" ColumnName="KnowledgeBase" />
                 <ScalarProperty Name="KnowledgeBaseTypeID" ColumnName="KnowledgeBaseTypeID" />
                 <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
                 <ScalarProperty Name="Problem" ColumnName="Problem" />
-                <ScalarProperty Name="OpenOrNot" ColumnName="OpenOrNot" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1000,6 +1042,19 @@
                 <ScalarProperty Name="DoctorPassword" ColumnName="DoctorPassword" />
                 <ScalarProperty Name="DoctorSubject" ColumnName="DoctorSubject" />
                 <ScalarProperty Name="AdministratorOrNot" ColumnName="AdministratorOrNot" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_KnowledgeBase">
+            <EntityTypeMapping TypeName="KangmeiHospitalCRMModel.View_KnowledgeBase">
+              <MappingFragment StoreEntitySet="View_KnowledgeBase">
+                <ScalarProperty Name="KnowledgeBaseType" ColumnName="KnowledgeBaseType" />
+                <ScalarProperty Name="OpenOrNot" ColumnName="OpenOrNot" />
+                <ScalarProperty Name="Reply" ColumnName="Reply" />
+                <ScalarProperty Name="Problem" ColumnName="Problem" />
+                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+                <ScalarProperty Name="KnowledgeBaseTypeID" ColumnName="KnowledgeBaseTypeID" />
+                <ScalarProperty Name="KnowledgeBase" ColumnName="KnowledgeBase" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

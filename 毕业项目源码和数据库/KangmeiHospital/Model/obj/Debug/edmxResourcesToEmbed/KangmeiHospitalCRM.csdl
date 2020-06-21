@@ -9,7 +9,7 @@
     <Property Name="CustomerAppointmentID" Type="Int32" Nullable="false" />
     <Property Name="SurgicalExaminationID" Type="Int32" Nullable="false" />
     <Property Name="MedicalExaminationID" Type="Int32" Nullable="false" />
-    <Property Name="InspectionTime" Type="DateTime" Precision="0" />
+    <Property Name="InspectionTime" Type="DateTime" Precision="0" Nullable="false" />
     <Property Name="InspectionResults" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="ConclusionOfPhysicalExamination" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="CustomerAppointment" Relationship="Self.FK__ClientMdi__Custo__3E52440B" FromRole="ClientMdicalIformation" ToRole="CustomerAppointment" />
@@ -58,8 +58,8 @@
     <Property Name="ContentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="DoctorID" Type="Int32" Nullable="false" />
     <Property Name="ConclusionID" Type="Int32" Nullable="false" />
-    <Property Name="ContentOfReturnVisit" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="ContentTime" Type="DateTime" Precision="0" />
+    <Property Name="ContentOfReturnVisit" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContentTime" Type="DateTime" Precision="0" Nullable="false" />
     <NavigationProperty Name="ClientMdicalIformation" Relationship="Self.FK__CustomerR__Concl__29572725" FromRole="CustomerReturnVisit" ToRole="ClientMdicalIformation" />
     <NavigationProperty Name="UserDoctorList" Relationship="Self.FK__CustomerR__Docto__48CFD27E" FromRole="CustomerReturnVisit" ToRole="UserDoctorList" />
   </EntityType>
@@ -81,9 +81,9 @@
     <Property Name="KnowledgeBaseTypeID" Type="Int32" Nullable="false" />
     <Property Name="DoctorID" Type="Int32" Nullable="false" />
     <Property Name="Problem" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="OpenOrNot" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="UserDoctorList" Relationship="Self.FK__Knowledge__Docto__5165187F" FromRole="KnowledgeBaseContentManagement" ToRole="UserDoctorList" />
     <NavigationProperty Name="KnowledgeBaseTypeManagement" Relationship="Self.FK__Knowledge__Knowl__2D27B809" FromRole="KnowledgeBaseContentManagement" ToRole="KnowledgeBaseTypeManagement" />
+    <Property Name="Reply" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="KnowledgeBaseTypeManagement">
     <Key>
@@ -357,6 +357,7 @@
       <End Role="CustomerInformation" EntitySet="CustomerInformation" />
       <End Role="MedicalHistory" EntitySet="MedicalHistory" />
     </AssociationSet>
+    <EntitySet Name="View_KnowledgeBase" EntityType="KangmeiHospitalCRMModel.View_KnowledgeBase" />
   </EntityContainer>
   <Association Name="CK_CustomerIDandAppointment">
     <End Type="KangmeiHospitalCRMModel.CustomerInformation" Role="CustomerInformation" Multiplicity="1" />
@@ -382,4 +383,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="View_KnowledgeBase">
+    <Key>
+      <PropertyRef Name="KnowledgeBase" />
+      <PropertyRef Name="KnowledgeBaseTypeID" />
+      <PropertyRef Name="DoctorID" />
+    </Key>
+    <Property Name="KnowledgeBase" Type="Int32" Nullable="false" />
+    <Property Name="KnowledgeBaseTypeID" Type="Int32" Nullable="false" />
+    <Property Name="DoctorID" Type="Int32" Nullable="false" />
+    <Property Name="Problem" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Reply" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OpenOrNot" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="KnowledgeBaseType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

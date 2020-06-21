@@ -114,6 +114,11 @@ namespace BLL
             return Dal.SelectDoctorList();
         }
 
+        //查找没有登记体检信息的客户预约信息单
+        public List<CustomerAppointment> SelectAppointmentsUnregistered()
+        {
+            return Dal.SelectAppointmentsUnregistered();
+        }
         //新增外科信息
         public int AddSurgicalExamination(SurgicalExamination surgicalExamination)
         {

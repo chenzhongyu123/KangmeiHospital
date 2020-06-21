@@ -1,0 +1,160 @@
+﻿
+@{
+    ViewBag.Title = "CreateDoctor";
+    Layout = "~/Views/Shared/KangMeiLayout.cshtml";
+}
+
+
+@using Model;
+@model List<UserDoctorList>
+<style type="text/css">
+    #top {
+        width: 90%;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 2px 2px rgba(10, 16, 20, .24), 0 0 2px rgba(10, 16, 20, .12);
+        box-sizing: border-box;
+        transition: box-shadow .5s;
+        margin: 0px auto;
+    }
+
+    table {
+        text-align: center;
+    }
+    div_table {
+        width:1400px;
+    }
+</style>
+<div id="top">
+    <div>
+        <h2 style="text-align:center"> 医生信息页</h2>
+    </div>
+    <div>
+        <table class="table table-hover table-dark"  id="div_table">
+            <tr>
+                <td>序号</td>
+                <td>姓名</td>
+                <td>专业</td>
+                <td>性别</td>
+                <td>年龄</td>
+                <td>学科</td>
+                <td>是否为管理员</td>
+                <td>基本操作</td>
+            </tr>
+
+            @*此处增加循环出客户信息*@
+            @foreach (var item in Model)
+            {
+        <tr>
+            <td>@item.DoctorID</td>
+            <td>@item.DoctorOfName</td>
+            <td>@item.DoctorMajor</td>
+            <td>@item.DoctorGender</td>
+            <td>@item.DoctorAge</td>
+            <td>@item.DoctorSubject</td>
+            <td>
+                @if (item.AdministratorOrNot == "1")
+                {
+                    @:管理员
+                }
+                else if (item.AdministratorOrNot == "0")
+                {
+                    @:员工
+                }
+                else
+                {
+                    @:禁用
+                }
+            </td>
+            <td>
+                <!-- Button trigger modal -->
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                    新增
+                </a>/
+                <a href="/System/EditUserDoctorList?id=@item.DoctorID">详细</a>/
+                <a href="/System/IsAdministratorOrNot?id=@item.DoctorID"  onclick="return confirm('确定切换权限吗？')">切换权限</a>
+            </td>
+        </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">新增医生</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/System/CreateDoctor" method="post" id="AddFrom">
+                    <div class="container">
+                        <div class="">
+                            <div class="">
+                                <span id="inputGroup-sizing-sm" name="DoctorOfName">姓名</span>
+                                <input type="text" class="form-control" name="DoctorOfName" required>
+                            </div>
+                            <div class="">
+                                <span id="inputGroup-sizing-sm" name="DoctorMajor">专业</span>
+                                <input type="text" class="form-control" name="DoctorMajor" required>
+                            </div>
+                            <div class="">
+                                <span id="inputGroup-sizing-sm" name="DoctorGender">性别</span>
+                                <input type="text" class="form-control" name="DoctorGender" required>
+                            </div>
+                            <div class="">
+                                <span id="inputGroup-sizing-sm" name="DoctorAge">年龄</span>
+                                <input type="text" class="form-control" name="DoctorAge" required>
+                            </div>
+                            <div class="">
+                                <span id="inputGroup-sizing-sm" name="DoctorIdentity">身份证</span>
+                                <input type="text" class="form-control" name="DoctorIdentity" required>
+                            </div>
+                            <div class="">
+                                <span id="inputGroup-sizing-sm" name="DoctorSubject">学科</span>
+                                <input type="text" class="form-control" name="DoctorSubject" required>
+                            </div>
+                            <div class="">
+                                <span id="inputGroup-sizing-sm" name="DoctorAccount">账号</span>
+                                <input type="text" class="form-control" name="DoctorAccount" required>
+                            </div>
+                            <div class="">
+                                <span id="inputGroup-sizing-sm" name="DoctorPassword">密码</span>
+                                <input type="text" class="form-control" name="DoctorPassword" required>
+                            </div>
+                            <div class="">
+                                <span id="inputGroup-sizing-sm" name="AdministratorOrNot">是否为管理员</span>
+                                <select class="form-control" name="AdministratorOrNot">
+                                    <option value="0">普通员工</option>
+                                    <option value="1">管理员</option>
+                                    <option value="2">禁用</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <button type="submit" class="btn btn-primary" id="AddSubmit">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $("#AddSubmit").click(
+            function () {
+            $("#AddFrom").submit()
+            })
+
+    </script>
+}
+

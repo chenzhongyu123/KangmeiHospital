@@ -155,12 +155,35 @@ namespace DAL
         //删除预约信息
         public void DeleteCustomerAppointment(int id)
         {
-            CustomerAppointment customerAppointment= db.CustomerAppointment.Find(id);
+           
+
+            //利用所有的预约id去查有没有体检信息，有则删除体检信息
+            ClientMdicalIformation clientMdicalIformation = db.ClientMdicalIformation.Where(p => p.CustomerAppointmentID == id).ToList().FirstOrDefault();
+            if (clientMdicalIformation != null)
+            {
+
+
+                //删除体检信息之后才能删除内外科
+                db.ClientMdicalIformation.Remove(clientMdicalIformation);
+                db.SaveChanges();
+                //删除外科体检信息
+                int SurgicalExaminationID = clientMdicalIformation.SurgicalExaminationID;
+                SurgicalExamination surgicalExamination = db.SurgicalExamination.Find(SurgicalExaminationID);
+                db.SurgicalExamination.Remove(surgicalExamination);
+                db.SaveChanges();
+                //删除内科体检信息
+                int MedicalExaminationID = clientMdicalIformation.MedicalExaminationID;
+                MedicalExamination medicalExamination = db.MedicalExamination.Find(MedicalExaminationID);
+                db.MedicalExamination.Remove(medicalExamination);
+                db.SaveChanges();
+            }
+            CustomerAppointment customerAppointment = db.CustomerAppointment.Find(id);
             db.CustomerAppointment.Remove(customerAppointment);
             db.SaveChanges();
 
+
         }
-        
+
         //按预约id查询一个预约信息
         public CustomerAppointment EditCustomerAppointment(int id)
         {
@@ -198,7 +221,14 @@ namespace DAL
             
         }
 
+        //查找没有登记体检信息的客户预约信息单
+        public List<CustomerAppointment> SelectAppointmentsUnregistered()
+        {
+            //预约表
+            List<CustomerAppointment> customerAppointment = db.CustomerAppointment.ToList();
 
+            return customerAppointment;
+        }
         //新增外科信息
         public int AddSurgicalExamination(SurgicalExamination surgicalExamination)
         {

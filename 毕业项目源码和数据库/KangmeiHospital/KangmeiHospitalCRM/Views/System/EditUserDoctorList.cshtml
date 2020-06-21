@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "EditUserDoctorList";
+    Layout = "~/Views/Shared/KangMeiLayout.cshtml";
+}
+
+@using Model;
+@model UserDoctorList
+<h2>医生信息详细</h2>
+
+<div class="modal-body">
+    <form action="/System/EditUserDoctorList" method="post" id="AddFrom">
+        <div class="container">
+            <div class="">
+                <div class="">
+
+                    <input type="hidden" class="form-control" name="DoctorID" value="@Model.DoctorID" required>
+                    <span id="inputGroup-sizing-sm" name="DoctorOfName">姓名</span>
+                    <input type="text" class="form-control" name="DoctorOfName" value="@Model.DoctorOfName" required>
+                </div>
+                <div class="">
+                    <span id="inputGroup-sizing-sm" name="DoctorMajor">专业</span>
+                    <input type="text" class="form-control" name="DoctorMajor" value="@Model.DoctorMajor" required>
+                </div>
+                <div class="">
+                    <span id="inputGroup-sizing-sm" name="DoctorGender">性别</span>
+                    <input type="text" class="form-control" name="DoctorGender" value="@Model.DoctorGender" required>
+                </div>
+                <div class="">
+                    <span id="inputGroup-sizing-sm" name="DoctorAge">年龄</span>
+                    <input type="text" class="form-control" name="DoctorAge" value="@Model.DoctorAge" required>
+                </div>
+                <div class="">
+                    <span id="inputGroup-sizing-sm" name="DoctorIdentity">身份证</span>
+                    <input type="text" class="form-control" name="DoctorIdentity" value="@Model.DoctorIdentity" required>
+                </div>
+                <div class="">
+                    <span id="inputGroup-sizing-sm" name="DoctorSubject">学科</span>
+                    <input type="text" class="form-control" name="DoctorSubject" value="@Model.DoctorSubject" required>
+                </div>
+                <div class="">
+                    <span id="inputGroup-sizing-sm" name="DoctorAccount">账号</span>
+                    <input type="text" class="form-control" name="DoctorAccount" value="@Model.DoctorAccount" required>
+                </div>
+                <div class="">
+                    <span id="inputGroup-sizing-sm" name="DoctorPassword">密码</span>
+                    <input type="text" class="form-control" name="DoctorPassword" value="@Model.DoctorPassword" required>
+                </div>
+                <div class="">
+                    <span id="inputGroup-sizing-sm" name="AdministratorOrNot">权限</span>
+                    <select class="form-control" name="AdministratorOrNot">
+                        @if (Model.AdministratorOrNot == "0")
+                        {
+                            <option value="0" selected>普通员工</option>
+                            <option value="1">管理员</option>
+                            <option value="2">禁用</option>
+                        }
+                        else if (Model.AdministratorOrNot == "1")
+                        {
+                            <option value="0">普通员工</option>
+                            <option value="1" selected>管理员</option>
+                            <option value="2">禁用</option>
+                        }
+                        else
+                        {
+                            <option value="0">普通员工</option>
+                            <option value="1">管理员</option>
+                            <option value="2" selected>禁用</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="/System/CreateDoctor" class="btn btn-secondary" data-dismiss="modal">返回</a>
+            <button type="submit" class="btn btn-primary" id="AddSubmit">修改</button>
+        </div>
+    </form>
+</div>

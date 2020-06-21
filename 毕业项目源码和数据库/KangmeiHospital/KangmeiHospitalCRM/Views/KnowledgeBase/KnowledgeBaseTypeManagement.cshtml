@@ -3,7 +3,8 @@
     ViewBag.Title = "KnowledgeBaseTypeManagement";
     Layout = "~/Views/Shared/KangMeiLayout.cshtml";
 }
-
+@using Model;
+@model List<KnowledgeBaseTypeManagement>
 <style type="text/css">
     #top {
         width: 80%;
@@ -24,7 +25,7 @@
         <h2 style="text-align:center">知识库类型管理</h2>
     </div>
     <div>
-        <table class="table table-hover table-primary" width="100%">
+        <table class="table table-hover table-danger" width="100%">
             <tr>
                 <td>序号</td>
                 <td>知识库类型</td>
@@ -33,24 +34,81 @@
             </tr>
 
             @*此处增加循环出客户信息*@
-        <tr>
-            <td>1</td>
-            <td>内科</td>
-            <td>开放</td>
-            <td>
-                <a href="#">新增</a>/<a href="#">删除</a>/<a href="#">修改</a>
-            </td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>外科</td>
-            <td>开放</td>
-            <td>
-                <a href="#">新增</a>/<a href="#">删除</a>/<a href="#">修改</a>
-            </td>
-        </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.KnowledgeBaseTypeID</td>
+                    <td>@item.KnowledgeBaseType</td>
+                    <td>
+                        @if (item.OpenOrNot.AsInt() == 0)
+                        {
+                            @:未开放
+                        }
+                        else
+                        {
+                            @:已开放
+                        }
+                    </td>
+                    <td>
+                        <!-- Button trigger modal -->
+                        <a href="#" data-toggle="modal" data-target="#exampleModal">
+                            新增
+                        </a>/
+                        <a href="#">删除</a>/<a href="/KnowledgeBase/EditKnowledgeBaseTypeManagement?id=@item.KnowledgeBaseTypeID">状态</a>
+                    </td>
+                </tr>
+            }
         </table>
     </div>
 </div>
 
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">新增题库</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/KnowledgeBase/AddKnowledgeBaseTypeManagement" method="post" id="AddFrom">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <span id="inputGroup-sizing-sm" name="KnowledgeBaseType">知识库类型</span>
+                                <input type="text" class="form-control" name="KnowledgeBaseType" required>
+                            </div>
+                            <div class="col">
+                                <span id="inputGroup-sizing-sm" name="OpenOrNot">是否开放</span>
+                                <select class="form-control" name="OpenOrNot">
+                                    <option value="1">开放</option>
+                                    <option value="0">不开放</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <button type="submit" class="btn btn-primary" id="AddSubmit">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $("#AddSubmit").click(
+            function () {
+            $("#AddFrom").submit()
+            })
+
+    </script>
+}
 

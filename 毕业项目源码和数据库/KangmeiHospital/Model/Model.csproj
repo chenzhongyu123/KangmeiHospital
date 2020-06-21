@@ -100,6 +100,9 @@
     <Compile Include="UserDoctorList.cs">
       <DependentUpon>KangmeiHospitalCRM.tt</DependentUpon>
     </Compile>
+    <Compile Include="View_KnowledgeBase.cs">
+      <DependentUpon>KangmeiHospitalCRM.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

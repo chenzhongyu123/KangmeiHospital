@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="678c45c2fb1844fe9be39095bb4cc1da" Name="Diagram1" ZoomLevel="64">
+      <Diagram DiagramId="678c45c2fb1844fe9be39095bb4cc1da" Name="Diagram1" ZoomLevel="109">
         <EntityTypeShape EntityType="KangmeiHospitalCRMModel.ClientMdicalIformation" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="KangmeiHospitalCRMModel.CustomerAppointment" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="KangmeiHospitalCRMModel.CustomerInformation" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
@@ -27,6 +27,7 @@
         <AssociationConnector Association="KangmeiHospitalCRMModel.FK__Knowledge__Knowl__2D27B809" ManuallyRouted="false" />
         <AssociationConnector Association="KangmeiHospitalCRMModel.CK_CustomerIDandAppointment" />
         <AssociationConnector Association="KangmeiHospitalCRMModel.CK_CustomerIDandCustomerAppointment" />
+        <EntityTypeShape EntityType="KangmeiHospitalCRMModel.View_KnowledgeBase" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

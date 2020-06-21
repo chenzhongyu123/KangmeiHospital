@@ -51,8 +51,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DalSystem.cs" />
     <Compile Include="DalService.cs" />
     <Compile Include="DALkangMei.cs" />
+    <Compile Include="KnowledgeBaseDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

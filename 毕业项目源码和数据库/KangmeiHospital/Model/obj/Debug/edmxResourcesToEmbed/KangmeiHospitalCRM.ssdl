@@ -9,7 +9,7 @@
     <Property Name="CustomerAppointmentID" Type="int" Nullable="false" />
     <Property Name="SurgicalExaminationID" Type="int" Nullable="false" />
     <Property Name="MedicalExaminationID" Type="int" Nullable="false" />
-    <Property Name="InspectionTime" Type="date" />
+    <Property Name="InspectionTime" Type="date" Nullable="false" />
     <Property Name="InspectionResults" Type="nvarchar" MaxLength="100" />
     <Property Name="ConclusionOfPhysicalExamination" Type="nvarchar" MaxLength="100" />
   </EntityType>
@@ -49,8 +49,8 @@
     <Property Name="ContentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="DoctorID" Type="int" Nullable="false" />
     <Property Name="ConclusionID" Type="int" Nullable="false" />
-    <Property Name="ContentOfReturnVisit" Type="nvarchar" MaxLength="100" />
-    <Property Name="ContentTime" Type="date" />
+    <Property Name="ContentOfReturnVisit" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ContentTime" Type="date" Nullable="false" />
   </EntityType>
   <EntityType Name="CustomerService">
     <Key>
@@ -69,7 +69,7 @@
     <Property Name="KnowledgeBaseTypeID" Type="int" Nullable="false" />
     <Property Name="DoctorID" Type="int" Nullable="false" />
     <Property Name="Problem" Type="nvarchar(max)" />
-    <Property Name="OpenOrNot" Type="nvarchar(max)" />
+    <Property Name="Reply" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="KnowledgeBaseTypeManagement">
     <Key>
@@ -170,6 +170,22 @@
     <Property Name="DoctorPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="DoctorSubject" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="AdministratorOrNot" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“KangmeiHospitalCRM.dbo.View_KnowledgeBase”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="View_KnowledgeBase">
+    <Key>
+      <PropertyRef Name="KnowledgeBase" />
+      <PropertyRef Name="KnowledgeBaseTypeID" />
+      <PropertyRef Name="DoctorID" />
+    </Key>
+    <Property Name="KnowledgeBase" Type="int" Nullable="false" />
+    <Property Name="KnowledgeBaseTypeID" Type="int" Nullable="false" />
+    <Property Name="DoctorID" Type="int" Nullable="false" />
+    <Property Name="Problem" Type="nvarchar(max)" />
+    <Property Name="Reply" Type="nvarchar(max)" />
+    <Property Name="OpenOrNot" Type="nvarchar" MaxLength="10" />
+    <Property Name="KnowledgeBaseType" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <Association Name="CK_CustomerIDandAppointment">
     <End Role="CustomerInformation" Type="Self.CustomerInformation" Multiplicity="1" />
@@ -363,6 +379,17 @@
     <EntitySet Name="MedicalHistory" EntityType="Self.MedicalHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SurgicalExamination" EntityType="Self.SurgicalExamination" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserDoctorList" EntityType="Self.UserDoctorList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="View_KnowledgeBase" EntityType="Self.View_KnowledgeBase" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_KnowledgeBase].[KnowledgeBase] AS [KnowledgeBase], 
+    [View_KnowledgeBase].[KnowledgeBaseTypeID] AS [KnowledgeBaseTypeID], 
+    [View_KnowledgeBase].[DoctorID] AS [DoctorID], 
+    [View_KnowledgeBase].[Problem] AS [Problem], 
+    [View_KnowledgeBase].[Reply] AS [Reply], 
+    [View_KnowledgeBase].[OpenOrNot] AS [OpenOrNot], 
+    [View_KnowledgeBase].[KnowledgeBaseType] AS [KnowledgeBaseType]
+    FROM [dbo].[View_KnowledgeBase] AS [View_KnowledgeBase]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="CK_CustomerIDandAppointment" Association="Self.CK_CustomerIDandAppointment">
       <End Role="CustomerInformation" EntitySet="CustomerInformation" />
       <End Role="CustomerAppointment" EntitySet="CustomerAppointment" />

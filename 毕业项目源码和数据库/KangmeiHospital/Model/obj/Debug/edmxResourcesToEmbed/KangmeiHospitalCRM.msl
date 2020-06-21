@@ -70,11 +70,11 @@
     <EntitySetMapping Name="KnowledgeBaseContentManagement">
       <EntityTypeMapping TypeName="KangmeiHospitalCRMModel.KnowledgeBaseContentManagement">
         <MappingFragment StoreEntitySet="KnowledgeBaseContentManagement">
+          <ScalarProperty Name="Reply" ColumnName="Reply" />
           <ScalarProperty Name="KnowledgeBase" ColumnName="KnowledgeBase" />
           <ScalarProperty Name="KnowledgeBaseTypeID" ColumnName="KnowledgeBaseTypeID" />
           <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
           <ScalarProperty Name="Problem" ColumnName="Problem" />
-          <ScalarProperty Name="OpenOrNot" ColumnName="OpenOrNot" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -180,6 +180,19 @@
           <ScalarProperty Name="DoctorPassword" ColumnName="DoctorPassword" />
           <ScalarProperty Name="DoctorSubject" ColumnName="DoctorSubject" />
           <ScalarProperty Name="AdministratorOrNot" ColumnName="AdministratorOrNot" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_KnowledgeBase">
+      <EntityTypeMapping TypeName="KangmeiHospitalCRMModel.View_KnowledgeBase">
+        <MappingFragment StoreEntitySet="View_KnowledgeBase">
+          <ScalarProperty Name="KnowledgeBaseType" ColumnName="KnowledgeBaseType" />
+          <ScalarProperty Name="OpenOrNot" ColumnName="OpenOrNot" />
+          <ScalarProperty Name="Reply" ColumnName="Reply" />
+          <ScalarProperty Name="Problem" ColumnName="Problem" />
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="KnowledgeBaseTypeID" ColumnName="KnowledgeBaseTypeID" />
+          <ScalarProperty Name="KnowledgeBase" ColumnName="KnowledgeBase" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

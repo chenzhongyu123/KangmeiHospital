@@ -117,6 +117,10 @@
                 display: block;
             }
     </style>
+    @using Model;
+    @{ 
+        UserDoctorList userDoctorList = Session["Doctor"] as UserDoctorList;
+    }
 </head>
 <body>
 
@@ -127,40 +131,74 @@
                 <div class="head-nav-con clearFloat">
                     <ul>
                         <li><img src="~/imges/logoKangmei.png" style="width:77px" /></li>
-                        <li><a href="#">首页</a></li>
-                        <li class="drop-down">
-                            <a href="#">客户信息管理</a>
-                            <ul class="drop-down-content">
-                                <li><a href="#">客户档案管理</a></li>
-                                <li><a href="#">客户预约管理</a></li>
-                                <li><a href="#">体检信息管理</a></li>
-                            </ul>
-                        </li>
-                        <li class="drop-down">
-                            <a href="#">客户服务管理</a>
-                            <ul class="drop-down-content">
-                                <li><a href="#">咨询管理</a></li>
-                                <li><a href="#">回访管理</a></li>
-                                <li><a href="#">客户关怀</a></li>
-                            </ul>
-                        </li>
-                        <li class="drop-down">
-                            <a href="#">知识库管理</a>
-                            <ul class="drop-down-content">
-                                <li><a href="#">知识库类型管理</a></li>
-                                <li><a href="#">知识库内容管理</a></li>
-                            </ul>
-                        </li>
-                        <li class="drop-down">
-                            <a href="#">系统管理</a>
-                            <ul class="drop-down-content">
-                                <li><a href="#">用户管理</a></li>
-                                <li><a href="#">退出系统</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="/CustomerInFormation/Index">首页</a></li>
+                        @if (userDoctorList.AdministratorOrNot == "1")
+                        {
+                            <li class="drop-down">
+                                <a href="#">客户信息管理</a>
+                                <ul class="drop-down-content">
+                                    <li><a href="/CustomerInFormation/Customer">客户档案管理</a></li>
+                                    <li><a href="/CustomerInFormation/CustomerAppointment">客户预约管理</a></li>
+                                    <li><a href="/CustomerInFormation/ClientMdical">体检信息管理</a></li>
+                                </ul>
+                            </li>
+                            <li class="drop-down">
+                                <a href="#">客户服务管理</a>
+                                <ul class="drop-down-content">
+                                    <li><a href="/ServiceManagement/CustomerService">咨询管理</a></li>
+                                    <li><a href="/ServiceManagement/CustomerReturnVisit">回访管理</a></li>
+                                    <li><a href="/ServiceManagement/CustomerCare">客户关怀</a></li>
+                                </ul>
+                            </li>
+                            <li class="drop-down">
+                                <a href="#">知识库管理</a>
+                                <ul class="drop-down-content">
+                                    <li><a href="/KnowledgeBase/KnowledgeBaseTypeManagement">知识库类型管理</a></li>
+                                    <li><a href="/KnowledgeBase/KnowledgeBaseContentManagement">知识库内容管理</a></li>
+                                </ul>
+                            </li>
+                            <li class="drop-down">
+                                <a href="#">系统管理</a>
+                                <ul class="drop-down-content">
+                                    <li><a href="/System/CreateDoctor">用户管理</a></li>
+                                    <li><a href="/System/TuiChu">退出系统</a></li>
+                                </ul>
+                            </li>
+                        }
+                        else if (userDoctorList.AdministratorOrNot == "0")
+                        {
+                            <li class="drop-down">
+                                <a href="#">客户信息管理</a>
+                                <ul class="drop-down-content">
+                                    <li><a href="/CustomerInFormation/Customer">客户档案管理</a></li>
+                                    <li><a href="/CustomerInFormation/CustomerAppointment">客户预约管理</a></li>
+                                    <li><a href="/CustomerInFormation/ClientMdical">体检信息管理</a></li>
+                                </ul>
+                            </li>
+                            <li class="drop-down">
+                                <a href="#">客户服务管理</a>
+                                <ul class="drop-down-content">
+                                    <li><a href="/ServiceManagement/CustomerService">咨询管理</a></li>
+                                    <li><a href="/ServiceManagement/CustomerReturnVisit">回访管理</a></li>
+                                    <li><a href="/ServiceManagement/CustomerCare">客户关怀</a></li>
+                                </ul>
+                            </li>
+                            <li class="drop-down">
+                                <a href="#">知识库管理</a>
+                                <ul class="drop-down-content">
+                                    <li><a href="/KnowledgeBase/KnowledgeBaseContentManagement">知识库内容管理</a></li>
+                                </ul>
+                            </li>
+                            <li class="drop-down">
+                                <a href="#">系统管理</a>
+                                <ul class="drop-down-content">
+                                    <li><a href="/System/TuiChu">退出系统</a></li>
+                                </ul>
+                            </li>
+                        }
                         <li class="drop-down">
                         <li>
-                            <a href="#">欢迎登录 陈仲宇</a>
+                            <a>欢迎登录 @userDoctorList.DoctorOfName</a>
                         </li>
                     </ul>
                 </div>

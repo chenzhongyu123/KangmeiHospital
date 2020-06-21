@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="BLLkangMei.cs" />
     <Compile Include="BllService.cs" />
+    <Compile Include="BllSystem.cs" />
+    <Compile Include="KnowledgeBaseBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

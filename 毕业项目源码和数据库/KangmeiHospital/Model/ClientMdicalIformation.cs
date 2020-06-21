@@ -25,7 +25,7 @@ namespace Model
         public int CustomerAppointmentID { get; set; }
         public int SurgicalExaminationID { get; set; }
         public int MedicalExaminationID { get; set; }
-        public Nullable<System.DateTime> InspectionTime { get; set; }
+        public System.DateTime InspectionTime { get; set; }
         public string InspectionResults { get; set; }
         public string ConclusionOfPhysicalExamination { get; set; }
     

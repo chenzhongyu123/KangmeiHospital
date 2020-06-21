@@ -3,7 +3,13 @@
     ViewBag.Title = "KnowledgeBaseContentManagement";
     Layout = "~/Views/Shared/KangMeiLayout.cshtml";
 }
-
+@using Model;
+@model List<View_KnowledgeBase>
+@{
+    List<UserDoctorList> userDoctorLists = ViewBag.list;
+    List<KnowledgeBaseTypeManagement> knowledgeBaseTypeManagement = ViewBag.list2;
+    UserDoctorList userDoctorList = Session["Doctor"] as UserDoctorList;
+}
 <style type="text/css">
     #top {
         width: 80%;
@@ -21,13 +27,13 @@
 </style>
 <div id="top">
     <div>
-        <h2 style="text-align:center">知识库类型管理</h2>
+        <h2 style="text-align:center">知识库</h2>
     </div>
     <div>
-        <table class="table table-hover table-primary" width="100%">
+        <table class="table table-hover table-danger" width="100%">
             <tr>
-                <td>序号</td>
-                <td>类别</td>
+                <td>题序</td>
+                <td>题类</td>
                 <td>问题</td>
                 <td>解答</td>
                 <td>解答人</td>
@@ -35,22 +41,32 @@
             </tr>
 
             @*此处增加循环出知识库内容*@
-            <tr>
-                <td>1</td>
-                <td>内科</td>
-                <td>内分泌失调症状</td>
-                <td>面色发黄，精神恍惚</td>
-                <td>czy</td>
-                <td><a href="#">新增</a>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>外科</td>
-                <td>内分泌失调症状</td>
-                <td>面色发黄，精神恍惚</td>
-                <td>czy</td>
-                <td><a href="#">新增</a>
-            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.KnowledgeBase</td>
+                    <td>@item.KnowledgeBaseType</td>
+                    <td>@item.Problem</td>
+                    <td>@item.Reply</td>
+                    <td>
+                        @foreach (var item2 in userDoctorLists)
+                        {
+                            if (item2.DoctorID == @item.DoctorID)
+                            {
+                                @item2.DoctorOfName
+                            }
+                        }
+                    </td>
+                    <td>
+                        <!-- Button trigger modal -->
+                        <a href="#" data-toggle="modal" data-target="#exampleModal">
+                            新增
+                        </a>/
+                        <a href="/KnowledgeBase/DeleteKnowledgeBaseContentManagement?id=@item.KnowledgeBase" onclick="return confirm('你确定要删除吗？')">删除</a>/
+                        <a href="/KnowledgeBase/EditKnowledgeBaseContentManagement?id=@item.KnowledgeBase">修改</a>
+                    </td>
+                </tr>
+            }
         </table>
     </div>
 </div>
@@ -58,3 +74,69 @@
 
 
 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">新增知识</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/KnowledgeBase/AddKnowledgeBaseContentManagement" method="post" id="AddFrom">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <span id="inputGroup-sizing-sm" name="DoctorID">添加医生</span>
+                                <input type="hidden" class="form-control" name="DoctorID" value="@userDoctorList.DoctorID" />
+                                <input type="text" class="form-control"  value="@userDoctorList.DoctorOfName" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span id="inputGroup-sizing-sm" name="KnowledgeBaseTypeID">知识库类型</span>
+                                <select class="form-control" name="KnowledgeBaseTypeID">
+                                    @foreach (var item in knowledgeBaseTypeManagement)
+                                    {
+
+                                        <option value="@item.KnowledgeBaseTypeID">@item.KnowledgeBaseType</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span id="inputGroup-sizing-sm" name="Problem">问题</span>
+                                <input type="text" class="form-control" name="Problem" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span id="inputGroup-sizing-sm" name="Reply">答复</span>
+                                <input type="text" class="form-control" name="Reply" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <button type="submit" class="btn btn-primary" id="AddSubmit">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $("#AddSubmit").click(
+            function () {
+            $("#AddFrom").submit()
+            })
+
+    </script>
+}

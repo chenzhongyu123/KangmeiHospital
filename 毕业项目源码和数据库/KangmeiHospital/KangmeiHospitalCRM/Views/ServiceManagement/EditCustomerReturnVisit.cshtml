@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "EditCustomerReturnVisit";
+    Layout = "~/Views/Shared/KangMeiLayout.cshtml";
+}
+@using Model;
+@model CustomerReturnVisit
+@{
+    List<UserDoctorList> userDoctorList = ViewBag.UserDoctorList;
+    List<ClientMdicalIformation> clientMdicalIformation = ViewBag.ClientMdicalIformation;
+}
+<h2>修改回访</h2>
+<div class="modal-body">
+    <form action="/ServiceManagement/EditCustomerReturnVisit" method="post" id="AddFrom">
+        <div class="container">
+            <div class="row" style="display:flex;">
+                <div class="col">
+                    <input type="hidden" class="form-control" name="ContentID" value="@Model.ContentID">
+                    <span id="inputGroup-sizing-sm" name="DoctorID" style="font-size:24px; color:red;">医生</span><br />
+                    <select id="DoctorID" aria-describedby="emailHelp" name="DoctorID">
+                        @foreach (var item in userDoctorList)
+                        {
+                            if (Model.DoctorID == item.DoctorID)
+                            {
+                                <option value="@item.DoctorID" selected>@item.DoctorOfName</option>
+                            }
+                            else
+                            {
+                                <option value="@item.DoctorID">@item.DoctorOfName</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col">
+                    <span id="inputGroup-sizing-sm" name="CustomerIDCard" style="font-size:24px; color:red;">客户名</span><br />
+                    <select id="DoctorID" aria-describedby="emailHelp" name="ConclusionID">
+                        @foreach (var item in clientMdicalIformation)
+                        {
+                            if (Model.ConclusionID == item.ConclusionID)
+                            {
+                                <option value="@item.ConclusionID" selected>@item.CustomerAppointment.CustomerInformation.CustomerName</option>
+                            }
+                            else
+                            {
+                                <option value="@item.ConclusionID">@item.CustomerAppointment.CustomerInformation.CustomerName</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col">
+                    <span id="inputGroup-sizing-sm" name="ContentOfReturnVisit" style="font-size:24px; color:red;">回访内容（预警、调查）</span>
+                    <input type="text" class="form-control" name="ContentOfReturnVisit" value="@Model.ContentOfReturnVisit" required>
+                </div>
+
+                <div class="col2" style="margin:0px auto">
+                    <span id="inputGroup-sizing-sm" name="ContentTime" style="font-size:24px; color:red;">回访时间</span>
+                    <input type="text" class="form-control" name="ContentTime" value="@Model.ContentTime.ToShortDateString()" required>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" >返回</button>
+                <a href="/ServiceManagement/CustomerReturnVisit" class="btn btn-secondary" data-dismiss="modal"></a>
+                <button type="submit" class="btn btn-primary" id="AddSubmit">保存</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "EditKnowledgeBaseContentManagement";
+    Layout = "~/Views/Shared/KangMeiLayout.cshtml";
+}
+@using Model;
+@model KnowledgeBaseContentManagement  
+@{
+    List<UserDoctorList> userDoctorLists = ViewBag.list;
+    List<KnowledgeBaseTypeManagement> knowledgeBaseTypeManagement = ViewBag.list2;
+}
+<h2>修改题目</h2>
+<div class="modal-body">
+    <form action="/KnowledgeBase/EditKnowledgeBaseContentManagement" method="post" id="AddFrom">
+        <div class="container">
+            <input type="hidden" class="form-control" name="KnowledgeBase"  value="@Model.KnowledgeBase"/>
+            <div class="row">
+                <div class="col">
+                    <span id="inputGroup-sizing-sm" name="DoctorID">添加医生</span>
+                    <select class="form-control" name="DoctorID">
+                        @foreach (var item in userDoctorLists)
+                        {
+                            if (Model.DoctorID == item.DoctorID)
+                            {
+
+                                <option value="@item.DoctorID" selected>@item.DoctorOfName</option>
+                            }
+                            else
+                            {
+                                <option value="@item.DoctorID">@item.DoctorOfName</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <span id="inputGroup-sizing-sm" name="KnowledgeBaseTypeID">知识库类型</span>
+                    <select class="form-control" name="KnowledgeBaseTypeID">
+                        @foreach (var item in knowledgeBaseTypeManagement)
+                        {
+                            if (Model.KnowledgeBaseTypeID == item.KnowledgeBaseTypeID)
+                            {
+
+                                <option value="@item.KnowledgeBaseTypeID" selected>@item.KnowledgeBaseType</option>
+                            }
+                            else
+                            {
+
+                                <option value="@item.KnowledgeBaseTypeID">@item.KnowledgeBaseType</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <span id="inputGroup-sizing-sm" name="Problem">问题</span>
+                    <input type="text" class="form-control" name="Problem" value="@Model.Problem" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <span id="inputGroup-sizing-sm" name="Reply">答复</span>
+                    <input type="text" class="form-control" name="Reply" required value="@Model.Reply" />
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+            <button type="submit" class="btn btn-primary" id="AddSubmit">保存</button>
+        </div>
+    </form>
+</div>

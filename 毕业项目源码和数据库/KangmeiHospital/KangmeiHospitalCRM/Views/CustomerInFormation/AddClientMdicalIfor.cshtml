@@ -5,240 +5,245 @@
 }
 @using Model;
 @model List<UserDoctorList>
-    <style type="text/css">
-        #top {
-            width: 80%;
-            background-color: #fff;
-            border-radius: 4px;
-            box-shadow: 0 2px 2px rgba(10, 16, 20, .24), 0 0 2px rgba(10, 16, 20, .12);
-            box-sizing: border-box;
-            transition: box-shadow .5s;
-            margin: 0px auto;
-        }
+<style type="text/css">
+    #top {
+        width: 80%;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 2px 2px rgba(10, 16, 20, .24), 0 0 2px rgba(10, 16, 20, .12);
+        box-sizing: border-box;
+        transition: box-shadow .5s;
+        margin: 0px auto;
+    }
 
-        table {
-            text-align: center;
-        }
+    table {
+        text-align: center;
+    }
 
-        #l_div {
-            display: flex;
-            justify-content: center;
-        }
+    #l_div {
+        display: flex;
+        justify-content: center;
+    }
 
-            #l_div div {
-                display: inline-block;
-                margin-left: 20px;
-            }
-
-        #f_div div {
+        #l_div div {
             display: inline-block;
             margin-left: 20px;
         }
 
-        #f_div {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+    #f_div div {
+        display: inline-block;
+        margin-left: 20px;
+    }
 
-        #r_div div {
-            display: inline-block;
-            margin-left: 20px;
-        }
+    #f_div {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 
-        #r_div {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+    #r_div div {
+        display: inline-block;
+        margin-left: 20px;
+    }
+
+    #r_div {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 
 
-        .textarea {
-            width: 400px;
-            min-height: 20px;
-            max-height: 300px;
-            _height: 120px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 3px;
-            outline: 0;
-            border: 1px solid #a0b3d6;
-            font-size: 18px;
-            line-height: 24px;
-            padding: 2px;
-            word-wrap: break-word;
-            overflow-x: hidden;
-            overflow-y: auto;
-            border-color: rgba(82, 168, 236, 0.8);
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
-        }
+    .textarea {
+        width: 400px;
+        min-height: 20px;
+        max-height: 300px;
+        _height: 120px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 3px;
+        outline: 0;
+        border: 1px solid #a0b3d6;
+        font-size: 18px;
+        line-height: 24px;
+        padding: 2px;
+        word-wrap: break-word;
+        overflow-x: hidden;
+        overflow-y: auto;
+        border-color: rgba(82, 168, 236, 0.8);
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+    }
 
-        #bottom {
-            margin-top: 80px;
-            display: flex;
-            justify-content: center;
-        }
-    </style>
-    <div id="top">
-        <div>
-            <h2 style="text-align: center ">
-                新增客户体检信息
-            </h2>
+    #bottom {
+        margin-top: 80px;
+        display: flex;
+        justify-content: center;
+    }
+</style>
+@{
+    UserDoctorList userDoctorList = Session["Doctor"] as UserDoctorList;
+}
+<div id="top">
+    <div>
+        <h2 style="text-align: center ">
+            新增客户体检信息
+        </h2>
+    </div>
+
+    <form action="/CustomerInFormation/AddClientMdicalIfor" method="post">
+        @*以下内容分为四块，一块是检查人基本信息和分配主治医生，二块是外科检查结果，三块是内科检查结果，四块是检查结论*@
+        <span style="color:red; font-size:24px;">体检人信息</span><br />
+        <div id="l_div">
+            <div class="form-group">
+                <label for="exampleInputEmail1">体检人</label>
+                <select class="form-control" id="CustomerAppointmentID" aria-describedby="emailHelp" name="CustomerAppointmentID">
+                    @foreach (var item in ViewBag.Appointments as List<CustomerAppointment>)
+                    {
+
+                        <option value="@item.CustomerAppointmentID">@item.CustomerInformation.CustomerName</option>
+                    }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">体检时间</label>
+                <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="InspectionTime" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">主治医生</label><br />
+                <input type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="DoctorID" value="@userDoctorList.DoctorID" readonly="readonly">
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"  value="@userDoctorList.DoctorOfName" readonly="readonly">
+            </div>
         </div>
 
-        <form action="/CustomerInFormation/AddClientMdicalIfor" method="post">
-            @*以下内容分为四块，一块是检查人基本信息和分配主治医生，二块是外科检查结果，三块是内科检查结果，四块是检查结论*@
-            <span style="color:red; font-size:24px;">体检人信息</span><br />
-            <div id="l_div">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">体检人（请确认客户姓名正确填写）</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="CustomerName">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">体检时间</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="InspectionTime">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">主治医生</label><br />
 
-                    <select id="exampleInputEmail1" aria-describedby="emailHelp" name="DoctorID">
-                        @foreach (var item in Model)
-                        {
-                        <option value="@item.DoctorID" >@item.DoctorOfName</option>
-                        }
-                    </select>
-                </div>
+
+        <span style="color:red; font-size:24px;">外科</span><br />
+        <div id="f_div">
+            <div class="form-group">
+                <label for="exampleInputEmail1">身高</label>
+                <input type="text" class="form-control" id="Height" aria-describedby="emailHelp" name="Height">
             </div>
-
-
-
-            <span style="color:red; font-size:24px;">外科</span><br />
-            <div id="f_div">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">身高</label>
-                    <input type="text" class="form-control" id="Height" aria-describedby="emailHelp" name="Height">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">胸围（cm）</label>
-                    <input type="text" class="form-control" id="Bust" aria-describedby="emailHelp" name="Bust">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">皮肤</label>
-                    <input type="text" class="form-control" id="Skin" aria-describedby="emailHelp" name="Skin">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">体重（kg）</label>
-                    <input type="text" class="form-control" id="Weights" aria-describedby="emailHelp" name="Weights">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">呼吸差</label>
-                    <input type="text" class="form-control" id="PoorBreath" aria-describedby="emailHelp" name="PoorBreath">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">面部</label>
-                    <input type="text" class="form-control" id="Face" aria-describedby="emailHelp" name="Face">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">颈部</label>
-                    <input type="text" class="form-control" id="Neck" aria-describedby="emailHelp" name="Neck">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">脊柱</label>
-                    <input type="text" class="form-control" id="Spine" aria-describedby="emailHelp" name="Spine">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">四肢</label>
-                    <input type="text" class="form-control" id="Limb" aria-describedby="emailHelp" name="Limb">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">关节</label>
-                    <input type="text" class="form-control" id="Joint" aria-describedby="emailHelp" name="Joint">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">其他</label>
-                    <input type="text" class="form-control" id="Other" aria-describedby="emailHelp" name="Other">
-                </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">胸围（cm）</label>
+                <input type="text" class="form-control" id="Bust" aria-describedby="emailHelp" name="Bust">
             </div>
-
-
-
-
-            <span style="color:red; font-size:24px;">内科</span><br />
-            <div id="r_div">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">血压</label>
-                    <input type="text" class="form-control" id="BloodPressure" aria-describedby="emailHelp" name="BloodPressure">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">脉搏</label>
-                    <input type="text" class="form-control" id="Pulse" aria-describedby="emailHelp" name="Pulse">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">发育及营养情况</label>
-                    <input type="text" class="form-control" id="DevelopmentAndNutrition" aria-describedby="emailHelp" name="DevelopmentAndNutrition">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">心脏及血管</label>
-                    <input type="text" class="form-control" id="HeartAndBloodVessels" aria-describedby="emailHelp" name="HeartAndBloodVessels">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">神经及精神</label>
-                    <input type="text" class="form-control" id="NervesAndSpirits" aria-describedby="emailHelp" name="NervesAndSpirits">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">肺及呼吸道</label>
-                    <input type="text" class="form-control" id="LungAndRespiratoryTract" aria-describedby="emailHelp" name="LungAndRespiratoryTract">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">腹部器官</label>
-                    <input type="text" class="form-control" id="AbdominalOrgan" aria-describedby="emailHelp" name="AbdominalOrgan">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">肝</label>
-                    <input type="text" class="form-control" id="Liver" aria-describedby="emailHelp" name="Liver">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">脾</label>
-                    <input type="text" class="form-control" id="Spleen" aria-describedby="emailHelp" name="Spleen">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">转氨酶</label>
-                    <input type="text" class="form-control" id="Transaminase" aria-describedby="emailHelp" name="Transaminase">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">转氨酶描述</label>
-                    <input type="text" class="form-control" id="TransaminaseDescription" aria-describedby="emailHelp" name="TransaminaseDescription">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">乙肝表面抗原</label>
-                    <input type="text" class="form-control" id="HepatitisBSurfaceAntigen" aria-describedby="emailHelp" name="HepatitisBSurfaceAntigen">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">乙肝表面抗原描述</label>
-                    <input type="text" class="form-control" id="HepatitisBSurfaceAntigenDescription" aria-describedby="emailHelp" name="HepatitisBSurfaceAntigenDescription">
-                </div>
-                 <div class="form-group">
-                     <label for="exampleInputEmail1">胸部透视</label>
-                    <input type="text" class="form-control" id="ChestXRay" aria-describedby="emailHelp" name="ChestXRay">
-                </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">皮肤</label>
+                <input type="text" class="form-control" id="Skin" aria-describedby="emailHelp" name="Skin">
             </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">体重（kg）</label>
+                <input type="text" class="form-control" id="Weights" aria-describedby="emailHelp" name="Weights">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">呼吸差</label>
+                <input type="text" class="form-control" id="PoorBreath" aria-describedby="emailHelp" name="PoorBreath">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">面部</label>
+                <input type="text" class="form-control" id="Face" aria-describedby="emailHelp" name="Face">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">颈部</label>
+                <input type="text" class="form-control" id="Neck" aria-describedby="emailHelp" name="Neck">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">脊柱</label>
+                <input type="text" class="form-control" id="Spine" aria-describedby="emailHelp" name="Spine">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">四肢</label>
+                <input type="text" class="form-control" id="Limb" aria-describedby="emailHelp" name="Limb">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">关节</label>
+                <input type="text" class="form-control" id="Joint" aria-describedby="emailHelp" name="Joint">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">其他</label>
+                <input type="text" class="form-control" id="Other" aria-describedby="emailHelp" name="Other">
+            </div>
+        </div>
 
 
-            <span style="color:red; font-size:24px;">检查结果</span><br />
-            <div id="">
-                <div style="margin:0px auto; width:50%">
-                    <label for="exampleInputEmail1">检查描述</label>
-                    <input type="text" class="textarea" contenteditable="true" id="InspectionResults" name="InspectionResults"><br />
-                    <label for="exampleInputEmail1">检查结论</label>
-                    <input type="text" class="textarea" contenteditable="true" id="ConclusionOfPhysicalExamination" name="ConclusionOfPhysicalExamination"><br />
-                </div>
+
+
+        <span style="color:red; font-size:24px;">内科</span><br />
+        <div id="r_div">
+            <div class="form-group">
+                <label for="exampleInputEmail1">血压</label>
+                <input type="text" class="form-control" id="BloodPressure" aria-describedby="emailHelp" name="BloodPressure">
             </div>
-            <div id="bottom">
-                <button type="submit" class="btn btn-outline-primary">新增信息</button>
-                <a href="/CustomerInFormation/ClientMdical" class="btn btn-outline-primary">取消返回</a>
+            <div class="form-group">
+                <label for="exampleInputEmail1">脉搏</label>
+                <input type="text" class="form-control" id="Pulse" aria-describedby="emailHelp" name="Pulse">
             </div>
-        </form>
-    </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">发育及营养情况</label>
+                <input type="text" class="form-control" id="DevelopmentAndNutrition" aria-describedby="emailHelp" name="DevelopmentAndNutrition">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">心脏及血管</label>
+                <input type="text" class="form-control" id="HeartAndBloodVessels" aria-describedby="emailHelp" name="HeartAndBloodVessels">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">神经及精神</label>
+                <input type="text" class="form-control" id="NervesAndSpirits" aria-describedby="emailHelp" name="NervesAndSpirits">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">肺及呼吸道</label>
+                <input type="text" class="form-control" id="LungAndRespiratoryTract" aria-describedby="emailHelp" name="LungAndRespiratoryTract">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">腹部器官</label>
+                <input type="text" class="form-control" id="AbdominalOrgan" aria-describedby="emailHelp" name="AbdominalOrgan">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">肝</label>
+                <input type="text" class="form-control" id="Liver" aria-describedby="emailHelp" name="Liver">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">脾</label>
+                <input type="text" class="form-control" id="Spleen" aria-describedby="emailHelp" name="Spleen">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">转氨酶</label>
+                <input type="text" class="form-control" id="Transaminase" aria-describedby="emailHelp" name="Transaminase">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">转氨酶描述</label>
+                <input type="text" class="form-control" id="TransaminaseDescription" aria-describedby="emailHelp" name="TransaminaseDescription">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">乙肝表面抗原</label>
+                <input type="text" class="form-control" id="HepatitisBSurfaceAntigen" aria-describedby="emailHelp" name="HepatitisBSurfaceAntigen">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">乙肝表面抗原描述</label>
+                <input type="text" class="form-control" id="HepatitisBSurfaceAntigenDescription" aria-describedby="emailHelp" name="HepatitisBSurfaceAntigenDescription">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">胸部透视</label>
+                <input type="text" class="form-control" id="ChestXRay" aria-describedby="emailHelp" name="ChestXRay">
+            </div>
+        </div>
+
+
+        <span style="color:red; font-size:24px;">检查结果</span><br />
+        <div id="">
+            <div style="margin:0px auto; width:50%">
+                <label for="exampleInputEmail1">检查描述</label>
+                <input type="text" class="textarea" contenteditable="true" id="InspectionResults" name="InspectionResults"><br />
+                <label for="exampleInputEmail1">检查结论</label>
+                <input type="text" class="textarea" contenteditable="true" id="ConclusionOfPhysicalExamination" name="ConclusionOfPhysicalExamination"><br />
+            </div>
+        </div>
+        <div id="bottom">
+            <button type="submit" class="btn btn-outline-primary">新增信息</button>
+            <a href="/CustomerInFormation/ClientMdical" class="btn btn-outline-primary">取消返回</a>
+        </div>
+    </form>
+</div>
 
 
 

@@ -27,7 +27,7 @@
         <h2 style="text-align:center"> 客户体检记录总页</h2>
     </div>
     <div>
-        <table class="table table-hover table-dark" width="100%">
+        <table class="table table-hover table-info" width="100%">
             <tr>
                 <td>序号</td>
                 <td>体检人</td>
@@ -43,7 +43,7 @@
                 <tr>
                     <td>@item.ConclusionID</td>
                     <td>@item.CustomerAppointment.CustomerInformation.CustomerName</td>
-                    <td>@item.InspectionTime</td>
+                    <td>@item.InspectionTime.ToShortDateString()</td>
                     <td>@item.InspectionResults</td>
                     <td>@item.ConclusionOfPhysicalExamination</td>
                     <td>

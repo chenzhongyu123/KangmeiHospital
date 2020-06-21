@@ -3,7 +3,13 @@
     ViewBag.Title = "CustomerReturnVisit";
     Layout = "~/Views/Shared/KangMeiLayout.cshtml";
 }
-
+@using Model;
+@model List<CustomerReturnVisit>
+@{
+    List<UserDoctorList> userDoctorList = ViewBag.UserDoctorList;
+    List<ClientMdicalIformation> clientMdicalIformation = ViewBag.ClientMdicalIformation;
+    UserDoctorList userDoctorList2 = Session["Doctor"] as UserDoctorList;
+}
 <style type="text/css">
     #top {
         width: 80%;
@@ -27,34 +33,94 @@
         <table class="table table-hover table-primary" width="100%">
             <tr>
                 <td>序号</td>
+                <td>接待医生</td>
                 <td>客户姓名</td>
                 <td>内容（预警、调查）</td>
-                <td>接待医生</td>
+                <td>回访时间</td>
                 <td>基本操作</td>
             </tr>
 
             @*此处增加循环出客户回访信息*@
-
-        <tr>
-            <td>1</td>
-            <td>czy</td>
-            <td>术后恢复怎么样术后恢复怎么样术后恢复怎么样术后恢复怎么样</td>
-            <td>czy</td>
-            <td>
-                <a href="#">新增回访</a>/<a href="#">删除回访</a>/<a href="#">修改信息</a>
-            </td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>czy</td>
-            <td>术后恢复怎么样</td>
-            <td>czy</td>
-            <td>
-                <a href="#">新增回访</a>/<a href="#">删除回访</a>/<a href="#">修改信息</a>
-            </td>
-        </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ContentID</td>
+                    <td>@item.UserDoctorList.DoctorOfName</td>
+                    <td>@item.ClientMdicalIformation.CustomerAppointment.CustomerInformation.CustomerName</td>
+                    <td>@item.ContentOfReturnVisit</td>
+                    <td>@item.ContentTime.ToShortDateString()</td>
+                    <td>
+                        <!-- Button trigger modal -->
+                        <a href="#" data-toggle="modal" data-target="#exampleModal">
+                            新增咨询
+                        </a>/<a href="/ServiceManagement/DeleteCustomerReturnVisit?id=@item.ContentID"  onclick="return confirm('你确定要删除吗？')">删除回访</a>/
+                        <a href="/ServiceManagement/EditCustomerReturnVisit?id=@item.ContentID">修改信息</a>
+                    </td>
+                </tr>
+            }
         </table>
     </div>
 </div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">新增回访</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/ServiceManagement/AddCustomerReturnVisit" method="post" id="AddFrom">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <span id="inputGroup-sizing-sm" name="DoctorID">医生</span><br />
+                                <input type="hidden" class="form-control" name="DoctorID" value="@userDoctorList2.DoctorID" required>
+                                <input type="text" class="form-control"  value="@userDoctorList2.DoctorOfName" required readonly="readonly">
+                            </div>
+                            <div class="col">
+                                <span id="inputGroup-sizing-sm" name="CustomerIDCard">客户名</span><br />
+                                <select id="DoctorID" aria-describedby="emailHelp" name="ConclusionID">
+                                    @foreach (var item in clientMdicalIformation)
+                                    {
+                                        <option value="@item.ConclusionID">@item.CustomerAppointment.CustomerInformation.CustomerName</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col">
+                                <span id="inputGroup-sizing-sm" name="ContentTime">回访时间</span>
+                                <input type="date" class="form-control" name="ContentTime" required>
+                            </div>
+
+                            <div class="col2" style="margin:0px auto">
+                                <span id="inputGroup-sizing-sm" name="ContentOfReturnVisit">回访内容（预警、调查）</span>
+                                <input type="text" class="form-control" name="ContentOfReturnVisit" required>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <button type="submit" class="btn btn-primary" id="AddSubmit">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $("#AddSubmit").click(
+            function () {
+                $("#AddFrom").submit()
+            })
+
+    </script>
+}

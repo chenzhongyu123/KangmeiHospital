@@ -12,15 +12,14 @@ namespace Model
     using System;
     using System.Collections.Generic;
     
-    public partial class KnowledgeBaseContentManagement
+    public partial class View_KnowledgeBase
     {
         public int KnowledgeBase { get; set; }
         public int KnowledgeBaseTypeID { get; set; }
         public int DoctorID { get; set; }
         public string Problem { get; set; }
         public string Reply { get; set; }
-    
-        public virtual UserDoctorList UserDoctorList { get; set; }
-        public virtual KnowledgeBaseTypeManagement KnowledgeBaseTypeManagement { get; set; }
+        public string OpenOrNot { get; set; }
+        public string KnowledgeBaseType { get; set; }
     }
 }
