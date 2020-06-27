@@ -60,6 +60,13 @@ namespace DAL
             db.CustomerReturnVisit.Remove(customerReturnVisit);
             db.SaveChanges();
         }
+
+        //新增关怀
+        public void AddCustomerCare()
+        {
+        
+        }
+
         //修改回访记录
         public CustomerReturnVisit SelectCustomerReturnVisit(int id)
         {

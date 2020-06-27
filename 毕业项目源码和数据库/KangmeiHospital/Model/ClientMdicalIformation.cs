@@ -18,6 +18,9 @@ namespace Model
         public ClientMdicalIformation()
         {
             this.CustomerReturnVisit = new HashSet<CustomerReturnVisit>();
+            this.CustomerReturnVisit1 = new HashSet<CustomerReturnVisit>();
+            this.CustomerReturnVisit11 = new HashSet<CustomerReturnVisit>();
+            this.CustomerCare = new HashSet<CustomerCare>();
         }
     
         public int ConclusionID { get; set; }
@@ -35,5 +38,11 @@ namespace Model
         public virtual SurgicalExamination SurgicalExamination { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CustomerReturnVisit> CustomerReturnVisit { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CustomerReturnVisit> CustomerReturnVisit1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CustomerReturnVisit> CustomerReturnVisit11 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CustomerCare> CustomerCare { get; set; }
     }
 }

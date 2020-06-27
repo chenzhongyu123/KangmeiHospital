@@ -37,5 +37,6 @@ namespace Model
         public virtual DbSet<SurgicalExamination> SurgicalExamination { get; set; }
         public virtual DbSet<UserDoctorList> UserDoctorList { get; set; }
         public virtual DbSet<View_KnowledgeBase> View_KnowledgeBase { get; set; }
+        public virtual DbSet<CustomerCare> CustomerCare { get; set; }
     }
 }

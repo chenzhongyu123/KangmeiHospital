@@ -73,11 +73,17 @@ namespace KangmeiHospitalCRM.Controllers
             return RedirectToAction("CustomerReturnVisit");
         }
 
-        //未完成模块
         //客户关怀
         public ActionResult CustomerCare()
         {
             return View();
+        }
+        //客户关怀
+        
+        public ActionResult EditCustomerCare()
+        {
+            Bll.AddCustomerCare();
+            return RedirectToAction("CustomerCare");
         }
     }
 }

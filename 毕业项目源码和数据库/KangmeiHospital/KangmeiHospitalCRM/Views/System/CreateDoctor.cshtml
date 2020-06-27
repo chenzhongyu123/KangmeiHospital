@@ -26,11 +26,24 @@
     }
 </style>
 <div id="top">
+    <nav aria-label="breadcrumb" style="margin-top:25px;">
+        <ol class="breadcrumb" style="background-color:darkgrey; width:100%;">
+            <li class="breadcrumb-item"><a href="/CustomerInFormation/Index">首页</a></li>
+            <li class="breadcrumb-item"><a style="color:white;">系统</a></li>
+            <li class="breadcrumb-item"><a href="/System/CreateDoctor">系统管理</a></li>
+            <li class="text-right" style="width:75%; height:20px; ">
+                <a href="#" class="btn btn-danger right" style="width:50px;font-size:5px; margin-top:-5px;" data-toggle="modal" data-target="#exampleModal">
+                    新增
+                </a>
+            </li>
+        </ol>
+
+    </nav>
     <div>
         <h2 style="text-align:center"> 医生信息页</h2>
     </div>
     <div>
-        <table class="table table-hover table-dark"  id="div_table">
+        <table class="table table-hover table-dark" id="div_table">
             <tr>
                 <td>序号</td>
                 <td>姓名</td>
@@ -45,36 +58,36 @@
             @*此处增加循环出客户信息*@
             @foreach (var item in Model)
             {
-        <tr>
-            <td>@item.DoctorID</td>
-            <td>@item.DoctorOfName</td>
-            <td>@item.DoctorMajor</td>
-            <td>@item.DoctorGender</td>
-            <td>@item.DoctorAge</td>
-            <td>@item.DoctorSubject</td>
-            <td>
-                @if (item.AdministratorOrNot == "1")
-                {
-                    @:管理员
-                }
-                else if (item.AdministratorOrNot == "0")
-                {
-                    @:员工
-                }
-                else
-                {
-                    @:禁用
-                }
-            </td>
-            <td>
-                <!-- Button trigger modal -->
-                <a href="#" data-toggle="modal" data-target="#exampleModal">
-                    新增
-                </a>/
-                <a href="/System/EditUserDoctorList?id=@item.DoctorID">详细</a>/
-                <a href="/System/IsAdministratorOrNot?id=@item.DoctorID"  onclick="return confirm('确定切换权限吗？')">切换权限</a>
-            </td>
-        </tr>
+                <tr>
+                    <td>@item.DoctorID</td>
+                    <td>@item.DoctorOfName</td>
+                    <td>@item.DoctorMajor</td>
+                    <td>@item.DoctorGender</td>
+                    <td>@item.DoctorAge</td>
+                    <td>@item.DoctorSubject</td>
+                    <td>
+                        @if (item.AdministratorOrNot == "1")
+                        {
+                            @:管理员
+                        }
+                        else if (item.AdministratorOrNot == "0")
+                        {
+                            @:员工
+                        }
+                        else
+                        {
+                            @:禁用
+                        }
+                    </td>
+                    <td>
+                        <!-- Button trigger modal -->
+                        <a href="#" data-toggle="modal" data-target="#exampleModal">
+                            新增
+                        </a>/
+                        <a href="/System/EditUserDoctorList?id=@item.DoctorID">详细</a>/
+                        <a href="/System/IsAdministratorOrNot?id=@item.DoctorID" onclick="return confirm('确定切换权限吗？')">切换权限</a>
+                    </td>
+                </tr>
             }
 
         </table>
@@ -82,8 +95,8 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">新增医生</h5>
@@ -137,24 +150,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary" id="AddSubmit">保存</button>
+                    </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                <button type="submit" class="btn btn-primary" id="AddSubmit">保存</button>
             </div>
         </div>
     </div>
 </div>
 
-
-@section scripts{
-    <script type="text/javascript">
-        $("#AddSubmit").click(
-            function () {
-            $("#AddFrom").submit()
-            })
-
-    </script>
-}
 

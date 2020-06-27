@@ -23,6 +23,19 @@
     }
 </style>
 <div id="top">
+    <nav aria-label="breadcrumb" style="margin-top:25px;">
+        <ol class="breadcrumb" style="background-color:darkgrey; width:100%;">
+            <li class="breadcrumb-item"><a href="/CustomerInFormation/Index">首页</a></li>
+            <li class="breadcrumb-item"><a style="color:white;">客户信息</a></li>
+            <li class="breadcrumb-item"><a href="/CustomerInFormation/CustomerAppointment">客户预约</a></li>
+            <li class="text-right" style="width:75%; height:20px; ">
+                <a href="#" class="btn btn-danger right" style="width:50px;font-size:5px; margin-top:-5px;" data-toggle="modal" data-target="#exampleModal">
+                    新增
+                </a>
+            </li>
+        </ol>
+
+    </nav>
     <div>
         <h2 style="text-align:center">客户预约管理</h2>
     </div>
@@ -50,7 +63,7 @@
                     <td>@item.PhysicalExaminationDescription</td>
                     <td>
                         <a href="#" data-toggle="modal" data-target="#exampleModal">新增预约</a>/
-                        <a href="/CustomerInFormation/DeleteCustomerAppointment?id=@item.CustomerAppointmentID"  onclick="return confirm('你确定要删除吗？')">删除预约</a>/
+                        <a href="/CustomerInFormation/DeleteCustomerAppointment?id=@item.CustomerAppointmentID" onclick="return confirm('你确定要删除吗？')">删除预约</a>/
                         <a href="/CustomerInFormation/EditCustomerAppointment?id=@item.CustomerAppointmentID">修改信息</a>
                     </td>
                 </tr>
@@ -61,8 +74,8 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"  data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">新增预约</h5>
@@ -74,7 +87,7 @@
                 <form action="/CustomerInFormation/AddCustomerAppointment" method="post" id="AddFrom">
                     <div class="form-group">
                         <label for="exampleInputPassword1">预约客户姓名</label>
-                        <select class="form-control"  aria-describedby="emailHelp" name="CustomerID">
+                        <select class="form-control" aria-describedby="emailHelp" name="CustomerID">
                             @foreach (var item in ViewBag.list as List<CustomerInformation>)
                             {
                                 <option value="@item.CustomerID">@item.CustomerName</option>
@@ -83,33 +96,24 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">开始时间</label>
-                        <input type="date" class="form-control"  name="startTime" required>
+                        <input type="date" class="form-control" name="startTime" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">结束时间</label>
-                        <input type="date" class="form-control"  name="EndTime" required>
+                        <input type="date" class="form-control" name="EndTime" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">体检内容描述</label>
-                        <input type="text" class="form-control"  name="PhysicalExaminationDescription">
+                        <input type="text" class="form-control" name="PhysicalExaminationDescription" required>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary" id="AddSubmit">保存</button>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                <button type="submit" class="btn btn-primary" id="AddSubmit">保存</button>
             </div>
         </div>
     </div>
 </div>
-
-
-@section scripts{
-    <script type="text/javascript">
-        $("#AddSubmit").click(
-            function () {
-            $("#AddFrom").submit()
-            })
-
-    </script>
-}

@@ -21,6 +21,19 @@
     }
 </style>
 <div id="top">
+    <nav aria-label="breadcrumb" style="margin-top:25px;">
+        <ol class="breadcrumb" style="background-color:darkgrey; width:100%;">
+            <li class="breadcrumb-item"><a href="/CustomerInFormation/Index">首页</a></li>
+            <li class="breadcrumb-item"><a style="color:white;">客户信息</a></li>
+            <li class="breadcrumb-item"><a href="/CustomerInFormation/Customer">客户档案</a></li>
+            <li class="text-right" style="width:75%; height:20px; ">
+                <a href="#" class="btn btn-danger right" style="width:50px;font-size:5px; margin-top:-5px;" data-toggle="modal" data-target="#exampleModal">
+                    新增
+                </a>
+            </li>
+        </ol>
+
+    </nav>
     <div>
         <h2 style="text-align:center"> 客户信息页</h2>
     </div>
@@ -45,10 +58,6 @@
                     <td>@item.CustomerContactNumber</td>
                     <td>@item.dateOfBirth.ToShortDateString()</td>
                     <td>
-                        <!-- Button trigger modal -->
-                        <a href="#" data-toggle="modal" data-target="#exampleModal">
-                            新增客户
-                        </a>/
                         <a href="/CustomerInFormation/DeleteCustomerInformation?id=@item.CustomerID" onclick="return confirm('你确定要删除吗？客户以下的资料都会删除！')">删除客户</a>/
                         <a href="/CustomerInFormation/DetailedCustomerInformation?id=@item.CustomerID">个人信息</a>/
                         <a href="/CustomerInFormation/CustomerDetails?id=@item.CustomerID">病史信息</a>
@@ -61,8 +70,8 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" data-backdrop="static"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">新增客户</h5>
@@ -76,16 +85,16 @@
                         <div class="row">
                             <div class="col">
                                 <span id="inputGroup-sizing-sm" name="CustomerName">姓名</span>
-                                <input type="text" class="form-control" name="CustomerName" required>
+                                <input type="text" class="form-control" id="CustomerName" name="CustomerName" required>
                             </div>
                             <div class="col">
                                 <span id="inputGroup-sizing-sm" name="CustomerIDCard">身份证</span>
-                                <input type="text" class="form-control" name="CustomerIDCard" required>
+                                <input type="text" class="form-control" id="CustomerIDCard" name="CustomerIDCard" required>
                             </div>
                             <div class="col">
                                 <span id="inputGroup-sizing-sm" name="CustomerGender">性别</span>
                                 <select class="form-control" name="CustomerGender">
-                                    <option  value="男">男</option>
+                                    <option value="男">男</option>
                                     <option value="女">女</option>
                                     <option value="其他">其他</option>
                                 </select>
@@ -179,7 +188,7 @@
                             </div>
                             <div class="col">
                                 <span id="inputGroup-sizing-sm" name="CustomerOccupation">职业</span>
-                                <input type="text" class="form-control" name="CustomerOccupation" required>
+                                <input type="text" class="form-control" id="CustomerOccupation" name="CustomerOccupation" required>
                             </div>
                             <div class="col">
                                 <span id="inputGroup-sizing-sm" name="CustomerEducation">文化程度</span>
@@ -199,40 +208,29 @@
                         <div class="row">
                             <div class="col">
                                 <span id="inputGroup-sizing-sm" name="CustomerBelief">信仰</span>
-                                <input type="text" class="form-control" name="CustomerBelief" required>
+                                <input type="text" class="form-control" id="CustomerBelief" name="CustomerBelief" required>
                             </div>
                             <div class="col">
                                 <span id="inputGroup-sizing-sm" name="CustomerContactNumber">联系电话</span>
-                                <input type="text" class="form-control" name="CustomerContactNumber" required>
+                                <input type="text" class="form-control" id="CustomerContactNumber" name="CustomerContactNumber" required>
                             </div>
                             <div class="col">
                                 <span id="inputGroup-sizing-sm" name="CustomerEmergencyContactNumber">紧急联系电话</span>
-                                <input type="text" class="form-control" name="CustomerEmergencyContactNumber" required>
+                                <input type="text" class="form-control" id="CustomerEmergencyContactNumber" name="CustomerEmergencyContactNumber" required>
                             </div>
                         </div>
 
                     </div>
                     <div>
                         <span id="inputGroup-sizing-sm" name="CustomerHomeAddress" style="margin-left:15px;">家庭住址</span>
-                        <input type="text" class="form-control" name="CustomerHomeAddress" required>
+                        <input type="text" class="form-control" id="CustomerHomeAddress" name="CustomerHomeAddress" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary" id="AddSubmit">保存</button>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                <button type="submit" class="btn btn-primary" id="AddSubmit">保存</button>
             </div>
         </div>
     </div>
 </div>
-
-
-@section scripts{
-    <script type="text/javascript">
-        $("#AddSubmit").click(
-            function () {
-            $("#AddFrom").submit()
-            })
-            
-    </script>
-    }

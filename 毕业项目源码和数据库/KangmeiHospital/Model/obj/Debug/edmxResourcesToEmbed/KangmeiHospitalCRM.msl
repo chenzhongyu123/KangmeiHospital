@@ -196,5 +196,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CustomerCare">
+      <EntityTypeMapping TypeName="KangmeiHospitalCRMModel.CustomerCare">
+        <MappingFragment StoreEntitySet="CustomerCare">
+          <ScalarProperty Name="ProcessedOrNot" ColumnName="ProcessedOrNot" />
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="ConclusionID" ColumnName="ConclusionID" />
+          <ScalarProperty Name="CustomerCareID" ColumnName="CustomerCareID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

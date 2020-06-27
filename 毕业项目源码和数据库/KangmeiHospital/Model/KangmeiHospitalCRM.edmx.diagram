@@ -28,6 +28,11 @@
         <AssociationConnector Association="KangmeiHospitalCRMModel.CK_CustomerIDandAppointment" />
         <AssociationConnector Association="KangmeiHospitalCRMModel.CK_CustomerIDandCustomerAppointment" />
         <EntityTypeShape EntityType="KangmeiHospitalCRMModel.View_KnowledgeBase" Width="1.5" PointX="0.75" PointY="0.75" />
+        <AssociationConnector Association="KangmeiHospitalCRMModel.FK__CustomerR__Concl__295727251" />
+        <AssociationConnector Association="KangmeiHospitalCRMModel.FK__CustomerR__Concl__32E0915F" />
+        <EntityTypeShape EntityType="KangmeiHospitalCRMModel.CustomerCare" Width="1.5" PointX="6.25" PointY="1" />
+        <AssociationConnector Association="KangmeiHospitalCRMModel.FK_CustomerCare_ClientMdicalIformation" />
+        <AssociationConnector Association="KangmeiHospitalCRMModel.FK_CustomerCare_UserDoctorList" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -21,6 +21,19 @@
     }
 </style>
 <div id="top">
+    <nav aria-label="breadcrumb" style="margin-top:25px;">
+        <ol class="breadcrumb" style="background-color:darkgrey; width:100%;">
+            <li class="breadcrumb-item"><a href="/CustomerInFormation/Index">首页</a></li>
+            <li class="breadcrumb-item"><a style="color:white;">知识库</a></li>
+            <li class="breadcrumb-item"><a href="/KnowledgeBase/KnowledgeBaseTypeManagement">知识库管理</a></li>
+            <li class="text-right" style="width:75%; height:20px; ">
+                <a href="#" class="btn btn-danger right" style="width:50px;font-size:5px; margin-top:-5px;" data-toggle="modal" data-target="#exampleModal">
+                    新增
+                </a>
+            </li>
+        </ol>
+
+    </nav>
     <div>
         <h2 style="text-align:center">知识库类型管理</h2>
     </div>
@@ -65,8 +78,8 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">新增题库</h5>
@@ -91,24 +104,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary" id="AddSubmit">保存</button>
+                    </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                <button type="submit" class="btn btn-primary" id="AddSubmit">保存</button>
             </div>
         </div>
     </div>
 </div>
 
-
-@section scripts{
-    <script type="text/javascript">
-        $("#AddSubmit").click(
-            function () {
-            $("#AddFrom").submit()
-            })
-
-    </script>
-}
 

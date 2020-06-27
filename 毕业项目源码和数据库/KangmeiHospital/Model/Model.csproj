@@ -57,6 +57,9 @@
     <Compile Include="CustomerAppointment.cs">
       <DependentUpon>KangmeiHospitalCRM.tt</DependentUpon>
     </Compile>
+    <Compile Include="CustomerCare.cs">
+      <DependentUpon>KangmeiHospitalCRM.tt</DependentUpon>
+    </Compile>
     <Compile Include="CustomerInformation.cs">
       <DependentUpon>KangmeiHospitalCRM.tt</DependentUpon>
     </Compile>

@@ -21,6 +21,7 @@ namespace Model
             this.CustomerReturnVisit = new HashSet<CustomerReturnVisit>();
             this.CustomerService = new HashSet<CustomerService>();
             this.KnowledgeBaseContentManagement = new HashSet<KnowledgeBaseContentManagement>();
+            this.CustomerCare = new HashSet<CustomerCare>();
         }
     
         public int DoctorID { get; set; }
@@ -43,5 +44,7 @@ namespace Model
         public virtual ICollection<CustomerService> CustomerService { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KnowledgeBaseContentManagement> KnowledgeBaseContentManagement { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CustomerCare> CustomerCare { get; set; }
     }
 }

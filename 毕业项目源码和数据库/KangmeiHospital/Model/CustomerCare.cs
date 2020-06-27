@@ -12,17 +12,14 @@ namespace Model
     using System;
     using System.Collections.Generic;
     
-    public partial class CustomerReturnVisit
+    public partial class CustomerCare
     {
-        public int ContentID { get; set; }
-        public int DoctorID { get; set; }
+        public int CustomerCareID { get; set; }
         public int ConclusionID { get; set; }
-        public string ContentOfReturnVisit { get; set; }
-        public System.DateTime ContentTime { get; set; }
+        public int DoctorID { get; set; }
+        public Nullable<int> ProcessedOrNot { get; set; }
     
         public virtual ClientMdicalIformation ClientMdicalIformation { get; set; }
         public virtual UserDoctorList UserDoctorList { get; set; }
-        public virtual ClientMdicalIformation ClientMdicalIformation1 { get; set; }
-        public virtual ClientMdicalIformation ClientMdicalIformation11 { get; set; }
     }
 }

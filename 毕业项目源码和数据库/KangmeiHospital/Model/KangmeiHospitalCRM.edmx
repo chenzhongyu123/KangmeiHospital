@@ -28,6 +28,15 @@
           <Property Name="EndTime" Type="date" Nullable="false" />
           <Property Name="PhysicalExaminationDescription" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="CustomerCare">
+          <Key>
+            <PropertyRef Name="CustomerCareID" />
+          </Key>
+          <Property Name="CustomerCareID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConclusionID" Type="int" Nullable="false" />
+          <Property Name="DoctorID" Type="int" Nullable="false" />
+          <Property Name="ProcessedOrNot" Type="int" />
+        </EntityType>
         <EntityType Name="CustomerInformation">
           <Key>
             <PropertyRef Name="CustomerID" />
@@ -372,9 +381,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CustomerCare_ClientMdicalIformation">
+          <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="1" />
+          <End Role="CustomerCare" Type="Self.CustomerCare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientMdicalIformation">
+              <PropertyRef Name="ConclusionID" />
+            </Principal>
+            <Dependent Role="CustomerCare">
+              <PropertyRef Name="ConclusionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerCare_UserDoctorList">
+          <End Role="UserDoctorList" Type="Self.UserDoctorList" Multiplicity="1" />
+          <End Role="CustomerCare" Type="Self.CustomerCare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDoctorList">
+              <PropertyRef Name="DoctorID" />
+            </Principal>
+            <Dependent Role="CustomerCare">
+              <PropertyRef Name="DoctorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="KangmeiHospitalCRMModelStoreContainer">
           <EntitySet Name="ClientMdicalIformation" EntityType="Self.ClientMdicalIformation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerAppointment" EntityType="Self.CustomerAppointment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerCare" EntityType="Self.CustomerCare" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerInformation" EntityType="Self.CustomerInformation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerReturnVisit" EntityType="Self.CustomerReturnVisit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerService" EntityType="Self.CustomerService" Schema="dbo" store:Type="Tables" />
@@ -455,6 +489,14 @@
             <End Role="KnowledgeBaseTypeManagement" EntitySet="KnowledgeBaseTypeManagement" />
             <End Role="KnowledgeBaseContentManagement" EntitySet="KnowledgeBaseContentManagement" />
           </AssociationSet>
+          <AssociationSet Name="FK_CustomerCare_ClientMdicalIformation" Association="Self.FK_CustomerCare_ClientMdicalIformation">
+            <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
+            <End Role="CustomerCare" EntitySet="CustomerCare" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerCare_UserDoctorList" Association="Self.FK_CustomerCare_UserDoctorList">
+            <End Role="UserDoctorList" EntitySet="UserDoctorList" />
+            <End Role="CustomerCare" EntitySet="CustomerCare" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -477,6 +519,9 @@
           <NavigationProperty Name="MedicalExamination" Relationship="Self.FK__ClientMdi__Medic__276EDEB3" FromRole="ClientMdicalIformation" ToRole="MedicalExamination" />
           <NavigationProperty Name="SurgicalExamination" Relationship="Self.FK__ClientMdi__Surgi__286302EC" FromRole="ClientMdicalIformation" ToRole="SurgicalExamination" />
           <NavigationProperty Name="CustomerReturnVisit" Relationship="Self.FK__CustomerR__Concl__29572725" FromRole="ClientMdicalIformation" ToRole="CustomerReturnVisit" />
+          <NavigationProperty Name="CustomerReturnVisit1" Relationship="KangmeiHospitalCRMModel.FK__CustomerR__Concl__295727251" FromRole="ClientMdicalIformation" ToRole="CustomerReturnVisit" />
+          <NavigationProperty Name="CustomerReturnVisit11" Relationship="KangmeiHospitalCRMModel.FK__CustomerR__Concl__32E0915F" FromRole="ClientMdicalIformation" ToRole="CustomerReturnVisit" />
+          <NavigationProperty Name="CustomerCare" Relationship="KangmeiHospitalCRMModel.FK_CustomerCare_ClientMdicalIformation" FromRole="ClientMdicalIformation" ToRole="CustomerCare" />
         </EntityType>
         <EntityType Name="CustomerAppointment">
           <Key>
@@ -517,11 +562,13 @@
           </Key>
           <Property Name="ContentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DoctorID" Type="Int32" Nullable="false" />
-          <Property Name="ConclusionID" Type="Int32" Nullable="false" />
+          <Property Name="ConclusionID" Nullable="false" Type="Int32" />
           <Property Name="ContentOfReturnVisit" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ContentTime" Type="DateTime" Precision="0" Nullable="false" />
           <NavigationProperty Name="ClientMdicalIformation" Relationship="Self.FK__CustomerR__Concl__29572725" FromRole="CustomerReturnVisit" ToRole="ClientMdicalIformation" />
           <NavigationProperty Name="UserDoctorList" Relationship="Self.FK__CustomerR__Docto__48CFD27E" FromRole="CustomerReturnVisit" ToRole="UserDoctorList" />
+          <NavigationProperty Name="ClientMdicalIformation1" Relationship="KangmeiHospitalCRMModel.FK__CustomerR__Concl__295727251" FromRole="CustomerReturnVisit" ToRole="ClientMdicalIformation" />
+          <NavigationProperty Name="ClientMdicalIformation11" Relationship="KangmeiHospitalCRMModel.FK__CustomerR__Concl__32E0915F" FromRole="CustomerReturnVisit" ToRole="ClientMdicalIformation" />
         </EntityType>
         <EntityType Name="CustomerService">
           <Key>
@@ -652,6 +699,7 @@
           <NavigationProperty Name="CustomerReturnVisit" Relationship="Self.FK__CustomerR__Docto__48CFD27E" FromRole="UserDoctorList" ToRole="CustomerReturnVisit" />
           <NavigationProperty Name="CustomerService" Relationship="Self.FK__CustomerS__Docto__44FF419A" FromRole="UserDoctorList" ToRole="CustomerService" />
           <NavigationProperty Name="KnowledgeBaseContentManagement" Relationship="Self.FK__Knowledge__Docto__5165187F" FromRole="UserDoctorList" ToRole="KnowledgeBaseContentManagement" />
+          <NavigationProperty Name="CustomerCare" Relationship="KangmeiHospitalCRMModel.FK_CustomerCare_UserDoctorList" FromRole="UserDoctorList" ToRole="CustomerCare" />
         </EntityType>
         <Association Name="FK__ClientMdi__Custo__3E52440B">
           <End Role="CustomerAppointment" Type="Self.CustomerAppointment" Multiplicity="1" />
@@ -818,6 +866,23 @@
             <End Role="MedicalHistory" EntitySet="MedicalHistory" />
           </AssociationSet>
           <EntitySet Name="View_KnowledgeBase" EntityType="KangmeiHospitalCRMModel.View_KnowledgeBase" />
+          <AssociationSet Name="FK__CustomerR__Concl__295727251" Association="KangmeiHospitalCRMModel.FK__CustomerR__Concl__295727251">
+            <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
+            <End Role="CustomerReturnVisit" EntitySet="CustomerReturnVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerR__Concl__32E0915F" Association="KangmeiHospitalCRMModel.FK__CustomerR__Concl__32E0915F">
+            <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
+            <End Role="CustomerReturnVisit" EntitySet="CustomerReturnVisit" />
+          </AssociationSet>
+          <EntitySet Name="CustomerCare" EntityType="KangmeiHospitalCRMModel.CustomerCare" />
+          <AssociationSet Name="FK_CustomerCare_ClientMdicalIformation" Association="KangmeiHospitalCRMModel.FK_CustomerCare_ClientMdicalIformation">
+            <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
+            <End Role="CustomerCare" EntitySet="CustomerCare" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerCare_UserDoctorList" Association="KangmeiHospitalCRMModel.FK_CustomerCare_UserDoctorList">
+            <End Role="UserDoctorList" EntitySet="UserDoctorList" />
+            <End Role="CustomerCare" EntitySet="CustomerCare" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="CK_CustomerIDandAppointment">
           <End Type="KangmeiHospitalCRMModel.CustomerInformation" Role="CustomerInformation" Multiplicity="1" />
@@ -857,6 +922,65 @@
           <Property Name="OpenOrNot" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="KnowledgeBaseType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <Association Name="FK__CustomerR__Concl__295727251">
+          <End Type="KangmeiHospitalCRMModel.ClientMdicalIformation" Role="ClientMdicalIformation" Multiplicity="1" />
+          <End Type="KangmeiHospitalCRMModel.CustomerReturnVisit" Role="CustomerReturnVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientMdicalIformation">
+              <PropertyRef Name="ConclusionID" />
+            </Principal>
+            <Dependent Role="CustomerReturnVisit">
+              <PropertyRef Name="ConclusionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerR__Concl__32E0915F">
+          <End Type="KangmeiHospitalCRMModel.ClientMdicalIformation" Role="ClientMdicalIformation" Multiplicity="1" />
+          <End Type="KangmeiHospitalCRMModel.CustomerReturnVisit" Role="CustomerReturnVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientMdicalIformation">
+              <PropertyRef Name="ConclusionID" />
+            </Principal>
+            <Dependent Role="CustomerReturnVisit">
+              <PropertyRef Name="ConclusionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CustomerCare">
+          <Key>
+            <PropertyRef Name="CustomerCareID" />
+          </Key>
+          <Property Name="CustomerCareID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConclusionID" Type="Int32" Nullable="false" />
+          <Property Name="DoctorID" Type="Int32" Nullable="false" />
+          <Property Name="ProcessedOrNot" Type="Int32" />
+          <NavigationProperty Name="ClientMdicalIformation" Relationship="KangmeiHospitalCRMModel.FK_CustomerCare_ClientMdicalIformation" FromRole="CustomerCare" ToRole="ClientMdicalIformation" />
+          <NavigationProperty Name="UserDoctorList" Relationship="KangmeiHospitalCRMModel.FK_CustomerCare_UserDoctorList" FromRole="CustomerCare" ToRole="UserDoctorList" />
+        </EntityType>
+        <Association Name="FK_CustomerCare_ClientMdicalIformation">
+          <End Type="KangmeiHospitalCRMModel.ClientMdicalIformation" Role="ClientMdicalIformation" Multiplicity="1" />
+          <End Type="KangmeiHospitalCRMModel.CustomerCare" Role="CustomerCare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientMdicalIformation">
+              <PropertyRef Name="ConclusionID" />
+            </Principal>
+            <Dependent Role="CustomerCare">
+              <PropertyRef Name="ConclusionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerCare_UserDoctorList">
+          <End Type="KangmeiHospitalCRMModel.UserDoctorList" Role="UserDoctorList" Multiplicity="1" />
+          <End Type="KangmeiHospitalCRMModel.CustomerCare" Role="CustomerCare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDoctorList">
+              <PropertyRef Name="DoctorID" />
+            </Principal>
+            <Dependent Role="CustomerCare">
+              <PropertyRef Name="DoctorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1055,6 +1179,16 @@
                 <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
                 <ScalarProperty Name="KnowledgeBaseTypeID" ColumnName="KnowledgeBaseTypeID" />
                 <ScalarProperty Name="KnowledgeBase" ColumnName="KnowledgeBase" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerCare">
+            <EntityTypeMapping TypeName="KangmeiHospitalCRMModel.CustomerCare">
+              <MappingFragment StoreEntitySet="CustomerCare">
+                <ScalarProperty Name="ProcessedOrNot" ColumnName="ProcessedOrNot" />
+                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+                <ScalarProperty Name="ConclusionID" ColumnName="ConclusionID" />
+                <ScalarProperty Name="CustomerCareID" ColumnName="CustomerCareID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

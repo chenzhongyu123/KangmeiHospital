@@ -23,6 +23,15 @@
     <Property Name="EndTime" Type="date" Nullable="false" />
     <Property Name="PhysicalExaminationDescription" Type="nvarchar" MaxLength="100" />
   </EntityType>
+  <EntityType Name="CustomerCare">
+    <Key>
+      <PropertyRef Name="CustomerCareID" />
+    </Key>
+    <Property Name="CustomerCareID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ConclusionID" Type="int" Nullable="false" />
+    <Property Name="DoctorID" Type="int" Nullable="false" />
+    <Property Name="ProcessedOrNot" Type="int" />
+  </EntityType>
   <EntityType Name="CustomerInformation">
     <Key>
       <PropertyRef Name="CustomerID" />
@@ -367,9 +376,34 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_CustomerCare_ClientMdicalIformation">
+    <End Role="ClientMdicalIformation" Type="Self.ClientMdicalIformation" Multiplicity="1" />
+    <End Role="CustomerCare" Type="Self.CustomerCare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClientMdicalIformation">
+        <PropertyRef Name="ConclusionID" />
+      </Principal>
+      <Dependent Role="CustomerCare">
+        <PropertyRef Name="ConclusionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerCare_UserDoctorList">
+    <End Role="UserDoctorList" Type="Self.UserDoctorList" Multiplicity="1" />
+    <End Role="CustomerCare" Type="Self.CustomerCare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDoctorList">
+        <PropertyRef Name="DoctorID" />
+      </Principal>
+      <Dependent Role="CustomerCare">
+        <PropertyRef Name="DoctorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="KangmeiHospitalCRMModelStoreContainer">
     <EntitySet Name="ClientMdicalIformation" EntityType="Self.ClientMdicalIformation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CustomerAppointment" EntityType="Self.CustomerAppointment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerCare" EntityType="Self.CustomerCare" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CustomerInformation" EntityType="Self.CustomerInformation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CustomerReturnVisit" EntityType="Self.CustomerReturnVisit" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CustomerService" EntityType="Self.CustomerService" Schema="dbo" store:Type="Tables" />
@@ -449,6 +483,14 @@
     <AssociationSet Name="FK__Knowledge__Knowl__33D4B598" Association="Self.FK__Knowledge__Knowl__33D4B598">
       <End Role="KnowledgeBaseTypeManagement" EntitySet="KnowledgeBaseTypeManagement" />
       <End Role="KnowledgeBaseContentManagement" EntitySet="KnowledgeBaseContentManagement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerCare_ClientMdicalIformation" Association="Self.FK_CustomerCare_ClientMdicalIformation">
+      <End Role="ClientMdicalIformation" EntitySet="ClientMdicalIformation" />
+      <End Role="CustomerCare" EntitySet="CustomerCare" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerCare_UserDoctorList" Association="Self.FK_CustomerCare_UserDoctorList">
+      <End Role="UserDoctorList" EntitySet="UserDoctorList" />
+      <End Role="CustomerCare" EntitySet="CustomerCare" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -26,6 +26,19 @@
     }
 </style>
 <div id="top">
+    <nav aria-label="breadcrumb" style="margin-top:25px;">
+        <ol class="breadcrumb" style="background-color:darkgrey; width:100%;">
+            <li class="breadcrumb-item"><a href="/CustomerInFormation/Index">首页</a></li>
+            <li class="breadcrumb-item"><a style="color:white;">客户服务</a></li>
+            <li class="breadcrumb-item"><a href="/ServiceManagement/CustomerService">客户回访</a></li>
+            <li class="text-right" style="width:75%; height:20px; ">
+                <a href="#" class="btn btn-danger right" style="width:50px;font-size:5px; margin-top:-5px;" data-toggle="modal" data-target="#exampleModal">
+                    新增
+                </a>
+            </li>
+        </ol>
+
+    </nav>
     <div>
         <h2 style="text-align:center">客户回访管理</h2>
     </div>
@@ -53,7 +66,7 @@
                         <!-- Button trigger modal -->
                         <a href="#" data-toggle="modal" data-target="#exampleModal">
                             新增咨询
-                        </a>/<a href="/ServiceManagement/DeleteCustomerReturnVisit?id=@item.ContentID"  onclick="return confirm('你确定要删除吗？')">删除回访</a>/
+                        </a>/<a href="/ServiceManagement/DeleteCustomerReturnVisit?id=@item.ContentID" onclick="return confirm('你确定要删除吗？')">删除回访</a>/
                         <a href="/ServiceManagement/EditCustomerReturnVisit?id=@item.ContentID">修改信息</a>
                     </td>
                 </tr>
@@ -64,8 +77,8 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"   data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">新增回访</h5>
@@ -80,7 +93,7 @@
                             <div class="col">
                                 <span id="inputGroup-sizing-sm" name="DoctorID">医生</span><br />
                                 <input type="hidden" class="form-control" name="DoctorID" value="@userDoctorList2.DoctorID" required>
-                                <input type="text" class="form-control"  value="@userDoctorList2.DoctorOfName" required readonly="readonly">
+                                <input type="text" class="form-control" value="@userDoctorList2.DoctorOfName" required readonly="readonly">
                             </div>
                             <div class="col">
                                 <span id="inputGroup-sizing-sm" name="CustomerIDCard">客户名</span><br />
@@ -103,24 +116,14 @@
                         </div>
 
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary" id="AddSubmit">保存</button>
+                    </div>
                 </form>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                <button type="submit" class="btn btn-primary" id="AddSubmit">保存</button>
             </div>
         </div>
     </div>
 </div>
 
-
-@section scripts{
-    <script type="text/javascript">
-        $("#AddSubmit").click(
-            function () {
-                $("#AddFrom").submit()
-            })
-
-    </script>
-}

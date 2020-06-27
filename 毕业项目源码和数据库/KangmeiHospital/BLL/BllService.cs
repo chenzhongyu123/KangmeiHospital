@@ -68,5 +68,10 @@ namespace BLL
         {
              Dal.EditCustomerReturnVisit(customerReturnVisit);
         }
+        //新增关怀
+        public void AddCustomerCare()
+        {
+            Dal.AddCustomerCare();
+        }
     }
 }
