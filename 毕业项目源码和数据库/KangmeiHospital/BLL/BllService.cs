@@ -73,5 +73,11 @@ namespace BLL
         {
             Dal.AddCustomerCare();
         }
+        //查询所有关怀信息
+
+        public List<CustomerCare> SelectCustomerCare()
+        {
+           return Dal.SelectCustomerCare();
+        }
     }
 }

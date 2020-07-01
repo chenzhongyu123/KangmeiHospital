@@ -64,7 +64,46 @@ namespace DAL
         //新增关怀
         public void AddCustomerCare()
         {
-        
+            List<ClientMdicalIformation> clientMdicalIformation= db.ClientMdicalIformation.ToList();
+            List<CustomerCare> customerCare = db.CustomerCare.ToList();
+            //查询所有体检记录
+            foreach (var item in clientMdicalIformation)
+            {
+                //查询所有关怀所有记录
+                foreach (var item2 in customerCare)
+                {
+                    //计算item体检信息的日期>30天的体检记录true / false
+                    DateTime time = item.InspectionTime;
+                    DateTime dateTime = DateTime.Now;
+                    //巧用C#里ToString的字符格式化更简便   
+                    DateTime time2 = DateTime.Parse(time.AddMonths(1).ToShortDateString());
+
+                    //现实时间比计算后的时间更晚，结果大于0才通过
+                    if (DateTime.Compare(dateTime, time2)>0)
+                    {
+                    //判断item2体检id是否存在item的id 不存在就可以添加
+                    if (item.ConclusionID == item2.ConclusionID)
+                    {
+                    }
+                    else
+                    {
+                            CustomerCare customerCare1 = new CustomerCare();
+                            customerCare1.ConclusionID = item.ConclusionID;
+                            customerCare1.DoctorID = item.DoctorID;
+                            customerCare1.ProcessedOrNot = 0;
+                            db.CustomerCare.Add(customerCare1);
+                            db.SaveChanges();
+                    }
+                    }
+                }
+
+            }
+
+        }
+        //查询所有关怀信息
+        public List<CustomerCare> SelectCustomerCare()
+        {
+           return db.CustomerCare.Where(p => p.ProcessedOrNot == 0).ToList() ;
         }
 
         //修改回访记录

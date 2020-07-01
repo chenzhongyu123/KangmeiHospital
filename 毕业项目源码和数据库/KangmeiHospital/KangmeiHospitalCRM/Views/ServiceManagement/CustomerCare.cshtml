@@ -3,7 +3,8 @@
     ViewBag.Title = "CustomerCare";
     Layout = "~/Views/Shared/KangMeiLayout.cshtml";
 }
-
+@using Model;
+@model List<CustomerCare>
 <style type="text/css">
     #top {
         width: 95%;
@@ -42,46 +43,37 @@
                 <td>序号</td>
                 <td>客户姓名</td>
                 <td>出生年月</td>
-                <td>年龄</td>
+                <td>性别</td>
                 <td>主治医生</td>
-                <td>最近回访内容</td>
-                <td>最近回访时间</td>
-                <td>最近体检内容</td>
-                <td>最近体检时间</td>
+                <td>联系方式</td>
+                <td>体检结果</td>
+                <td>体检结论</td>
+                <td>体检时间</td>
                 <td>
                     操作
                 </td>
             </tr>
 
-            @*此处增加循环出客户信息*@
-            <tr>
-                <td>1</td>
-                <td>陈仲宇</td>
-                <td>2000/10/13</td>
-                <td>19</td>
-                <td>czy</td>
-                <td>术后恢复怎么样</td>
-                <td>2020/6/11</td>
-                <td>肾结石需要手术取出</td>
-                <td>2020/5/16</td>
-                <td>
-                    <a href="#">新增关怀</a>/<a href="#">删除关怀</a>/<a href="#">修改记录</a>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>陈仲宇</td>
-                <td>2000/10/13</td>
-                <td>19</td>
-                <td>czy</td>
-                <td>术后恢复怎么样</td>
-                <td>2020/6/11</td>
-                <td>肾结石需要手术取出</td>
-                <td>2020/5/16</td>
-                <td>
-                    <a href="#">新增关怀</a>/<a href="#">删除关怀</a>/<a href="#">修改记录</a>
-                </td>
-            </tr>
+            @*此处增加循环出关怀信息*@
+            @foreach (var item in Model)
+            {
+
+        <tr>
+            <td>@item.CustomerCareID</td>
+            <td>@item.ClientMdicalIformation.CustomerAppointment.CustomerInformation.CustomerName</td>
+            <td>@item.ClientMdicalIformation.CustomerAppointment.CustomerInformation.dateOfBirth.ToShortDateString()</td>
+            <td>@item.ClientMdicalIformation.CustomerAppointment.CustomerInformation.CustomerGender</td>
+            <td>@item.ClientMdicalIformation.UserDoctorList.DoctorOfName</td>
+            <td>@item.ClientMdicalIformation.CustomerAppointment.CustomerInformation.CustomerContactNumber</td>
+            <td>@item.ClientMdicalIformation.InspectionResults</td>
+            <td>@item.ClientMdicalIformation.ConclusionOfPhysicalExamination</td>
+            <td>@item.ClientMdicalIformation.InspectionTime.ToShortDateString()</td>
+            <td>
+                <a href="#">已处理</a>/<a href="#">查看记录</a>
+            </td>
+        </tr>
+
+            }
         </table>
     </div>
 </div>

@@ -21,8 +21,9 @@
     table {
         text-align: center;
     }
+
     div_table {
-        width:1400px;
+        width: 1400px;
     }
 </style>
 <div id="top">
@@ -31,7 +32,7 @@
             <li class="breadcrumb-item"><a href="/CustomerInFormation/Index">首页</a></li>
             <li class="breadcrumb-item"><a style="color:white;">系统</a></li>
             <li class="breadcrumb-item"><a href="/System/CreateDoctor">系统管理</a></li>
-            <li class="text-right" style="width:75%; height:20px; ">
+            <li class="text-right" style="width:80%; height:20px; ">
                 <a href="#" class="btn btn-danger right" style="width:50px;font-size:5px; margin-top:-5px;" data-toggle="modal" data-target="#exampleModal">
                     新增
                 </a>
@@ -105,42 +106,50 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/System/CreateDoctor" method="post" id="AddFrom">
+                <form action="/System/CreateDoctor" method="post" id="form1">
                     <div class="container">
-                        <div class="">
-                            <div class="">
+                        <div class="row">
+                            <div class="col">
                                 <span id="inputGroup-sizing-sm" name="DoctorOfName">姓名</span>
                                 <input type="text" class="form-control" name="DoctorOfName" required>
                             </div>
-                            <div class="">
+                            <div class="col">
                                 <span id="inputGroup-sizing-sm" name="DoctorMajor">专业</span>
                                 <input type="text" class="form-control" name="DoctorMajor" required>
                             </div>
-                            <div class="">
+                            <div class="col">
                                 <span id="inputGroup-sizing-sm" name="DoctorGender">性别</span>
                                 <input type="text" class="form-control" name="DoctorGender" required>
                             </div>
-                            <div class="">
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
                                 <span id="inputGroup-sizing-sm" name="DoctorAge">年龄</span>
                                 <input type="text" class="form-control" name="DoctorAge" required>
                             </div>
-                            <div class="">
-                                <span id="inputGroup-sizing-sm" name="DoctorIdentity">身份证</span>
-                                <input type="text" class="form-control" name="DoctorIdentity" required>
-                            </div>
-                            <div class="">
+
+                            <div class="col">
                                 <span id="inputGroup-sizing-sm" name="DoctorSubject">学科</span>
                                 <input type="text" class="form-control" name="DoctorSubject" required>
                             </div>
-                            <div class="">
-                                <span id="inputGroup-sizing-sm" name="DoctorAccount">账号</span>
-                                <input type="text" class="form-control" name="DoctorAccount" required>
+                            <div class="col">
+                                <span id="inputGroup-sizing-sm" name="DoctorIdentity">身份证</span>
+                                <input type="text" class="form-control" id="DoctorIdentity" name="DoctorIdentity" required>
                             </div>
-                            <div class="">
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <span id="inputGroup-sizing-sm" name="DoctorAccount">账号</span>
+                                <input type="text" class="form-control" id="DoctorAccount" name="DoctorAccount" required>
+                            </div>
+                            <div class="col">
                                 <span id="inputGroup-sizing-sm" name="DoctorPassword">密码</span>
                                 <input type="text" class="form-control" name="DoctorPassword" required>
                             </div>
-                            <div class="">
+                        </div>
+                            <div class="col">
                                 <span id="inputGroup-sizing-sm" name="AdministratorOrNot">是否为管理员</span>
                                 <select class="form-control" name="AdministratorOrNot">
                                     <option value="0">普通员工</option>
@@ -149,15 +158,38 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                        <button type="submit" class="btn btn-primary" id="AddSubmit">保存</button>
-                    </div>
-                </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                            <button type="submit" class="btn btn-primary" id="AddSubmit">保存</button>
+                        </div>
+</form>
             </div>
         </div>
     </div>
 </div>
 
+@section scripts{
+    <script type="text/javascript">
+
+        $("#form1").bind("submit", function (event) {
+            if (/*验证通过*/1) {
+                var strCard = $("#DoctorIdentity").val();
+                var regcard = /^([1-9]{2}\d{15})(\d|[x,X])$/;
+
+                var DoctorAccount = $("#DoctorAccount").val();
+                var DoctorAccountreg = /^\d{6}$/;
+
+                if (!regcard.test(strCard)) {
+                    alert('身份证有误');
+                    return false;
+                } else if (!DoctorAccountreg.test(DoctorAccount)) {
+                    alert('账号长度为6个数字');
+                    return false;
+                }
+            } else {
+                event.preventDefault();
+            }
+        })
+    </script>
+}
 

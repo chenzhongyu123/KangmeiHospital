@@ -70,7 +70,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" data-backdrop="static"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -80,7 +80,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/CustomerInFormation/AddCustomerInformation" method="post" id="AddFrom">
+                <form action="/CustomerInFormation/AddCustomerInformation" method="post" id="form1">
                     <div class="container">
                         <div class="row">
                             <div class="col">
@@ -228,9 +228,27 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
                         <button type="submit" class="btn btn-primary" id="AddSubmit">保存</button>
+
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+@section scripts{
+    <script type="text/javascript">
+        
+        $("#form1").bind("submit", function (event) {
+            if (/*验证通过*/1) {
+                var strCard = $("#CustomerIDCard").val();
+                var regcard = /^([1-9]{2}\d{15})(\d|[x,X])$/; 
+                if (!regcard.test(strCard)) {
+                alert('身份证有误');
+                return false ;
+            }
+            } else {
+                event.preventDefault();
+            }
+        })
+    </script>
+}
