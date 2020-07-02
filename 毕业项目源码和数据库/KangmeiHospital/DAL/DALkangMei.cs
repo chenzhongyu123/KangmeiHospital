@@ -65,6 +65,31 @@ namespace DAL
                     if (clientMdicalIformation!=null)
                     {
 
+                        //删除客户回访信息
+                        List<CustomerReturnVisit> customerReturnVisit = db.CustomerReturnVisit.Where(p => p.ConclusionID == clientMdicalIformation.ConclusionID).ToList();
+                        if (customerReturnVisit.Count > 0)
+                        {
+                            foreach (var item1 in customerReturnVisit)
+                            {
+                                CustomerReturnVisit customerReturnVisit1 = db.CustomerReturnVisit.Where(p=>p.ConclusionID== item1.ConclusionID).ToList().FirstOrDefault();
+                                db.CustomerReturnVisit.Remove(customerReturnVisit1);
+                                db.SaveChanges();
+                            }
+                        }
+
+                        //删除客户关怀信息
+                        List<CustomerCare> customerCare = db.CustomerCare.Where(p => p.ConclusionID == clientMdicalIformation.ConclusionID).ToList();
+                        if (customerCare.Count() > 0)
+                        {
+                            foreach (var item2 in customerCare)
+                            {
+                                int customerCareid = item2.CustomerCareID;
+                                CustomerCare customerCare1 = db.CustomerCare.Where(p=>p.ConclusionID==item2.ConclusionID).ToList().FirstOrDefault();
+                                db.CustomerCare.Remove(customerCare1);
+                                db.SaveChanges();
+
+                            }
+                        }
 
                         //删除体检信息之后才能删除内外科
                         db.ClientMdicalIformation.Remove(clientMdicalIformation);
@@ -80,18 +105,10 @@ namespace DAL
                         db.MedicalExamination.Remove(medicalExamination);
                         db.SaveChanges();
 
-
-                        //删除客户回访信息
-                     List<CustomerReturnVisit> customerReturnVisit =  db.CustomerReturnVisit.Where(p=>p.ConclusionID== clientMdicalIformation.ConclusionID).ToList();
-                        if (customerReturnVisit.Count>0)
-                        {
-                            foreach (var item2 in customerReturnVisit)
-                            {
-                                CustomerReturnVisit customerReturnVisit1= db.CustomerReturnVisit.Find(item2.ConclusionID);
-                                db.CustomerReturnVisit.Remove(customerReturnVisit1);
-                                db.SaveChanges();
-                            }
-                        }
+                        //删除预约记录
+                        CustomerAppointment customerAppointment1= db.CustomerAppointment.Find(item.CustomerAppointmentID);
+                        db.CustomerAppointment.Remove(customerAppointment1);
+                        db.SaveChanges();
                     }
                 }
             }
@@ -155,32 +172,65 @@ namespace DAL
         //删除预约信息
         public void DeleteCustomerAppointment(int id)
         {
-           
 
-            //利用所有的预约id去查有没有体检信息，有则删除体检信息
-            ClientMdicalIformation clientMdicalIformation = db.ClientMdicalIformation.Where(p => p.CustomerAppointmentID == id).ToList().FirstOrDefault();
-            if (clientMdicalIformation != null)
+            //删除预约表
+            List<CustomerAppointment> customerAppointment = db.CustomerAppointment.Where(p => p.CustomerAppointmentID == id).ToList();
+            if (customerAppointment.Count > 0)
             {
+                foreach (var item in customerAppointment)
+                {
+                    //利用所有的预约id去查有没有体检信息，有则删除体检信息
+                    ClientMdicalIformation clientMdicalIformation = db.ClientMdicalIformation.Where(p => p.CustomerAppointmentID == item.CustomerAppointmentID).ToList().FirstOrDefault();
+                    if (clientMdicalIformation != null)
+                    {
 
+                        //删除客户回访信息
+                        List<CustomerReturnVisit> customerReturnVisit = db.CustomerReturnVisit.Where(p => p.ConclusionID == clientMdicalIformation.ConclusionID).ToList();
+                        if (customerReturnVisit.Count > 0)
+                        {
+                            foreach (var item1 in customerReturnVisit)
+                            {
+                                CustomerReturnVisit customerReturnVisit1 = db.CustomerReturnVisit.Where(p => p.ConclusionID == item1.ConclusionID).ToList().FirstOrDefault();
+                                db.CustomerReturnVisit.Remove(customerReturnVisit1);
+                                db.SaveChanges();
+                            }
+                        }
 
-                //删除体检信息之后才能删除内外科
-                db.ClientMdicalIformation.Remove(clientMdicalIformation);
-                db.SaveChanges();
-                //删除外科体检信息
-                int SurgicalExaminationID = clientMdicalIformation.SurgicalExaminationID;
-                SurgicalExamination surgicalExamination = db.SurgicalExamination.Find(SurgicalExaminationID);
-                db.SurgicalExamination.Remove(surgicalExamination);
-                db.SaveChanges();
-                //删除内科体检信息
-                int MedicalExaminationID = clientMdicalIformation.MedicalExaminationID;
-                MedicalExamination medicalExamination = db.MedicalExamination.Find(MedicalExaminationID);
-                db.MedicalExamination.Remove(medicalExamination);
-                db.SaveChanges();
+                        //删除客户关怀信息
+                        List<CustomerCare> customerCare = db.CustomerCare.Where(p => p.ConclusionID == clientMdicalIformation.ConclusionID).ToList();
+                        if (customerCare.Count() > 0)
+                        {
+                            foreach (var item2 in customerCare)
+                            {
+                                int customerCareid = item2.CustomerCareID;
+                                CustomerCare customerCare1 = db.CustomerCare.Where(p => p.ConclusionID == item2.ConclusionID).ToList().FirstOrDefault();
+                                db.CustomerCare.Remove(customerCare1);
+                                db.SaveChanges();
+
+                            }
+                        }
+
+                        //删除体检信息之后才能删除内外科
+                        db.ClientMdicalIformation.Remove(clientMdicalIformation);
+                        db.SaveChanges();
+                        //删除外科体检信息
+                        int SurgicalExaminationID = clientMdicalIformation.SurgicalExaminationID;
+                        SurgicalExamination surgicalExamination = db.SurgicalExamination.Find(SurgicalExaminationID);
+                        db.SurgicalExamination.Remove(surgicalExamination);
+                        db.SaveChanges();
+                        //删除内科体检信息
+                        int MedicalExaminationID = clientMdicalIformation.MedicalExaminationID;
+                        MedicalExamination medicalExamination = db.MedicalExamination.Find(MedicalExaminationID);
+                        db.MedicalExamination.Remove(medicalExamination);
+                        db.SaveChanges();
+
+                        //删除预约记录
+                        CustomerAppointment customerAppointment1 = db.CustomerAppointment.Find(item.CustomerAppointmentID);
+                        db.CustomerAppointment.Remove(customerAppointment1);
+                        db.SaveChanges();
+                    }
+                }
             }
-            CustomerAppointment customerAppointment = db.CustomerAppointment.Find(id);
-            db.CustomerAppointment.Remove(customerAppointment);
-            db.SaveChanges();
-
 
         }
 
@@ -290,13 +340,61 @@ namespace DAL
             db.MedicalExamination.Remove(medicalExamination);
             db.SaveChanges();
         }
+
+
+
         //删除客户体检信息，内外科也一并删除 
         public void DeleteMdicalIformation(int  id)
         {
+            //利用所有的预约id去查有没有体检信息，有则删除体检信息
             ClientMdicalIformation clientMdicalIformation = db.ClientMdicalIformation.Find(id);
-            db.ClientMdicalIformation.Remove(clientMdicalIformation);
-            db.SaveChanges();
-        }
+            if (clientMdicalIformation != null)
+            {
+
+                //删除客户回访信息
+                List<CustomerReturnVisit> customerReturnVisit = db.CustomerReturnVisit.Where(p => p.ConclusionID == clientMdicalIformation.ConclusionID).ToList();
+                if (customerReturnVisit.Count > 0)
+                {
+                    foreach (var item1 in customerReturnVisit)
+                    {
+                        CustomerReturnVisit customerReturnVisit1 = db.CustomerReturnVisit.Where(p => p.ConclusionID == item1.ConclusionID).ToList().FirstOrDefault();
+                        db.CustomerReturnVisit.Remove(customerReturnVisit1);
+                        db.SaveChanges();
+                    }
+                }
+
+                //删除客户关怀信息
+                List<CustomerCare> customerCare = db.CustomerCare.Where(p => p.ConclusionID == clientMdicalIformation.ConclusionID).ToList();
+                if (customerCare.Count() > 0)
+                {
+                    foreach (var item2 in customerCare)
+                    {
+                        int customerCareid = item2.CustomerCareID;
+                        CustomerCare customerCare1 = db.CustomerCare.Where(p => p.ConclusionID == item2.ConclusionID).ToList().FirstOrDefault();
+                        db.CustomerCare.Remove(customerCare1);
+                        db.SaveChanges();
+
+                    }
+                }
+
+                //删除体检信息之后才能删除内外科
+                db.ClientMdicalIformation.Remove(clientMdicalIformation);
+                db.SaveChanges();
+                //删除外科体检信息
+                int SurgicalExaminationID = clientMdicalIformation.SurgicalExaminationID;
+                SurgicalExamination surgicalExamination = db.SurgicalExamination.Find(SurgicalExaminationID);
+                db.SurgicalExamination.Remove(surgicalExamination);
+                db.SaveChanges();
+                //删除内科体检信息
+                int MedicalExaminationID = clientMdicalIformation.MedicalExaminationID;
+                MedicalExamination medicalExamination = db.MedicalExamination.Find(MedicalExaminationID);
+                db.MedicalExamination.Remove(medicalExamination);
+                db.SaveChanges();
+
+            }
+        
+    }
+
 
 
         //利用体检表id查到并返回 

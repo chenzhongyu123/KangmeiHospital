@@ -143,8 +143,6 @@ namespace BLL
         //删除客户体检信息，内外科也一并删除 
         public void DeleteMdicalIformation(int id)
         {
-            Dal.DeleteSurgicalExamination(id);
-            Dal.DeleteMedicalExamination(id);
             Dal.DeleteMdicalIformation(id);
         }
         

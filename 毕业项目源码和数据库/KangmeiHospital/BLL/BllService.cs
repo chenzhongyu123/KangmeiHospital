@@ -79,5 +79,16 @@ namespace BLL
         {
            return Dal.SelectCustomerCare();
         }
+        //修改关怀状态
+
+        public void EditCustomerCare(int id)
+        {
+            Dal.EditCustomerCare(id);
+        }
+        //查询所有关怀
+        public List<CustomerCare> AllSelectCustomerCare()
+        {
+          return  Dal.AllSelectCustomerCare();
+        }
     }
 }

@@ -82,7 +82,7 @@ namespace DAL
                     if (DateTime.Compare(dateTime, time2)>0)
                     {
                     //判断item2体检id是否存在item的id 不存在就可以添加
-                    if (item.ConclusionID == item2.ConclusionID)
+                    if (db.CustomerCare.Where(p=>p.ConclusionID==item.ConclusionID).Count()>0)
                     {
                     }
                     else
@@ -100,11 +100,7 @@ namespace DAL
             }
 
         }
-        //查询所有关怀信息
-        public List<CustomerCare> SelectCustomerCare()
-        {
-           return db.CustomerCare.Where(p => p.ProcessedOrNot == 0).ToList() ;
-        }
+
 
         //修改回访记录
         public CustomerReturnVisit SelectCustomerReturnVisit(int id)
@@ -117,5 +113,41 @@ namespace DAL
             db.Entry(customerReturnVisit).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
         }
+
+
+
+
+
+
+
+
+        //查询所有关怀信息
+        public List<CustomerCare> SelectCustomerCare()
+        {
+           return db.CustomerCare.Where(p => p.ProcessedOrNot == 0).ToList() ;
+        }
+        //修改关怀信息状态
+        public void EditCustomerCare(int id)
+        {
+            CustomerCare customerCare= db.CustomerCare.Find(id);
+            if (customerCare.ProcessedOrNot ==0)
+            {
+                customerCare.ProcessedOrNot =1;
+                db.SaveChanges();
+            }
+            else
+            {
+                customerCare.ProcessedOrNot = 0;
+                db.SaveChanges();
+            }
+        }
+
+        //查询所有关怀
+        public List<CustomerCare> AllSelectCustomerCare()
+        {
+           return db.CustomerCare.Where(p=>p.ProcessedOrNot==1).ToList();
+        }
+
+
     }
 }

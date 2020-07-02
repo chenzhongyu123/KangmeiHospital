@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "CustomerCare";
+    ViewBag.Title = "DetaileCustomerCare";
     Layout = "~/Views/Shared/KangMeiLayout.cshtml";
 }
 @using Model;
@@ -26,12 +26,12 @@
             <li class="breadcrumb-item"><a href="/CustomerInFormation/Index">首页</a></li>
             <li class="breadcrumb-item"><a style="color:white;">客户服务</a></li>
             <li class="breadcrumb-item"><a href="/ServiceManagement/CustomerCare">客户关怀</a></li>
-           
+
         </ol>
 
     </nav>
     <div>
-        <h2 style="text-align:center">客户关怀管理</h2>
+        <h2 style="text-align:center">客户关怀管理(已处理)</h2>
     </div>
     <div>
         <table class="table table-hover table-primary" width="100%">
@@ -55,27 +55,25 @@
             @foreach (var item in Model)
             {
 
-        <tr>
-            <td>@item.CustomerCareID</td>
-            <td>@item.ClientMdicalIformation.CustomerAppointment.CustomerInformation.CustomerName</td>
-            <td>@item.ClientMdicalIformation.CustomerAppointment.CustomerInformation.dateOfBirth.ToShortDateString()</td>
-            <td>@item.ClientMdicalIformation.CustomerAppointment.CustomerInformation.CustomerGender</td>
-            <td>@item.ClientMdicalIformation.UserDoctorList.DoctorOfName</td>
-            <td>@item.ClientMdicalIformation.CustomerAppointment.CustomerInformation.CustomerContactNumber</td>
-            <td>@item.ClientMdicalIformation.InspectionResults</td>
-            <td>@item.ClientMdicalIformation.ConclusionOfPhysicalExamination</td>
-            <td>@item.ClientMdicalIformation.InspectionTime.ToShortDateString()</td>
-            <td>
-                未处理
-            </td>
-            <td>
-                <a href="/ServiceManagement/EditCustomerCare?id=@item.CustomerCareID" onclick="return confirm('确定处理')">已处理</a>/<a href="/ServiceManagement/DetaileCustomerCare">查看处理记录</a>
-            </td>
-        </tr>
+                <tr>
+                    <td>@item.CustomerCareID</td>
+                    <td>@item.ClientMdicalIformation.CustomerAppointment.CustomerInformation.CustomerName</td>
+                    <td>@item.ClientMdicalIformation.CustomerAppointment.CustomerInformation.dateOfBirth.ToShortDateString()</td>
+                    <td>@item.ClientMdicalIformation.CustomerAppointment.CustomerInformation.CustomerGender</td>
+                    <td>@item.ClientMdicalIformation.UserDoctorList.DoctorOfName</td>
+                    <td>@item.ClientMdicalIformation.CustomerAppointment.CustomerInformation.CustomerContactNumber</td>
+                    <td>@item.ClientMdicalIformation.InspectionResults</td>
+                    <td>@item.ClientMdicalIformation.ConclusionOfPhysicalExamination</td>
+                    <td>@item.ClientMdicalIformation.InspectionTime.ToShortDateString()</td>
+                    <td>
+                        已处理
+                    </td>
+                    <td>
+                        <a href="/ServiceManagement/EditCustomerCare?id=@item.CustomerCareID" onclick="return confirm('确定撤回')">撤回处理</a>
+                    </td>
+                </tr>
 
             }
         </table>
     </div>
 </div>
-
-

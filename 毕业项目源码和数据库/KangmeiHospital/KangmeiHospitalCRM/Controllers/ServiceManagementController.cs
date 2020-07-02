@@ -82,9 +82,16 @@ namespace KangmeiHospitalCRM.Controllers
         }
         //客户关怀
         
-        public ActionResult EditCustomerCare()
+        public ActionResult EditCustomerCare(int id)
         {
+            Bll.EditCustomerCare(id);
             return RedirectToAction("CustomerCare");
+        }//客户关怀
+
+        public ActionResult DetaileCustomerCare()
+        {
+            List<CustomerCare> customerCare = Bll.AllSelectCustomerCare();
+            return View(customerCare);
         }
     }
 }

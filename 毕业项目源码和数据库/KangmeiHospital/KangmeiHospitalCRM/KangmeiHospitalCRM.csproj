@@ -314,6 +314,7 @@
     <Content Include="Views\KnowledgeBase\EditKnowledgeBaseContentManagement.cshtml" />
     <Content Include="Views\System\CreateDoctor.cshtml" />
     <Content Include="Views\System\EditUserDoctorList.cshtml" />
+    <Content Include="Views\ServiceManagement\DetaileCustomerCare.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
