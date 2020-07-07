@@ -46,8 +46,34 @@ namespace KangmeiHospitalCRM.Controllers
             }
         }
         //客户信息页
-        public ActionResult Customer() {
-            List<CustomerInformation> list = Bll.SelectInformation();
+        public ActionResult Customer(int CustomerID = 0, string Sname = "", int pageIndex = 1, int pageCount = 5) {
+
+            List<CustomerInformation> lists = Bll.SelectInformation();
+            //获得根据条件所查的总行数
+            int tatalCount = db.CustomerInformation.OrderBy(p => p.CustomerID)
+               .Where(p => (CustomerID == 0 || p.CustomerID == CustomerID) && (Sname == "" || p.CustomerName.Contains(Sname)))
+               .Count();
+            //获得总页数Ceiling()向上取整 2.1 3  2.9 3  round四舍五入 2.1 2  2.6  3
+            double tataoPage = Math.Ceiling(tatalCount / (double)pageCount);
+
+            //获得用户表，先按照主键正序排列，条件过滤，转成集合
+            //slip()跳过指定数量的元素，返回剩下的集合
+            //Take()从剩下集合数中，从第一条开始获取指定数量的集合
+            List<CustomerInformation> list = db.CustomerInformation.OrderBy(p => p.CustomerID)
+                .Where(p => (CustomerID == 0 || p.CustomerID == CustomerID) && (Sname == "" || p.CustomerName.Contains(Sname)))
+                .Skip((pageIndex - 1) * pageCount).Take(pageCount)
+                .ToList();
+            //列表加载的同时，将条件存储并在对应控件显示
+            ViewBag.CustomerID = CustomerID;
+            ViewBag.Sname = Sname;
+            //当前页
+            ViewBag.pageIndex = pageIndex;
+            //每页行数
+            ViewBag.pageCount = pageCount;
+            //总行数
+            ViewBag.tatalCount = tatalCount;
+            //总页数
+            ViewBag.tataoPage = tataoPage;
             return View(list);
         }
         //客户预约管理

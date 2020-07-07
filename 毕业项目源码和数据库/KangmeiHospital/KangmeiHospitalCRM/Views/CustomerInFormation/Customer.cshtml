@@ -22,12 +22,19 @@
 </style>
 <div id="top">
     <nav aria-label="breadcrumb" style="margin-top:25px;">
-        <ol class="breadcrumb" style="background-color:darkgrey; width:100%;">
+        <ol class="breadcrumb" style="background-color:darkgrey; width:100%; height:50px;">
             <li class="breadcrumb-item"><a href="/CustomerInFormation/Index">首页</a></li>
             <li class="breadcrumb-item"><a style="color:white;">客户信息</a></li>
             <li class="breadcrumb-item"><a href="/CustomerInFormation/Customer">客户档案</a></li>
-            <li class="text-right" style="width:75%; height:20px; ">
-                <a href="#" class="btn btn-danger right" style="width:50px;font-size:5px; margin-top:-5px;" data-toggle="modal" data-target="#exampleModal">
+            @*此处查询功能*@
+            <li>
+                <form method="post" action="" class="form-inline">
+                    <input type="text" name="Sname" id="Sname" value="@ViewBag.sname" placeholder="请输入姓名" style="margin-top:-6px;" />
+                    <input type="submit" value="查询" class="btn btn-primary" style="margin-top:-6px;" />
+                </form>
+            </li>
+            <li class="text-right" style="width:95%; height:20px;">
+                <a href="#" class="btn btn-danger right" style="width:50px;font-size:5px; margin-top:-50px;" data-toggle="modal" data-target="#exampleModal">
                     新增
                 </a>
             </li>
@@ -235,17 +242,73 @@
         </div>
     </div>
 </div>
+
+
+
+
+<div class="row">
+    <div class="col-lg-8 form-inline">
+        <label>总共 @ViewBag.tatalCount 行</label>&nbsp;
+        <label>选择显示的行数</label>
+        <select name="pageCount" id="pageCount" onchange="window.location = this.value;">
+            @{
+                int[] count = new[] { 5, 10, 20, 30, 40, 50 };
+            }
+            @foreach (var item in count)
+            {
+                if (item.Equals(ViewBag.pageCount))
+                {
+                    <option selected value="/CustomerInFormation/Customer?CustomerID=@ViewBag.CustomerID&Sname=@ViewBag.sname&pageIndex=1&pageCount=@item">@item</option>
+                }
+                else
+                {
+                    <option value="/CustomerInFormation/Customer?CustomerID=@ViewBag.CustomerID&Sname=@ViewBag.sname&pageIndex=1&pageCount=@item">@item</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="col-lg-4">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="/CustomerInFormation/Customer?CustomerID=@ViewBag.CustomerID&Sname=@ViewBag.sname&pageIndex=1&pageCount=@ViewBag.pageCount">首页</a></li>
+                @if (ViewBag.pageIndex > 1)
+                {
+                    <li class="page-item"><a class="page-link" href="/CustomerInFormation/Customer?CustomerID=@ViewBag.CustomerID&Sname=@ViewBag.sname&pageIndex=@(ViewBag.pageIndex-1)&pageCount=@ViewBag.pageCount">上一页</a></li>
+                }
+                else
+                {
+                    <li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
+                }
+                <li class="page-item"><a class="page-link" href="#">@ViewBag.pageIndex</a></li>
+                @if (ViewBag.pageIndex < @ViewBag.tataoPage)
+                {
+                    <li class="page-item"><a class="page-link" href="/CustomerInFormation/Customer?CustomerID=@ViewBag.CustomerID&Sname=@ViewBag.sname&pageIndex=@(ViewBag.pageIndex+1)&pageCount=@ViewBag.pageCount">下一页</a></li>
+                }
+                else
+                {
+                    <li class="page-item disabled"><a class="page-link" href="#">下一页</a></li>
+                }
+                <li class="page-item"><a class="page-link" href="/CustomerInFormation/Customer?CustomerID=@ViewBag.CustomerID&Sname=@ViewBag.sname&pageIndex=@(ViewBag.tataoPage)&pageCount=@ViewBag.pageCount">末页</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+
+
+
 @section scripts{
     <script type="text/javascript">
-        
+
         $("#form1").bind("submit", function (event) {
             if (/*验证通过*/1) {
                 var strCard = $("#CustomerIDCard").val();
-                var regcard = /^([1-9]{2}\d{15})(\d|[x,X])$/; 
+                var regcard = /^([1-9]{2}\d{15})(\d|[x,X])$/;
                 if (!regcard.test(strCard)) {
-                alert('身份证有误');
-                return false ;
-            }
+                    alert('身份证有误');
+                    return false;
+                }
             } else {
                 event.preventDefault();
             }

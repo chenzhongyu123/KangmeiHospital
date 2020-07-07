@@ -36,7 +36,6 @@ namespace DAL
         //修改一个客户的病史表
         public void EditCustomerDetails(MedicalHistory medicalHistory)
         {
-
             db.Entry(medicalHistory).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
         }
@@ -276,8 +275,22 @@ namespace DAL
         {
             //预约表
             List<CustomerAppointment> customerAppointment = db.CustomerAppointment.ToList();
+            //判断所有预约信息有没有体检完
 
-            return customerAppointment;
+            List<CustomerAppointment> customerAppointment2=new List<CustomerAppointment>();
+            foreach (var item in customerAppointment)
+            {
+
+                if (db.ClientMdicalIformation.Where(p => p.CustomerAppointmentID ==item.CustomerAppointmentID).Count()>0)
+                {
+
+                }
+                else
+                {
+                    customerAppointment2.Add(item);
+                }
+            }
+            return customerAppointment2;
         }
         //新增外科信息
         public int AddSurgicalExamination(SurgicalExamination surgicalExamination)
